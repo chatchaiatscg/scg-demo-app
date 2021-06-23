@@ -1,53 +1,28 @@
-import React from "react";
-import {Row, Col, Typography} from 'antd';
+import React, {useEffect, useState} from "react";
+import {Col, Row} from 'antd';
 
-import TabMenu from "./component/TabMenu";
-import ChartLine from './component/ChartLine'
-import CardWeather from './component/CardWeather'
-import AreaBottom from "./component/AreaBottom";
-
-import IconIndoor from '../../assets/icon/indoor.png'
-import IconOutdoor from '../../assets/icon/outdoor.png'
+import CardStatus from "./component/CardStatus";
+import MyHome from "./component/MyHome";
 
 const Home: React.FunctionComponent = (): React.ReactElement => {
+
+    const [active, setActive] = useState<boolean>(true)
+
+    useEffect(() => {
+        setActive(true)
+    }, [])
+
     return (
         <>
-            <Typography.Title level={2}>
-                AIR flow
-            </Typography.Title>
-
-            <Row>
-                <Col span={24}>
-                    <TabMenu/>
+            <MyHome status={active}/>
+            <Row justify="space-between" style={{marginTop: '37px'}}>
+                <Col span={11}>
+                    <CardStatus label="System" status={active}/>
+                </Col>
+                <Col span={11}>
+                    <CardStatus label="Devices status" status={active}/>
                 </Col>
             </Row>
-
-            <Row style={{marginTop: '33px'}}>
-                <Col span={24}>
-                    <ChartLine/>
-                </Col>
-            </Row>
-
-            <Row style={{marginTop: '34px'}}>
-                <Col span={24}>
-                    <CardWeather
-                        name="Indoor"
-                        icon={IconIndoor}
-                    />
-                </Col>
-            </Row>
-
-            <div style={{marginBottom: '16px'}}/>
-            <Row>
-                <Col span={24}>
-                    <CardWeather
-                        name="Outdoor"
-                        icon={IconOutdoor}
-                    />
-                </Col>
-            </Row>
-
-            <AreaBottom/>
         </>
     );
 };

@@ -6,6 +6,7 @@ import {IChartLine} from "../model/chart-line";
 import {chartLine} from "../mock/chart-line";
 
 import IconClock from '../../../assets/icon/clock.png'
+import {COLORS} from "../../../core/utils/constant";
 
 const ChartLine: React.FunctionComponent = (): React.ReactElement => {
     const [data, setData] = useState<IChartLine[]>([]);
@@ -19,6 +20,9 @@ const ChartLine: React.FunctionComponent = (): React.ReactElement => {
         height: 200,
         xField: 'time',
         yField: 'value',
+        smooth: true,
+        color: COLORS.primary,
+        lineWidth: 2
     };
 
     return (

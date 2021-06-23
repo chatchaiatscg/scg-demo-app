@@ -5,6 +5,7 @@ import {HomeOutlined} from '@ant-design/icons';
 import {IPropRouteComponent, ITypeNavLink} from "./type";
 
 const HomePage = lazy(() => import('../../../pages/home'));
+const RemotePage = lazy(() => import('../../../pages/remote'));
 
 const RouteComponents: IPropRouteComponent[] = [
     {
@@ -13,6 +14,13 @@ const RouteComponents: IPropRouteComponent[] = [
         type: ITypeNavLink.NavLink,
         icon: <HomeOutlined/>,
         Component: <HomePage/>
+    },
+    {
+        label: "Remote",
+        path: "/remote",
+        type: ITypeNavLink.NavLink,
+        icon: <HomeOutlined/>,
+        Component: <RemotePage/>
     },
 ]
 

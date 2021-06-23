@@ -1,30 +1,88 @@
 import React from "react";
 import {Switch} from "react-router-dom";
-import {Image, Layout, Row} from "antd";
+import {Image, Layout, Row, Col, Space} from "antd";
 
 import {RenderAppRoute} from "../../core/app/route/";
 import {COLORS} from "../../core/utils/constant";
 
-import IconArrowLeft from "../../assets/icon/arrow-left.png";
-import IconInfo from "../../assets/icon/info.png";
+import IconMoreMenu from "../../assets/icon/moreMenu.png";
+import IconInbox from "../../assets/icon/inbox.png";
+import IconAlert from "../../assets/icon/alert.png";
+import IconChart from "../../assets/icon/chart.png";
+
+import ImageBackground from "../../assets/images/bg.png";
+import ImageBackgroundIpad from "../../assets/images/bgIpad.png";
 
 const {Content} = Layout;
+
+const largeDevice = {
+    xs: 0,
+    sm: 0,
+}
+
+const smallDevice = {
+    md: 0,
+    lg: 0,
+    xl: 0,
+    xxl: 0
+}
 
 const LayoutComponent: React.FunctionComponent = (): React.ReactElement => {
     return (
         <Layout style={{minHeight: "70vh"}}>
-            <Content style={{backgroundColor: COLORS.white, paddingTop: '32px', paddingBottom: '32px'}}>
-                <div style={{margin: "0 16px"}}>
-                    <Row style={{marginBottom: '7px'}} align="middle" justify="space-between">
-                        <Image
-                            alt={`icon_${IconArrowLeft}`}
-                            src={IconArrowLeft}
-                        />
+            <Col
+                {...largeDevice}
+                style={{
+                    position: 'absolute',
+                }}
+            >
+                <Image
+                    preview={false}
+                    src={ImageBackgroundIpad}
+                />
+            </Col>
 
-                        <Image
-                            alt={`icon_${IconInfo}`}
-                            src={IconInfo}
-                        />
+            <Col
+                {...smallDevice}
+                style={{
+                    position: 'absolute',
+                }}
+            >
+                <Image
+                    preview={false}
+                    src={ImageBackground}
+                />
+            </Col>
+
+            <Content style={{backgroundColor: COLORS.white, paddingTop: '22px'}}>
+                <div style={{margin: "0 16px"}}>
+                    <Row style={{marginBottom: '12px'}} align="middle" justify="space-between">
+                        <Col {...smallDevice}>
+                            <Image
+                                preview={false}
+                                alt={`icon_${IconMoreMenu}`}
+                                src={IconMoreMenu}
+                            />
+                        </Col>
+                        <Col {...smallDevice}>
+                            <Space size="middle" align="end">
+                                <Image
+                                    preview={false}
+                                    alt={`icon_${IconInbox}`}
+                                    src={IconInbox}
+                                />
+                                <Image
+                                    preview={false}
+                                    alt={`icon_${IconAlert}`}
+                                    src={IconAlert}
+                                />
+                                <Image
+                                    preview={false}
+                                    alt={`icon_${IconChart}`}
+                                    src={IconChart}
+                                />
+                            </Space>
+                        </Col>
                     </Row>
                     <Switch>
                         {RenderAppRoute()}

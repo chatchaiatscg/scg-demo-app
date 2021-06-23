@@ -15,10 +15,14 @@ const styles = {
     active: {
         backgroundColor: COLORS.mainColor,
         color: COLORS.white,
+        borderWidth: 2,
+        borderColor: COLORS.black
     },
     inActive: {
         backgroundColor: COLORS.white,
         color: COLORS.mainColor,
+        borderWidth: 2,
+        borderColor: COLORS.black
     }
 }
 const TabMenu: React.FunctionComponent = (): React.ReactElement => {
