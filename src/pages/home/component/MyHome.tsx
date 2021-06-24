@@ -144,7 +144,7 @@ const MyHome: React.FunctionComponent<IProps> = ({tempActive, pmActive}): React.
                                 style={{
                                     position: 'absolute',
                                     zIndex: 1,
-                                    bottom: isIp8 ? 125 : 101,
+                                    bottom: isIp8 ? 124 : 101,
                                     left: isIp8 ? 109 : 74,
                                 }}
                             />

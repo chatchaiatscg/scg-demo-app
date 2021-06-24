@@ -12,7 +12,7 @@ const Home: React.FunctionComponent = (): React.ReactElement => {
 
     useEffect(() => {
         setActive(true)
-        setTempActive(false)
+        setTempActive(true)
         setPMActive(false)
         // TODO fetch status
     }, [])
