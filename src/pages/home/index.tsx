@@ -20,7 +20,7 @@ const Home: React.FunctionComponent = (): React.ReactElement => {
     return (
         <>
             <MyHome tempActive={tempActive} pmActive={pmActive}/>
-            <Row justify="space-between" style={{marginTop: '37px'}}>
+            <Row justify="space-between">
                 <Col span={11}>
                     <CardStatus label="System" status={active}/>
                 </Col>

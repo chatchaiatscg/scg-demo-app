@@ -10,8 +10,9 @@ interface IProps {
 const CardStatus: React.FunctionComponent<IProps> = ({label, status}): React.ReactElement => {
     return (
         <Card
-            bodyStyle={{padding: '15px'}}
-            style={{textAlign: 'center', borderRadius: '16px'}}
+            className="shadow"
+            bodyStyle={{padding: '14px'}}
+            style={{textAlign: 'center', borderRadius: '12px'}}
         >
             <div style={{textAlign: 'center'}}>
                 <Col>

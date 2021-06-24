@@ -34,14 +34,14 @@ const MyHome: React.FunctionComponent<IProps> = ({tempActive, pmActive}): React.
         setRotatePM(pmActive ? 1 : 0)
     }, [tempActive, pmActive, divRef])
 
+    const isIp8 = widthDevice > CONSTANT_WIDTH.se
+
     return (
         <div ref={divRef}>
             <Card
+                className="shadow"
                 bodyStyle={{padding: 0, marginBottom: -20}}
-                style={{
-                    borderRadius: '13px',
-                    aspectRatio: '3.75/4',
-                }}
+                style={{borderRadius: '12px', marginBottom: isIp8 ? 38 : 30}}
             >
                 <Typography.Text
                     style={{
@@ -53,16 +53,17 @@ const MyHome: React.FunctionComponent<IProps> = ({tempActive, pmActive}): React.
                 </Typography.Text>
 
                 <Card
-                    bodyStyle={{padding: 15}}
+                    className="shadow"
+                    bodyStyle={{padding: '12px'}}
                     style={{
                         position: 'absolute',
                         right: '10%',
-                        bottom: '7%',
+                        bottom: isIp8 ? 30 : 25,
                         width: 98,
-                        height: 221,
                         zIndex: 1,
                         borderWidth: 0,
-                        borderRadius: 12
+                        borderRadius: 12,
+                        lineHeight: isIp8 ? 1.7 : 1.2,
                     }}
                 >
                     <Row justify="center">
@@ -72,16 +73,16 @@ const MyHome: React.FunctionComponent<IProps> = ({tempActive, pmActive}): React.
                     </Row>
 
                     <Row justify="center">
-                        <Typography.Text style={{color: tempActive ? COLORS.green : COLORS.red, fontSize: '30px'}}>
+                        <Typography.Text style={{color: tempActive ? COLORS.green : COLORS.red, fontSize: '28px'}}>
                             35 c
                         </Typography.Text>
                     </Row>
 
-                    <Row align="middle" justify="space-between">
+                    <Row align="middle" justify="space-around" style={{marginTop: '4px', marginBottom: '6px'}}>
                         <Typography.Text style={{color: pmActive ? COLORS.green : COLORS.red}}>
                             AQI
                         </Typography.Text>
-                        <Typography.Text style={{color: pmActive ? COLORS.green : COLORS.red, fontSize: '30px'}}>
+                        <Typography.Text style={{color: pmActive ? COLORS.green : COLORS.red, fontSize: '28px'}}>
                             60
                         </Typography.Text>
                     </Row>
@@ -91,7 +92,7 @@ const MyHome: React.FunctionComponent<IProps> = ({tempActive, pmActive}): React.
                             preview={false}
                             src={IconPM}
                         />
-                        <Typography.Text style={{color: COLORS.green, fontSize: 16}}>
+                        <Typography.Text style={{color: COLORS.green, fontSize: 18}}>
                             50
                         </Typography.Text>
                     </Row>
@@ -101,28 +102,27 @@ const MyHome: React.FunctionComponent<IProps> = ({tempActive, pmActive}): React.
                             preview={false}
                             src={IconCarbon}
                         />
-                        <Typography.Text style={{color: COLORS.green, fontSize: 16}}>
+                        <Typography.Text style={{color: COLORS.green, fontSize: 18}}>
                             40
                         </Typography.Text>
                     </Row>
                 </Card>
 
-                <div style={{textAlign: 'right'}}>
+                <div style={{textAlign: 'right', marginTop: '12px'}}>
                     <Col>
                         <div style={{display: 'flex'}}>
-
                             <img
                                 className="image"
                                 src={tempActive ? IconFanActive : IconFanInActive}
                                 alt="icon_fan1"
-                                width={30}
+                                width={26}
                                 // @ts-ignore
                                 rotate={rotateTemp}
                                 style={{
                                     position: 'absolute',
                                     zIndex: 1,
-                                    top: widthDevice > CONSTANT_WIDTH.se ? 77 : 69,
-                                    left: widthDevice > CONSTANT_WIDTH.se ? 91 : 57
+                                    top: isIp8 ? 79 : 62,
+                                    left: isIp8 ? 92 : 59
                                 }}
                             />
                         </div>
@@ -130,6 +130,7 @@ const MyHome: React.FunctionComponent<IProps> = ({tempActive, pmActive}): React.
                     <Image
                         preview={false}
                         src={tempActive || pmActive ? ImageHomeActive : ImageHome}
+                        style={{height: isIp8 ? 'auto' : '340px', overflow: 'hidden'}}
                     />
                     <Col>
                         <div style={{display: 'flex'}}>
@@ -137,15 +138,14 @@ const MyHome: React.FunctionComponent<IProps> = ({tempActive, pmActive}): React.
                                 className="image"
                                 src={pmActive ? IconFanActive : IconFanInActive}
                                 alt="icon_fan2"
-                                width={30}
+                                width={26}
                                 // @ts-ignore
                                 rotate={rotatePM}
                                 style={{
-                                    width: '30px',
                                     position: 'absolute',
                                     zIndex: 1,
-                                    bottom: widthDevice > CONSTANT_WIDTH.se ? 122 : 111,
-                                    left: widthDevice > CONSTANT_WIDTH.se ? 108 : 72,
+                                    bottom: isIp8 ? 125 : 101,
+                                    left: isIp8 ? 109 : 74,
                                 }}
                             />
                         </div>
