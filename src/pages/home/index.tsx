@@ -7,14 +7,19 @@ import MyHome from "./component/MyHome";
 const Home: React.FunctionComponent = (): React.ReactElement => {
 
     const [active, setActive] = useState<boolean>(true)
+    const [tempActive, setTempActive] = useState<boolean>(false)
+    const [pmActive, setPMActive] = useState<boolean>(false)
 
     useEffect(() => {
         setActive(true)
+        setTempActive(false)
+        setPMActive(false)
+        // TODO fetch status
     }, [])
 
     return (
         <>
-            <MyHome status={active}/>
+            <MyHome tempActive={tempActive} pmActive={pmActive}/>
             <Row justify="space-between" style={{marginTop: '37px'}}>
                 <Col span={11}>
                     <CardStatus label="System" status={active}/>

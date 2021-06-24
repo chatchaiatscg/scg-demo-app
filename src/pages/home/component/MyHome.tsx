@@ -1,5 +1,5 @@
-import React, {useEffect} from "react";
-import {Card, Image, Typography, Row} from 'antd';
+import React, {useEffect, useRef, useState} from "react";
+import {Card, Image, Typography, Row, Col} from 'antd';
 
 import {COLORS} from "../../../core/utils/constant";
 
@@ -7,24 +7,35 @@ import ImageHome from '../../../assets/images/groupFan.png'
 import ImageHomeActive from '../../../assets/images/groupFanActive.png'
 import IconPM from '../../../assets/icon/pm.png'
 import IconCarbon from '../../../assets/icon/carbon.png'
-// import IconFanActive from '../../../assets/icon/fanActive.png'
+
+import IconFanActive from '../../../assets/icon/fanActive.png'
+import IconFanInActive from '../../../assets/icon/fanInActive.png'
 
 interface IProps {
-    status: boolean
+    tempActive: boolean
+    pmActive: boolean
 }
 
-const MyHome: React.FunctionComponent<IProps> = ({status}): React.ReactElement => {
+const CONSTANT_WIDTH = {
+    se: 288
+}
+
+const MyHome: React.FunctionComponent<IProps> = ({tempActive, pmActive}): React.ReactElement => {
+    const divRef = useRef<HTMLDivElement>(null)
+
+    const [rotateTemp, setRotateTemp] = useState<number>(0)
+    const [rotatePM, setRotatePM] = useState<number>(0)
+
+    const [widthDevice, setWidthDevice] = useState<number>(CONSTANT_WIDTH.se) // ref by 5/SE
 
     useEffect(() => {
-        console.log('status')
-        if (status) {
-
-            return
-        }
-    }, [status])
+        setWidthDevice(divRef?.current?.offsetWidth || CONSTANT_WIDTH.se)
+        setRotateTemp(tempActive ? 1 : 0)
+        setRotatePM(pmActive ? 1 : 0)
+    }, [tempActive, pmActive, divRef])
 
     return (
-        <>
+        <div ref={divRef}>
             <Card
                 bodyStyle={{padding: 0, marginBottom: -20}}
                 style={{
@@ -32,10 +43,12 @@ const MyHome: React.FunctionComponent<IProps> = ({status}): React.ReactElement =
                     aspectRatio: '3.75/4',
                 }}
             >
-                <Typography.Text style={{
-                    position: 'absolute',
-                    padding: 15
-                }}>
+                <Typography.Text
+                    style={{
+                        position: 'absolute',
+                        padding: 15
+                    }}
+                >
                     My Home
                 </Typography.Text>
 
@@ -59,16 +72,16 @@ const MyHome: React.FunctionComponent<IProps> = ({status}): React.ReactElement =
                     </Row>
 
                     <Row justify="center">
-                        <Typography.Text style={{color: status ? COLORS.green : COLORS.red, fontSize: '30px'}}>
+                        <Typography.Text style={{color: tempActive ? COLORS.green : COLORS.red, fontSize: '30px'}}>
                             35 c
                         </Typography.Text>
                     </Row>
 
                     <Row align="middle" justify="space-between">
-                        <Typography.Text style={{color: status ? COLORS.green : COLORS.red}}>
+                        <Typography.Text style={{color: pmActive ? COLORS.green : COLORS.red}}>
                             AQI
                         </Typography.Text>
-                        <Typography.Text style={{color: status ? COLORS.green : COLORS.red, fontSize: '30px'}}>
+                        <Typography.Text style={{color: pmActive ? COLORS.green : COLORS.red, fontSize: '30px'}}>
                             60
                         </Typography.Text>
                     </Row>
@@ -94,20 +107,52 @@ const MyHome: React.FunctionComponent<IProps> = ({status}): React.ReactElement =
                     </Row>
                 </Card>
 
-                {/*<Image*/}
-                {/*    preview={false}*/}
-                {/*    src={IconFanActive}*/}
-                {/*    style={{position: 'absolute', left: '190%', top: 75, zIndex: 1}}*/}
-                {/*    width={30}*/}
-                {/*/>*/}
                 <div style={{textAlign: 'right'}}>
+                    <Col>
+                        <div style={{display: 'flex'}}>
+
+                            <img
+                                className="image"
+                                src={tempActive ? IconFanActive : IconFanInActive}
+                                alt="icon_fan1"
+                                width={30}
+                                // @ts-ignore
+                                rotate={rotateTemp}
+                                style={{
+                                    position: 'absolute',
+                                    zIndex: 1,
+                                    top: widthDevice > CONSTANT_WIDTH.se ? 77 : 69,
+                                    left: widthDevice > CONSTANT_WIDTH.se ? 91 : 57
+                                }}
+                            />
+                        </div>
+                    </Col>
                     <Image
                         preview={false}
-                        src={status ? ImageHomeActive : ImageHome}
+                        src={tempActive || pmActive ? ImageHomeActive : ImageHome}
                     />
+                    <Col>
+                        <div style={{display: 'flex'}}>
+                            <img
+                                className="image"
+                                src={pmActive ? IconFanActive : IconFanInActive}
+                                alt="icon_fan2"
+                                width={30}
+                                // @ts-ignore
+                                rotate={rotatePM}
+                                style={{
+                                    width: '30px',
+                                    position: 'absolute',
+                                    zIndex: 1,
+                                    bottom: widthDevice > CONSTANT_WIDTH.se ? 122 : 111,
+                                    left: widthDevice > CONSTANT_WIDTH.se ? 108 : 72,
+                                }}
+                            />
+                        </div>
+                    </Col>
                 </div>
             </Card>
-        </>
+        </div>
     )
 }
 

@@ -16,8 +16,8 @@ import ImageBackgroundIpad from "../../assets/images/bgIpad.png";
 const {Content} = Layout;
 
 const largeDevice = {
-    xs: 0,
-    sm: 0,
+    // xs: 0,
+    // sm: 0,
 }
 
 const smallDevice = {
