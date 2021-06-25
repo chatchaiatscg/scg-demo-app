@@ -11,7 +11,7 @@ const CardStatus: React.FunctionComponent<IProps> = ({label, status}): React.Rea
     return (
         <Card
             className="shadow"
-            bodyStyle={{padding: '14px'}}
+            bodyStyle={{padding: '2.5vh'}}
             style={{textAlign: 'center', borderRadius: '12px'}}
         >
             <div style={{textAlign: 'center'}}>

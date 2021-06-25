@@ -16,8 +16,8 @@ import ImageBackgroundIpad from "../../assets/images/bgIpad.png";
 const {Content} = Layout;
 
 const largeDevice = {
-    // xs: 0,
-    // sm: 0,
+    xs: 0,
+    sm: 0,
 }
 
 const smallDevice = {
@@ -39,6 +39,7 @@ const LayoutComponent: React.FunctionComponent = (): React.ReactElement => {
                 <Image
                     preview={false}
                     src={ImageBackgroundIpad}
+                    style={{ width: 'auto'}}
                 />
             </Col>
 
@@ -50,6 +51,7 @@ const LayoutComponent: React.FunctionComponent = (): React.ReactElement => {
             >
                 <Image
                     preview={false}
+                    style={{height: '100vh', width: 'auto'}}
                     src={ImageBackground}
                 />
             </Col>
