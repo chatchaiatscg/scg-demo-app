@@ -1,8 +1,9 @@
-import React from "react";
+import React, {useState} from "react";
 import {Row, Col, Image, Button} from 'antd';
 
 import IconLogo from '../../assets/icon/logo.png'
 import {COLORS} from "../../core/utils/constant";
+import {IActiveState} from "../home/model/my-home";
 
 const widthHeightButton = {
     width: 588,
@@ -12,6 +13,11 @@ const widthHeightButton = {
 }
 
 const RemoteScreen: React.FunctionComponent = (): React.ReactElement => {
+    const [activeState,] = useState<IActiveState>({
+        active: true,
+        tempActive: true,
+        pmActive: false,
+    })
 
     const handlerTemperature = () => {
         console.log('handlerTemperature !!')
@@ -36,8 +42,8 @@ const RemoteScreen: React.FunctionComponent = (): React.ReactElement => {
                     <Button
                         type="primary"
                         style={{
-                            backgroundColor: COLORS.pink,
-                            borderColor: COLORS.pink,
+                            backgroundColor: activeState.tempActive ? COLORS.red : COLORS.pink,
+                            borderColor: activeState.tempActive ? COLORS.red : COLORS.pink,
                             ...widthHeightButton
                         }}
                         onClick={handlerTemperature}
@@ -49,8 +55,8 @@ const RemoteScreen: React.FunctionComponent = (): React.ReactElement => {
                     <Button
                         type="primary"
                         style={{
-                            backgroundColor: COLORS.blue,
-                            borderColor: COLORS.blue,
+                            backgroundColor: activeState.pmActive ? COLORS.blue : COLORS.blueInActive,
+                            borderColor: activeState.pmActive ? COLORS.blue : COLORS.blueInActive,
                             ...widthHeightButton
                         }}
                         onClick={handlerPM}

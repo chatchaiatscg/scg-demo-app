@@ -8,9 +8,9 @@ import {IActiveState} from "./model/my-home";
 
 const Home: React.FunctionComponent = (): React.ReactElement => {
     const [activeState,] = useState<IActiveState>({
-        active: false,
+        active: true,
         tempActive: true,
-        pmActive: true,
+        pmActive: false,
     })
 
     return (
