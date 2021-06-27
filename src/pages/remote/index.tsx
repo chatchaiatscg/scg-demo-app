@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from "react";
+import React from "react";
 import {Row, Col, Image, Button} from 'antd';
 
 import IconLogo from '../../assets/icon/logo.png'
@@ -9,10 +9,10 @@ import {IModelHome} from "../home/model/my-home";
 import ImageBackgroundIpad from "../../assets/images/bgIpad.png";
 
 const widthHeightButton = {
-    width: 588,
-    height: 110,
-    fontSize: 40,
-    borderRadius: 142.5
+    width: '80vw',
+    height: '8.5vh',
+    fontSize: 'calc(16px + 2.5vw)',
+    borderRadius: '7vw'
 }
 
 interface IProps {
@@ -21,13 +21,6 @@ interface IProps {
 }
 
 const RemoteScreen: React.FunctionComponent<IProps> = ({myHome, homeStatus}): React.ReactElement => {
-    const divRef = useRef<HTMLDivElement>(null)
-    const [widthIpad, setWidthIpad] = useState<number>(1024)
-
-    useEffect(() => {
-        setWidthIpad(divRef?.current?.offsetWidth || 1024)
-    }, [divRef])
-
 
     const handlerOnClick = (index: number) => {
         if (index === 1) {
@@ -38,17 +31,17 @@ const RemoteScreen: React.FunctionComponent<IProps> = ({myHome, homeStatus}): Re
     }
 
     return (
-        <div ref={divRef} style={{marginTop : -15}}>
+        <div style={{marginTop: -15}}>
             <Image
                 preview={false}
                 src={ImageBackgroundIpad}
                 style={{
                     position: 'absolute',
-                    width: widthIpad,
-                    height: '100vh'
+                    width: '100vw',
+                    minHeight: '100vh'
                 }}
             />
-            <Row justify="center" align="middle" style={{marginTop: '88px'}}>
+            <Row justify="center" align="middle" style={{marginTop: '5vh'}}>
                 <Col>
                     <Image
                         alt={`icon_${IconLogo}`}
@@ -57,7 +50,7 @@ const RemoteScreen: React.FunctionComponent<IProps> = ({myHome, homeStatus}): Re
                 </Col>
             </Row>
 
-            <Row justify="center" align="middle" style={{marginTop: '108px'}}>
+            <Row justify="center" align="middle" style={{marginTop: '10vh'}}>
                 {
                     homeStatus.length > 0 && homeStatus.map((value, index) => (
                         <Col key={value.device_id} span={24} style={{textAlign: 'center', marginBottom: '72px'}}>
