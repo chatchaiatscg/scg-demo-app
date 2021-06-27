@@ -13,8 +13,6 @@ import IconCarbon from '../../../assets/icon/carbon.png'
 import IconFanActive from '../../../assets/icon/fanActive.png'
 import IconFanInActive from '../../../assets/icon/fanInActive.png'
 
-// const fanTemp = '128_1_0013A20041D03572'
-
 interface IProps {
     myHome: IModelHome[]
     homeStatus: IModelHome[]

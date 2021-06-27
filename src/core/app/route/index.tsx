@@ -12,6 +12,9 @@ import {message} from "antd";
 const HomePage = lazy(() => import('../../../pages/home'));
 const RemotePage = lazy(() => import('../../../pages/remote'));
 
+const fanTemp = '128_1_0013A20041D03572'
+// const mockTemp = '128_1_0013A20041C9F2C6'
+
 const RouteComponents = (): IPropRouteComponent[] => {
     const [myHome, setMyHome] = useState<IModelHome[]>([])
     const [homeStatus, setHomeStatus] = useState<IModelHome[]>([])
@@ -20,14 +23,23 @@ const RouteComponents = (): IPropRouteComponent[] => {
     let interval: NodeJS.Timeout | null
     const fetchMyHome = async () => {
         let preMyHome: IModelHome[] = []
+        let statusTemp: IModelHome[] = []
         let status: IModelHome[] = []
         try {
             const response = await service().getMyHome()
-            response.map(value => {
+            response.map((value) => {
                 if (value.device_type !== 'relay') {
                     return preMyHome.push(value)
                 }
-                return status.push(value)
+                return statusTemp.push(value)
+            })
+
+            statusTemp.forEach((value) => {
+                if (value.device_id === fanTemp) {
+                    status[0] = value
+                } else {
+                    status[1] = value
+                }
             })
             setMyHome(preMyHome)
             setHomeStatus(status)
