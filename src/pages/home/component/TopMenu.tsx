@@ -8,7 +8,7 @@ import IconChart from "../../../assets/icon/chart.png";
 
 const TopMenu: React.FunctionComponent = (): React.ReactElement => {
     return (
-        <Row style={{marginBottom: '12px', marginTop: '31px '}} align="middle" justify="space-between">
+        <Row style={{marginBottom: '12px', marginTop: '11px'}} align="middle" justify="space-between">
             <Col>
                 <Image
                     preview={false}

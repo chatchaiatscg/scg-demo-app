@@ -3,6 +3,8 @@ import {Card, Image, Typography, Row, Col} from 'antd';
 
 import {COLORS} from "../../../core/utils/constant";
 
+import {IModelHome} from "../model/my-home";
+
 import ImageHome from '../../../assets/images/groupFan.png'
 import ImageHomeActive from '../../../assets/images/groupFanActive.png'
 import IconPM from '../../../assets/icon/pm.png'
@@ -10,7 +12,6 @@ import IconCarbon from '../../../assets/icon/carbon.png'
 
 import IconFanActive from '../../../assets/icon/fanActive.png'
 import IconFanInActive from '../../../assets/icon/fanInActive.png'
-import {IModelHome} from "../model/my-home";
 
 // const fanTemp = '128_1_0013A20041D03572'
 
@@ -21,7 +22,7 @@ interface IProps {
 
 const CONSTANT_WIDTH = {
     se: 288,
-    ten: 379
+    ten: 373
 }
 
 const MyHome: React.FunctionComponent<IProps> = ({myHome, homeStatus}): React.ReactElement => {
@@ -142,7 +143,7 @@ const MyHome: React.FunctionComponent<IProps> = ({myHome, homeStatus}): React.Re
                                     position: 'absolute',
                                     zIndex: 1,
                                     top: isIpX ? 79 : isIp8 ? 78.5 : 62,
-                                    left: isIpX ? 128 : isIp8 ? 93 : 59,
+                                    left: isIpX ? 124 : isIp8 ? 87.5 : 58,
                                 }}
                             />
                         </div>
@@ -164,8 +165,8 @@ const MyHome: React.FunctionComponent<IProps> = ({myHome, homeStatus}): React.Re
                                 style={{
                                     position: 'absolute',
                                     zIndex: 1,
-                                    bottom: isIp8 ? 124 : 101,
-                                    left: isIp8 ? 110 : 74
+                                    bottom: isIpX ? 125 : isIp8 ? 125 : 101,
+                                    left: isIpX ? 140 : isIp8 ? 104 : 73
                                 }}
                             />
                         </div>

@@ -14,7 +14,7 @@ export const HomeService = (axiosInstance: AxiosInstance): IHomeService => {
             //     data,
             //     status
             // } = await axiosInstance.get('https://ah3gx2g2pf.execute-api.ap-southeast-1.amazonaws.com/prod?edge_id=demo')
-            // console.log('data' , data)
+            // // console.log('data' , data)
             // if (status !== 200) {
             //     return []
             // }
