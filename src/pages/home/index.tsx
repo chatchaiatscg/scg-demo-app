@@ -4,9 +4,14 @@ import {Col, Row} from 'antd';
 import CardStatus from "./component/CardStatus";
 import MyHome from "./component/MyHome";
 
-import {IActiveState} from "./model/my-home";
+import {IActiveState, IModelHome} from "./model/my-home";
 
-const Home: React.FunctionComponent = (): React.ReactElement => {
+interface IProps {
+    myHome: IModelHome[]
+    homeStatus: IModelHome[]
+}
+
+const Home: React.FunctionComponent<IProps> = ({myHome, homeStatus}): React.ReactElement => {
     const [activeState,] = useState<IActiveState>({
         active: true,
         tempActive: true,
@@ -15,13 +20,13 @@ const Home: React.FunctionComponent = (): React.ReactElement => {
 
     return (
         <>
-            <MyHome activeState={activeState}/>
+            <MyHome myHome={myHome} activeState={activeState}/>
             <Row justify="space-between">
                 <Col span={11}>
-                    <CardStatus label="System" status={activeState.active}/>
+                    <CardStatus label="System" homeStatus={homeStatus}/>
                 </Col>
                 <Col span={11}>
-                    <CardStatus label="Devices status" status={activeState.active}/>
+                    <CardStatus label="Devices status" homeStatus={homeStatus}/>
                 </Col>
             </Row>
         </>

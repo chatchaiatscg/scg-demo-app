@@ -1,13 +1,14 @@
 import React from "react";
 import {Card, Col, Typography} from "antd";
 import {COLORS} from "../../../core/utils/constant";
+import {IModelHome} from "../model/my-home";
 
 interface IProps {
+    homeStatus: IModelHome[]
     label: string
-    status: boolean
 }
 
-const CardStatus: React.FunctionComponent<IProps> = ({label, status}): React.ReactElement => {
+const CardStatus: React.FunctionComponent<IProps> = ({label}): React.ReactElement => {
     return (
         <Card
             className="shadow"
@@ -22,7 +23,9 @@ const CardStatus: React.FunctionComponent<IProps> = ({label, status}): React.Rea
                 </Col>
                 <Col>
                     <Typography.Text style={{color: COLORS.green, fontSize: 16}}>
-                        {status ? 'ON' : 'OFF'}
+                        {/*{status ? 'ON' : 'OFF'}*/}
+                        {/*MOCK*/}
+                        ON
                     </Typography.Text>
                 </Col>
             </div>

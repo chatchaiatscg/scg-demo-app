@@ -1,8 +1,9 @@
 export interface IModelHome {
-    indoor: number
-    aqi: number
-    pm: number
-    co: number
+    device_type: string
+    value_type: string
+    unit: string
+    device_id: string
+    value: string
 }
 
 export interface IActiveState {

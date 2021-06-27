@@ -1,5 +1,5 @@
 import React, {useEffect, useRef, useState} from "react";
-import {Card, Image, Typography, Row, Col, message} from 'antd';
+import {Card, Image, Typography, Row, Col} from 'antd';
 
 import {COLORS} from "../../../core/utils/constant";
 
@@ -10,13 +10,10 @@ import IconCarbon from '../../../assets/icon/carbon.png'
 
 import IconFanActive from '../../../assets/icon/fanActive.png'
 import IconFanInActive from '../../../assets/icon/fanInActive.png'
-import {myHomeData} from "../mock/my-home";
 import {IModelHome, IActiveState} from "../model/my-home";
-import useAxios from "../../../hooks/useAxios";
-import {HomeService, IHomeService} from "../service/my-home";
-import {AxiosInstance} from "axios";
 
 interface IProps {
+    myHome: IModelHome[]
     activeState: IActiveState
 }
 
@@ -24,65 +21,16 @@ const CONSTANT_WIDTH = {
     se: 288
 }
 
-const INTERVAL_TEMP = 5500
-const INTERVAL_PM = 2000
-
-const MyHome: React.FunctionComponent<IProps> = ({activeState}): React.ReactElement => {
+const MyHome: React.FunctionComponent<IProps> = ({myHome, activeState}): React.ReactElement => {
     const divRef = useRef<HTMLDivElement>(null)
 
-    const [myHome, setMyHome] = useState<IModelHome>(myHomeData)
+
     const [widthDevice, setWidthDevice] = useState<number>(CONSTANT_WIDTH.se) // ref by 5/SE
-
-    const {service} = useAxios<IHomeService>((axiosInstance: AxiosInstance) => HomeService(axiosInstance))
-    let intervalTemp: NodeJS.Timeout | null = null
-    let intervalPM: NodeJS.Timeout | null = null
-
-    const fetchMyHome = async () => {
-        try {
-            const response = await service().getMyHome()
-            setMyHome(response)
-        } catch (e) {
-            message.error('Something went wrong!')
-        }
-    }
-
-    useEffect(() => {
-        // TODO fetch status
-        fetchMyHome().then()
-        // eslint-disable-next-line
-    }, [])
 
     useEffect(() => {
         setWidthDevice(divRef?.current?.offsetWidth || CONSTANT_WIDTH.se)
-        if (activeState.tempActive) {
-            // eslint-disable-next-line react-hooks/exhaustive-deps
-            intervalTemp = setInterval(() => {
-                setMyHome(prevState => {
-                    if (prevState.indoor <= 25) {
-                        intervalTemp && clearInterval(intervalTemp)
-                        return {...prevState, indoor: prevState.indoor}
-                    }
-                    return {...prevState, indoor: prevState.indoor - 1}
-                })
-            }, INTERVAL_TEMP)
-        } else {
-            intervalTemp && clearInterval(intervalTemp)
-        }
-        if (activeState.pmActive) {
-            // eslint-disable-next-line react-hooks/exhaustive-deps
-            intervalPM = setInterval(() => {
-                setMyHome(prevState => {
-                    if (prevState.aqi <= 40) {
-                        intervalPM && clearInterval(intervalPM)
-                        return {...prevState, aqi: prevState.aqi}
-                    }
-                    return {...prevState, aqi: prevState.aqi - 1}
-                })
-            }, INTERVAL_PM)
-        } else {
-            intervalPM && clearInterval(intervalPM)
-        }
-    }, [divRef, activeState])
+
+    }, [divRef])
 
     const isIp8 = widthDevice > CONSTANT_WIDTH.se
 
@@ -121,43 +69,94 @@ const MyHome: React.FunctionComponent<IProps> = ({activeState}): React.ReactElem
                             Indoor
                         </Typography.Text>
                     </Row>
+                    {
+                        myHome.map((home, index) => {
+                            return (
+                                <Row
+                                    key={`${home.device_id}_${home.device_type}`}
+                                    align="middle"
+                                    justify="space-around"
+                                    style={{marginTop: '4px', marginBottom: '6px'}}
+                                >
+                                    {index === 0 || index === 1 ?
+                                        <Typography.Text
+                                            style={{color: activeState.pmActive ? COLORS.green : COLORS.red}}>
+                                            {index === 1 && 'AQI'}
+                                        </Typography.Text>
+                                        :
+                                        <Image
+                                            alt={`icon_${IconPM}`}
+                                            src={index === 2 ? IconPM : IconCarbon}
+                                        />
+                                    }
 
-                    <Row justify="center">
-                        <Typography.Text
-                            style={{color: activeState.tempActive ? COLORS.green : COLORS.red, fontSize: '28px'}}>
-                            {myHome.indoor} c
-                        </Typography.Text>
-                    </Row>
+                                    {index === 0 || index === 1 ?
+                                        <Typography.Text
+                                            style={{
+                                                color: activeState.pmActive ? COLORS.green : COLORS.red,
+                                                fontSize: index === 0 ? '20px' : '32px'
+                                            }}
+                                        >
+                                            {home.value} {index === 0 && '°C'}
+                                        </Typography.Text>
+                                        :
+                                        <Typography.Text
+                                            style={{
+                                                color: COLORS.green,
+                                                fontSize: '12px'
+                                            }}>
+                                            {home.value}
+                                        </Typography.Text>
+                                    }
+                                    {/*<Typography.Text*/}
+                                    {/*    style={{*/}
+                                    {/*        color: activeState.pmActive ? COLORS.green : COLORS.red,*/}
+                                    {/*        // fontSize: '28px'*/}
+                                    {/*        fontSize: '12px'*/}
+                                    {/*    }}>*/}
+                                    {/*    {home.value}*/}
+                                    {/*    /!*{home.unit}*!/*/}
+                                    {/*</Typography.Text>*/}
+                                </Row>
+                            )
+                        })
+                    }
+                    {/*<Row justify="center">*/}
+                    {/*    <Typography.Text*/}
+                    {/*        style={{color: activeState.tempActive ? COLORS.green : COLORS.red, fontSize: '28px'}}>*/}
+                    {/*        {myHome.indoor} c*/}
+                    {/*    </Typography.Text>*/}
+                    {/*</Row>*/}
 
-                    <Row align="middle" justify="space-around" style={{marginTop: '4px', marginBottom: '6px'}}>
-                        <Typography.Text style={{color: activeState.pmActive ? COLORS.green : COLORS.red}}>
-                            AQI
-                        </Typography.Text>
-                        <Typography.Text
-                            style={{color: activeState.pmActive ? COLORS.green : COLORS.red, fontSize: '28px'}}>
-                            {myHome.aqi}
-                        </Typography.Text>
-                    </Row>
+                    {/*<Row align="middle" justify="space-around" style={{marginTop: '4px', marginBottom: '6px'}}>*/}
+                    {/*    <Typography.Text style={{color: activeState.pmActive ? COLORS.green : COLORS.red}}>*/}
+                    {/*        AQI*/}
+                    {/*    </Typography.Text>*/}
+                    {/*    <Typography.Text*/}
+                    {/*        style={{color: activeState.pmActive ? COLORS.green : COLORS.red, fontSize: '28px'}}>*/}
+                    {/*        {myHome.aqi}*/}
+                    {/*    </Typography.Text>*/}
+                    {/*</Row>*/}
 
-                    <Row justify="space-around">
-                        <Image
-                            preview={false}
-                            src={IconPM}
-                        />
-                        <Typography.Text style={{color: COLORS.green, fontSize: 18}}>
-                            {myHome.pm}
-                        </Typography.Text>
-                    </Row>
+                    {/*<Row justify="space-around">*/}
+                    {/*    <Image*/}
+                    {/*        preview={false}*/}
+                    {/*        src={IconPM}*/}
+                    {/*    />*/}
+                    {/*    <Typography.Text style={{color: COLORS.green, fontSize: 18}}>*/}
+                    {/*        {myHome.pm}*/}
+                    {/*    </Typography.Text>*/}
+                    {/*</Row>*/}
 
-                    <Row justify="space-around" style={{marginTop: 10}}>
-                        <Image
-                            preview={false}
-                            src={IconCarbon}
-                        />
-                        <Typography.Text style={{color: COLORS.green, fontSize: 18}}>
-                            {myHome.co}
-                        </Typography.Text>
-                    </Row>
+                    {/*<Row justify="space-around" style={{marginTop: 10}}>*/}
+                    {/*    <Image*/}
+                    {/*        preview={false}*/}
+                    {/*        src={IconCarbon}*/}
+                    {/*    />*/}
+                    {/*    <Typography.Text style={{color: COLORS.green, fontSize: 18}}>*/}
+                    {/*        {myHome.co}*/}
+                    {/*    </Typography.Text>*/}
+                    {/*</Row>*/}
                 </Card>
 
                 <div style={{textAlign: 'right', marginTop: '12px'}}>

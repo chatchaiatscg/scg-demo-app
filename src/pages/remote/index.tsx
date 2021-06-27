@@ -1,9 +1,10 @@
-import React, {useState} from "react";
+import React from "react";
 import {Row, Col, Image, Button} from 'antd';
 
 import IconLogo from '../../assets/icon/logo.png'
 import {COLORS} from "../../core/utils/constant";
-import {IActiveState} from "../home/model/my-home";
+
+import {IModelHome} from "../home/model/my-home";
 
 const widthHeightButton = {
     width: 588,
@@ -12,19 +13,19 @@ const widthHeightButton = {
     borderRadius: 142.5
 }
 
-const RemoteScreen: React.FunctionComponent = (): React.ReactElement => {
-    const [activeState,] = useState<IActiveState>({
-        active: true,
-        tempActive: true,
-        pmActive: false,
-    })
+interface IProps {
+    myHome: IModelHome[]
+    homeStatus: IModelHome[]
+}
 
-    const handlerTemperature = () => {
+const RemoteScreen: React.FunctionComponent<IProps> = ({myHome, homeStatus}): React.ReactElement => {
+
+    const handlerOnClick = (index: number) => {
+        if (index === 1) {
+            console.log('handlerPM !!')
+            return
+        }
         console.log('handlerTemperature !!')
-    }
-
-    const handlerPM = () => {
-        console.log('handlerPM !!')
     }
 
     return (
@@ -38,32 +39,23 @@ const RemoteScreen: React.FunctionComponent = (): React.ReactElement => {
                 </Row>
             </Col>
             <Row justify="center" align="middle" style={{marginTop: '108px'}}>
-                <Col span={24} style={{textAlign: 'center'}}>
-                    <Button
-                        type="primary"
-                        style={{
-                            backgroundColor: activeState.tempActive ? COLORS.red : COLORS.pink,
-                            borderColor: activeState.tempActive ? COLORS.red : COLORS.pink,
-                            ...widthHeightButton
-                        }}
-                        onClick={handlerTemperature}
-                    >
-                        จำลองอุณหภูมิในบ้านสูง
-                    </Button>
-                </Col>
-                <Col span={24} style={{marginTop: '72px', textAlign: 'center'}}>
-                    <Button
-                        type="primary"
-                        style={{
-                            backgroundColor: activeState.pmActive ? COLORS.blue : COLORS.blueInActive,
-                            borderColor: activeState.pmActive ? COLORS.blue : COLORS.blueInActive,
-                            ...widthHeightButton
-                        }}
-                        onClick={handlerPM}
-                    >
-                        จำลอง PM2.5 ในบ้านสูง
-                    </Button>
-                </Col>
+                {
+                    homeStatus.length > 0 && homeStatus.map((value, index) => (
+                        <Col key={value.device_id} span={24} style={{textAlign: 'center', marginBottom: '72px'}}>
+                            <Button
+                                type="primary"
+                                style={{
+                                    backgroundColor: index === 0 ? value.value === '1' ? COLORS.red : COLORS.pink : value.value === '1' ? COLORS.blue : COLORS.blueInActive,
+                                    borderColor: index === 0 ? value.value === '1' ? COLORS.red : COLORS.pink : value.value === '1' ? COLORS.blue : COLORS.blueInActive,
+                                    ...widthHeightButton
+                                }}
+                                onClick={() => handlerOnClick(index)}
+                            >
+                                {index === 0 ? 'จำลองอุณหภูมิในบ้านสูง' : 'จำลอง PM2.5 ในบ้านสูง'}
+                            </Button>
+                        </Col>
+                    ))
+                }
             </Row>
         </>
     );

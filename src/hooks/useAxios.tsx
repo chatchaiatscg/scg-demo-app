@@ -9,7 +9,7 @@ export default function useAxios<S>(serviceFn: (axiosInstance: AxiosInstance) =>
     const axiosInstance = axios.create({
         baseURL: BASE_URL_REST,
         headers: {
-            Authorization: `Bearer ${token}`
+            // Authorization: `Bearer ${token}`
         }
     }) as AxiosInstance
 
