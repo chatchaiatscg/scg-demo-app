@@ -11,7 +11,7 @@ import ImageBackgroundIpad from "../../assets/images/bgIpad.png";
 const widthHeightButton = {
     width: '80vw',
     height: '8.5vh',
-    fontSize: 'calc(16px + 2.5vw)',
+    fontSize: 'calc(14px + 3vw)',
     borderRadius: '7vw'
 }
 
