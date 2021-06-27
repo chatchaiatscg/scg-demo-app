@@ -1,10 +1,9 @@
 import React from "react";
 import {Card, Col, Typography} from "antd";
+
 import {COLORS} from "../../../core/utils/constant";
-import {IModelHome} from "../model/my-home";
 
 interface IProps {
-    homeStatus: IModelHome[]
     label: string
 }
 
@@ -23,8 +22,6 @@ const CardStatus: React.FunctionComponent<IProps> = ({label}): React.ReactElemen
                 </Col>
                 <Col>
                     <Typography.Text style={{color: COLORS.green, fontSize: 16}}>
-                        {/*{status ? 'ON' : 'OFF'}*/}
-                        {/*MOCK*/}
                         ON
                     </Typography.Text>
                 </Col>

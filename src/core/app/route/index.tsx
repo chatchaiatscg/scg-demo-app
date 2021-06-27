@@ -40,11 +40,11 @@ const RouteComponents = (): IPropRouteComponent[] => {
     useEffect(() => {
         fetchMyHome().then()
         // eslint-disable-next-line react-hooks/exhaustive-deps
-        interval = setInterval(() => {
-            fetchMyHome().then()
-        }, 1000)
-
-        return () => interval && clearInterval(interval)
+        // interval = setInterval(() => {
+        //     fetchMyHome().then()
+        // }, 1000)
+        //
+        // return () => interval && clearInterval(interval)
 
         // fetchMyHome().then()
         // eslint-disable-next-line

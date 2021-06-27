@@ -1,10 +1,12 @@
-import React from "react";
+import React, {useEffect, useRef, useState} from "react";
 import {Row, Col, Image, Button} from 'antd';
 
 import IconLogo from '../../assets/icon/logo.png'
 import {COLORS} from "../../core/utils/constant";
 
 import {IModelHome} from "../home/model/my-home";
+
+import ImageBackgroundIpad from "../../assets/images/bgIpad.png";
 
 const widthHeightButton = {
     width: 588,
@@ -19,6 +21,13 @@ interface IProps {
 }
 
 const RemoteScreen: React.FunctionComponent<IProps> = ({myHome, homeStatus}): React.ReactElement => {
+    const divRef = useRef<HTMLDivElement>(null)
+    const [widthIpad, setWidthIpad] = useState<number>(1024)
+
+    useEffect(() => {
+        setWidthIpad(divRef?.current?.offsetWidth || 1024)
+    }, [divRef])
+
 
     const handlerOnClick = (index: number) => {
         if (index === 1) {
@@ -29,15 +38,25 @@ const RemoteScreen: React.FunctionComponent<IProps> = ({myHome, homeStatus}): Re
     }
 
     return (
-        <>
-            <Col>
-                <Row justify="center">
+        <div ref={divRef} style={{marginTop : -15}}>
+            <Image
+                preview={false}
+                src={ImageBackgroundIpad}
+                style={{
+                    position: 'absolute',
+                    width: widthIpad,
+                    height: '100vh'
+                }}
+            />
+            <Row justify="center" align="middle" style={{marginTop: '88px'}}>
+                <Col>
                     <Image
                         alt={`icon_${IconLogo}`}
                         src={IconLogo}
                     />
-                </Row>
-            </Col>
+                </Col>
+            </Row>
+
             <Row justify="center" align="middle" style={{marginTop: '108px'}}>
                 {
                     homeStatus.length > 0 && homeStatus.map((value, index) => (
@@ -57,7 +76,7 @@ const RemoteScreen: React.FunctionComponent<IProps> = ({myHome, homeStatus}): Re
                     ))
                 }
             </Row>
-        </>
+        </div>
     );
 };
 

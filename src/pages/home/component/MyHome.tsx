@@ -10,28 +10,30 @@ import IconCarbon from '../../../assets/icon/carbon.png'
 
 import IconFanActive from '../../../assets/icon/fanActive.png'
 import IconFanInActive from '../../../assets/icon/fanInActive.png'
-import {IModelHome, IActiveState} from "../model/my-home";
+import {IModelHome} from "../model/my-home";
+
+// const fanTemp = '128_1_0013A20041D03572'
 
 interface IProps {
     myHome: IModelHome[]
-    activeState: IActiveState
+    homeStatus: IModelHome[]
 }
 
 const CONSTANT_WIDTH = {
-    se: 288
+    se: 288,
+    ten: 379
 }
 
-const MyHome: React.FunctionComponent<IProps> = ({myHome, activeState}): React.ReactElement => {
+const MyHome: React.FunctionComponent<IProps> = ({myHome, homeStatus}): React.ReactElement => {
     const divRef = useRef<HTMLDivElement>(null)
-
 
     const [widthDevice, setWidthDevice] = useState<number>(CONSTANT_WIDTH.se) // ref by 5/SE
 
     useEffect(() => {
         setWidthDevice(divRef?.current?.offsetWidth || CONSTANT_WIDTH.se)
-
     }, [divRef])
 
+    const isIpX = widthDevice >= CONSTANT_WIDTH.ten
     const isIp8 = widthDevice > CONSTANT_WIDTH.se
 
     return (
@@ -50,6 +52,7 @@ const MyHome: React.FunctionComponent<IProps> = ({myHome, activeState}): React.R
                     My Home
                 </Typography.Text>
 
+                {/* detail status */}
                 <Card
                     className="shadow"
                     bodyStyle={{padding: '12px'}}
@@ -80,7 +83,9 @@ const MyHome: React.FunctionComponent<IProps> = ({myHome, activeState}): React.R
                                 >
                                     {index === 0 || index === 1 ?
                                         <Typography.Text
-                                            style={{color: activeState.pmActive ? COLORS.green : COLORS.red}}>
+                                            style={{
+                                                color: homeStatus[1]?.value === '1' ? COLORS.green : COLORS.red
+                                            }}>
                                             {index === 1 && 'AQI'}
                                         </Typography.Text>
                                         :
@@ -90,73 +95,37 @@ const MyHome: React.FunctionComponent<IProps> = ({myHome, activeState}): React.R
                                         />
                                     }
 
-                                    {index === 0 || index === 1 ?
+                                    {index === 0 ?
                                         <Typography.Text
                                             style={{
-                                                color: activeState.pmActive ? COLORS.green : COLORS.red,
+                                                color: homeStatus[0]?.value === '1' ? COLORS.green : COLORS.red,
                                                 fontSize: index === 0 ? '20px' : '32px'
                                             }}
                                         >
                                             {home.value} {index === 0 && '°C'}
                                         </Typography.Text>
-                                        :
-                                        <Typography.Text
-                                            style={{
-                                                color: COLORS.green,
-                                                fontSize: '12px'
-                                            }}>
-                                            {home.value}
-                                        </Typography.Text>
+                                        : index === 1 ?
+                                            <Typography.Text
+                                                style={{
+                                                    color: homeStatus[1]?.value === '1' ? COLORS.green : COLORS.red,
+                                                    fontSize: index === 1 ? '20px' : '32px'
+                                                }}
+                                            >
+                                                {home.value}
+                                            </Typography.Text>
+                                            :
+                                            <Typography.Text
+                                                style={{
+                                                    color: COLORS.green,
+                                                    fontSize: '12px'
+                                                }}>
+                                                {home.value}
+                                            </Typography.Text>
                                     }
-                                    {/*<Typography.Text*/}
-                                    {/*    style={{*/}
-                                    {/*        color: activeState.pmActive ? COLORS.green : COLORS.red,*/}
-                                    {/*        // fontSize: '28px'*/}
-                                    {/*        fontSize: '12px'*/}
-                                    {/*    }}>*/}
-                                    {/*    {home.value}*/}
-                                    {/*    /!*{home.unit}*!/*/}
-                                    {/*</Typography.Text>*/}
                                 </Row>
                             )
                         })
                     }
-                    {/*<Row justify="center">*/}
-                    {/*    <Typography.Text*/}
-                    {/*        style={{color: activeState.tempActive ? COLORS.green : COLORS.red, fontSize: '28px'}}>*/}
-                    {/*        {myHome.indoor} c*/}
-                    {/*    </Typography.Text>*/}
-                    {/*</Row>*/}
-
-                    {/*<Row align="middle" justify="space-around" style={{marginTop: '4px', marginBottom: '6px'}}>*/}
-                    {/*    <Typography.Text style={{color: activeState.pmActive ? COLORS.green : COLORS.red}}>*/}
-                    {/*        AQI*/}
-                    {/*    </Typography.Text>*/}
-                    {/*    <Typography.Text*/}
-                    {/*        style={{color: activeState.pmActive ? COLORS.green : COLORS.red, fontSize: '28px'}}>*/}
-                    {/*        {myHome.aqi}*/}
-                    {/*    </Typography.Text>*/}
-                    {/*</Row>*/}
-
-                    {/*<Row justify="space-around">*/}
-                    {/*    <Image*/}
-                    {/*        preview={false}*/}
-                    {/*        src={IconPM}*/}
-                    {/*    />*/}
-                    {/*    <Typography.Text style={{color: COLORS.green, fontSize: 18}}>*/}
-                    {/*        {myHome.pm}*/}
-                    {/*    </Typography.Text>*/}
-                    {/*</Row>*/}
-
-                    {/*<Row justify="space-around" style={{marginTop: 10}}>*/}
-                    {/*    <Image*/}
-                    {/*        preview={false}*/}
-                    {/*        src={IconCarbon}*/}
-                    {/*    />*/}
-                    {/*    <Typography.Text style={{color: COLORS.green, fontSize: 18}}>*/}
-                    {/*        {myHome.co}*/}
-                    {/*    </Typography.Text>*/}
-                    {/*</Row>*/}
                 </Card>
 
                 <div style={{textAlign: 'right', marginTop: '12px'}}>
@@ -164,39 +133,39 @@ const MyHome: React.FunctionComponent<IProps> = ({myHome, activeState}): React.R
                         <div style={{display: 'flex'}}>
                             <img
                                 className="image"
-                                src={activeState.tempActive ? IconFanActive : IconFanInActive}
+                                src={homeStatus[0]?.value === '1' ? IconFanActive : IconFanInActive}
                                 alt="icon_fan1"
                                 width={26}
                                 // @ts-ignore
-                                rotate={activeState.tempActive ? 1 : 0}
+                                rotate={homeStatus[0]?.value === '1' ? 1 : 0}
                                 style={{
                                     position: 'absolute',
                                     zIndex: 1,
-                                    top: isIp8 ? 78.5 : 62,
-                                    left: isIp8 ? 93 : 59
+                                    top: isIpX ? 79 : isIp8 ? 78.5 : 62,
+                                    left: isIpX ? 128 : isIp8 ? 93 : 59,
                                 }}
                             />
                         </div>
                     </Col>
                     <Image
                         preview={false}
-                        src={activeState.tempActive || activeState.pmActive ? ImageHomeActive : ImageHome}
+                        src={homeStatus[0]?.value === '1' || homeStatus[1]?.value === '1' ? ImageHomeActive : ImageHome}
                         style={{height: isIp8 ? 'auto' : '340px', overflow: 'hidden'}}
                     />
                     <Col>
                         <div style={{display: 'flex'}}>
                             <img
                                 className="image"
-                                src={activeState.pmActive ? IconFanActive : IconFanInActive}
+                                src={homeStatus[1]?.value === '1' ? IconFanActive : IconFanInActive}
                                 alt="icon_fan2"
                                 width={26}
                                 // @ts-ignore
-                                rotate={activeState.pmActive ? 1 : 0}
+                                rotate={homeStatus[1]?.value === '1' ? 1 : 0}
                                 style={{
                                     position: 'absolute',
                                     zIndex: 1,
                                     bottom: isIp8 ? 124 : 101,
-                                    left: isIp8 ? 110 : 74,
+                                    left: isIp8 ? 110 : 74
                                 }}
                             />
                         </div>

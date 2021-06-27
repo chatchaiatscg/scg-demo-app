@@ -1,10 +1,11 @@
-import React, {useState} from "react";
+import React from "react";
 import {Col, Row} from 'antd';
 
 import CardStatus from "./component/CardStatus";
 import MyHome from "./component/MyHome";
+import TopMenu from "./component/TopMenu";
 
-import {IActiveState, IModelHome} from "./model/my-home";
+import {IModelHome} from "./model/my-home";
 
 interface IProps {
     myHome: IModelHome[]
@@ -12,24 +13,19 @@ interface IProps {
 }
 
 const Home: React.FunctionComponent<IProps> = ({myHome, homeStatus}): React.ReactElement => {
-    const [activeState,] = useState<IActiveState>({
-        active: true,
-        tempActive: true,
-        pmActive: false,
-    })
-
     return (
-        <>
-            <MyHome myHome={myHome} activeState={activeState}/>
+        <div style={{marginLeft: '19px', marginRight: '19px'}}>
+            <TopMenu/>
+            <MyHome myHome={myHome} homeStatus={homeStatus}/>
             <Row justify="space-between">
                 <Col span={11}>
-                    <CardStatus label="System" homeStatus={homeStatus}/>
+                    <CardStatus label="System"/>
                 </Col>
                 <Col span={11}>
-                    <CardStatus label="Devices status" homeStatus={homeStatus}/>
+                    <CardStatus label="Devices status"/>
                 </Col>
             </Row>
-        </>
+        </div>
     );
 };
 

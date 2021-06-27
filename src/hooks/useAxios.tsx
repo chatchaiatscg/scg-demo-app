@@ -4,7 +4,7 @@ import axios, {AxiosError, AxiosInstance} from "axios";
 import {BASE_URL_REST} from "../core/utils/env";
 
 export default function useAxios<S>(serviceFn: (axiosInstance: AxiosInstance) => S) {
-    const token = 'mock'
+    // const token = 'mock'
 
     const axiosInstance = axios.create({
         baseURL: BASE_URL_REST,
