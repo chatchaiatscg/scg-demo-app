@@ -86,17 +86,20 @@ const MyHome: React.FunctionComponent<IProps> = ({myHome, homeStatus}): React.Re
                                             {index === 1 && 'AQI'}
                                         </Typography.Text>
                                         :
-                                        <Image
-                                            alt={`icon_${IconPM}`}
-                                            src={index === 2 ? IconPM : IconCarbon}
-                                        />
+                                        <Row justify="center" align="middle" style={{width: '29px'}}>
+                                            <Image
+                                                alt={`icon_${IconPM}`}
+                                                src={index === 2 ? IconPM : IconCarbon}
+                                            />
+                                        </Row>
                                     }
 
                                     {index === 0 ?
                                         <Typography.Text
                                             style={{
                                                 color: homeStatus[0]?.value === '1' ? COLORS.green : COLORS.red,
-                                                fontSize: index === 0 ? '20px' : '32px'
+                                                fontSize: index === 0 ? '20px' : '32px',
+                                                minWidth: '30px'
                                             }}
                                         >
                                             {parseFloat(home.value).toFixed(1)} {index === 0 && '°C'}
@@ -105,7 +108,8 @@ const MyHome: React.FunctionComponent<IProps> = ({myHome, homeStatus}): React.Re
                                             <Typography.Text
                                                 style={{
                                                     color: (index === 1 && parseInt(home.value) <= 50) ? COLORS.green : COLORS.red,
-                                                    fontSize: index === 1 ? '20px' : '32px'
+                                                    fontSize: index === 1 ? '24px' : '32px',
+                                                    minWidth: '30px'
                                                 }}
                                             >
                                                 {home.value}
@@ -114,7 +118,9 @@ const MyHome: React.FunctionComponent<IProps> = ({myHome, homeStatus}): React.Re
                                             <Typography.Text
                                                 style={{
                                                     color: COLORS.green,
-                                                    fontSize: '12px'
+                                                    fontSize: '14px',
+                                                    minWidth: '30px',
+                                                    textAlign: 'right'
                                                 }}>
                                                 {parseInt(home.value)}
                                             </Typography.Text>
@@ -173,4 +179,4 @@ const MyHome: React.FunctionComponent<IProps> = ({myHome, homeStatus}): React.Re
     )
 }
 
-export default MyHome
+export default MyHome;
