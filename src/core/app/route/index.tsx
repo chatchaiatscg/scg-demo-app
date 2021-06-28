@@ -12,7 +12,8 @@ import {message} from "antd";
 const HomePage = lazy(() => import('../../../pages/home'));
 const RemotePage = lazy(() => import('../../../pages/remote'));
 
-const fanTemp = '128_1_0013A20041D03572'
+const fanTemp = '128_1_0013A20041C7F595'
+const aqiTemp = '128_1_0013A20041C7F63E'
 // const mockTemp = '128_1_0013A20041C9F2C6'
 
 const RouteComponents = (): IPropRouteComponent[] => {
@@ -37,7 +38,7 @@ const RouteComponents = (): IPropRouteComponent[] => {
             statusTemp.forEach((value) => {
                 if (value.device_id === fanTemp) {
                     status[0] = value
-                } else {
+                } else if (value.device_id === aqiTemp) {
                     status[1] = value
                 }
             })
