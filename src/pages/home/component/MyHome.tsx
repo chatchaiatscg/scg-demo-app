@@ -99,7 +99,7 @@ const MyHome: React.FunctionComponent<IProps> = ({myHome, homeStatus}): React.Re
                                                 fontSize: index === 0 ? '20px' : '32px'
                                             }}
                                         >
-                                            {parseInt(home.value).toFixed(1)} {index === 0 && '°C'}
+                                            {parseFloat(home.value).toFixed(1)} {index === 0 && '°C'}
                                         </Typography.Text>
                                         : index === 1 ?
                                             <Typography.Text
