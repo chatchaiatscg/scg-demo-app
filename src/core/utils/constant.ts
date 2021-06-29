@@ -14,7 +14,8 @@ export const COLORS = {
     blueInActive: '#8BAEF9',
     blue: '#6797FF',
     green: '#22C59F',
-    red: '#FE5E5A'
+    red: '#FE5E5A',
+    orange: '#F6921E'
 }
 
 

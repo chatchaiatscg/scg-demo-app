@@ -7,8 +7,6 @@ import {IModelHome} from "../model/my-home";
 
 import ImageHome from '../../../assets/images/groupFan.png'
 import ImageHomeActive from '../../../assets/images/groupFanActive.png'
-import IconPM from '../../../assets/icon/pm.png'
-import IconCarbon from '../../../assets/icon/carbon.png'
 
 import IconFanActive from '../../../assets/icon/fanActive.png'
 import IconFanInActive from '../../../assets/icon/fanInActive.png'
@@ -58,12 +56,12 @@ const MyHome: React.FunctionComponent<IProps> = ({myHome, homeStatus}): React.Re
                     style={{
                         position: 'absolute',
                         right: '10%',
-                        bottom: isIp8 ? 30 : 25,
-                        width: 98,
+                        bottom: isIp8 ? 40 : 25,
+                        minWidth: '98px',
                         zIndex: 1,
                         borderWidth: 0,
                         borderRadius: 12,
-                        lineHeight: isIp8 ? 1.7 : 1.2,
+                        lineHeight: isIp8 ? 1.7 : 1.5,
                     }}
                 >
                     <Row justify="center">
@@ -77,39 +75,46 @@ const MyHome: React.FunctionComponent<IProps> = ({myHome, homeStatus}): React.Re
                                 <Row
                                     key={`${home.device_id}_${home.device_type}`}
                                     align="middle"
-                                    justify="space-around"
-                                    style={{marginTop: '4px', marginBottom: '6px'}}
+                                    justify="space-between"
+                                    style={{marginTop: '4px', marginBottom: '4px'}}
                                 >
                                     {index === 0 || index === 1 ?
                                         <Typography.Text
-                                            style={{color: (index === 1 && parseInt(home.value) <= 50) ? COLORS.green : COLORS.red}}>
+                                            style={{
+                                                color: index === 1 && parseInt(home.value) > 150 ? COLORS.red : parseInt(home.value) <= 50 ? COLORS.green : COLORS.orange,
+                                                fontSize: '14px',
+                                                fontFamily: 'Kanit-light'
+                                            }}>
                                             {index === 1 && 'AQI'}
                                         </Typography.Text>
                                         :
-                                        <Row justify="center" align="middle" style={{width: '29px'}}>
-                                            <Image
-                                                alt={`icon_${IconPM}`}
-                                                src={index === 2 ? IconPM : IconCarbon}
-                                            />
-                                        </Row>
+                                        <Typography.Text
+                                            style={{
+                                                color: index === 2 ? parseInt(home.value) > 65 ? COLORS.red : parseInt(home.value) <= 15 ? COLORS.green : COLORS.orange : COLORS.green,
+                                                fontSize: '14px',
+                                                textAlign: 'left',
+                                                fontFamily: 'Kanit-light'
+                                            }}>
+                                            {index === 2 ? 'PM2.5' : 'CO2'}
+                                        </Typography.Text>
                                     }
 
                                     {index === 0 ?
                                         <Typography.Text
                                             style={{
-                                                color: homeStatus[0]?.value === '1' ? COLORS.green : COLORS.red,
-                                                fontSize: index === 0 ? '20px' : '32px',
-                                                minWidth: '30px'
+                                                color: parseFloat(home.value) > 36 ? COLORS.red : parseFloat(home.value) < 34 ? COLORS.green : COLORS.orange,
+                                                fontSize: '24px',
+                                                textAlign: 'center',
+                                                flex: 1
                                             }}
                                         >
-                                            {parseFloat(home.value).toFixed(1)} {index === 0 && '°C'}
+                                            {parseFloat(home.value).toFixed(1)} °C
                                         </Typography.Text>
                                         : index === 1 ?
                                             <Typography.Text
                                                 style={{
-                                                    color: (index === 1 && parseInt(home.value) <= 50) ? COLORS.green : COLORS.red,
-                                                    fontSize: index === 1 ? '24px' : '32px',
-                                                    minWidth: '30px'
+                                                    color: parseInt(home.value) > 150 ? COLORS.red : parseInt(home.value) <= 50 ? COLORS.green : COLORS.orange,
+                                                    fontSize: '21px',
                                                 }}
                                             >
                                                 {home.value}
@@ -117,9 +122,9 @@ const MyHome: React.FunctionComponent<IProps> = ({myHome, homeStatus}): React.Re
                                             :
                                             <Typography.Text
                                                 style={{
-                                                    color: COLORS.green,
-                                                    fontSize: '14px',
-                                                    minWidth: '30px',
+                                                    color: index === 2 ? parseInt(home.value) > 65 ? COLORS.red : parseInt(home.value) <= 15 ? COLORS.green : COLORS.orange : COLORS.green,
+                                                    fontSize: '15px',
+                                                    minWidth: '38px',
                                                     textAlign: 'right'
                                                 }}>
                                                 {parseInt(home.value)}

@@ -3,12 +3,17 @@
     src: url('../src/assets/fonts/Kanit-Regular.ttf');
 }
 
+@font-face {
+    font-family: 'Kanit-light';
+    src: url('../src/assets/fonts/Kanit-ExtraLight.ttf');
+}
+
 body {
     margin: 0;
     /*font-family: -apple-system, BlinkMacSystemFont, 'Kanit', 'Segoe UI', 'Roboto', 'Oxygen',*/
     /*'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',*/
     /*sans-serif;*/
-    font-family: 'Kanit',
+    font-family: 'Kanit', 'Kanit-light',
     sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;

@@ -6,21 +6,21 @@ export const myHomeData: IModelHome[] = [
         "value_type": "float",
         "unit": "degree Celcius",
         "device_id": "8_1_0013A20041C9E5A9",
-        "value": "37.46"
+        "value": "36.9"
     },
     {
         "device_type": "aqi",
         "value_type": "float",
         "unit": "aqi",
         "device_id": "9_1_0013A20041C9E5A9",
-        "value": "67"
+        "value": "150"
     },
     {
         "device_type": "pm",
         "value_type": "float",
         "unit": "𝜇g_per_sqm",
         "device_id": "10_1_0013A20041C9E5A9",
-        "value": "19.7"
+        "value": "66"
     },
     {
         "device_type": "co2",
