@@ -1,5 +1,3 @@
-export const ACCESS_TOKEN = "access_token"
-
 export const COLORS = {
     primary: '#8BAEF9',
     mainColor: '#263238',

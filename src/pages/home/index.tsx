@@ -1,51 +1,89 @@
-import React, {useEffect, useRef, useState} from "react";
-import {Col, Image, Row} from 'antd';
+import React, {useState, useEffect} from "react";
+import Grid from '@mui/material/Grid';
+import {AxiosInstance} from "axios";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
-import CardStatus from "./component/CardStatus";
-import MyHome from "./component/MyHome";
-import TopMenu from "./component/TopMenu";
-
+import useAxios from "hooks/useAxios";
 import {IModelHome} from "./model/my-home";
-import ImageBackground from "../../assets/images/bg.png";
+import {HomeService, IHomeService} from "./service/my-home";
 
-interface IProps {
-    myHome: IModelHome[]
-    homeStatus: IModelHome[]
-}
+import ControllerButton from "./component/ControllerButton";
+import Mobile from "./component/Mobile";
+import Paragraph from "./component/Paragraph";
 
-const Home: React.FunctionComponent<IProps> = ({myHome, homeStatus}): React.ReactElement => {
-    const divRef = useRef<HTMLDivElement>(null)
-    const [widthPhone, setWidthPhone] = useState<number>(320)
+const fanTemp = '128_1_0013A20041C7F595'
+const aqiTemp = '128_1_0013A20041C7F63E'
+// const mockTemp = '128_1_0013A20041C9F2C6'
 
+const Home: React.FC = (): React.ReactElement => {
+    const matches = useMediaQuery('(min-width:1024px)');
+
+    const [myHome, setMyHome] = useState<IModelHome[]>([])
+    const [homeStatus, setHomeStatus] = useState<IModelHome[]>([])
+
+    const {service} = useAxios<IHomeService>((axiosInstance: AxiosInstance) => HomeService(axiosInstance))
+
+    let interval: NodeJS.Timeout | null
+
+    const fetchMyHome = async () => {
+        let preMyHome: IModelHome[] = []
+        let statusTemp: IModelHome[] = []
+        let status: IModelHome[] = []
+
+        try {
+            const response = await service().getMyHome()
+            console.log('response', response)
+            response.map((value) => {
+                if (value.device_type !== 'relay') {
+                    return preMyHome.push(value)
+                }
+                return statusTemp.push(value)
+            })
+
+            statusTemp.forEach((value) => {
+                if (value.device_id === fanTemp) {
+                    status[0] = value
+                } else if (value.device_id === aqiTemp) {
+                    status[1] = value
+                }
+            })
+            setMyHome(preMyHome)
+            setHomeStatus(status)
+        } catch (e) {
+            console.log('e', e)
+            // message.error('Something went wrong!')
+        }
+    }
+
+    // @ts-ignore
     useEffect(() => {
-        setWidthPhone(divRef?.current?.offsetWidth || 320)
-    }, [divRef])
+        fetchMyHome()
+        // interval = setInterval(() => {
+        //     fetchMyHome()
+        // }, 1000)
+
+        // return () => interval && clearInterval(interval)
+        // @ts-ignore
+    }, [])
+
+    if (!matches) {
+        return <></>
+    }
 
     return (
-        <div ref={divRef} style={{marginTop: -15}}>
-            <Image
-                preview={false}
-                src={ImageBackground}
-                style={{
-                    position: 'absolute',
-                    width: widthPhone,
-                    height: '100vh'
-                }}
-            />
-            <div style={{marginLeft: '19px', marginRight: '19px'}}>
-                <TopMenu/>
-                <MyHome myHome={myHome} homeStatus={homeStatus}/>
-                <Row justify="space-between">
-                    <Col span={11}>
-                        <CardStatus label="System"/>
-                    </Col>
-                    <Col span={11}>
-                        <CardStatus label="Devices status"/>
-                    </Col>
-                </Row>
-            </div>
-        </div>
-    );
+        <Grid container>
+            <Grid item xs={3.5} className="shadow" style={{minHeight: '100vh'}} >
+                <ControllerButton />
+            </Grid>
+
+            <Grid item xs={3}>
+                <Mobile />
+            </Grid>
+            <Grid item xs={5.5}>
+                <Paragraph />
+            </Grid>
+        </Grid>
+    )
 };
 
 export default Home;
