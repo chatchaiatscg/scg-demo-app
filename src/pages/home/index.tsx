@@ -72,14 +72,20 @@ const Home: React.FC = (): React.ReactElement => {
 
     return (
         <Grid container>
-            <Grid item xs={3.5} className="shadow" style={{minHeight: '100vh'}} >
+            <Grid item
+                xs={3.5}
+                md={3.3}
+                sm={3.3}
+                className="shadow"
+            // style={{minHeight: '100vh'}}
+            >
                 <ControllerButton />
             </Grid>
 
-            <Grid item xs={3}>
+            <Grid item xs={3} md={3.5} sm={3.5}>
                 <Mobile />
             </Grid>
-            <Grid item xs={5.5}>
+            <Grid item xs={5.5} md={5.2} sm={5.2}>
                 <Paragraph />
             </Grid>
         </Grid>

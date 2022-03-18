@@ -14,7 +14,7 @@ export const SimulateTemp: React.FC<IProps> = (): React.ReactElement => {
         <Card className={x ? "shadow" : ""} style={{
             cursor: 'pointer', borderRadius: 20,
             backgroundColor: x ? '#8CADF6' : 'white',
-            borderColor: x ? 'white' : '#4C89F4'
+            borderColor: x ? '' : '#4C89F4'
         }} variant="outlined">
             <Stack
                 direction="row"
