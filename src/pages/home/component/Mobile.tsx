@@ -41,7 +41,7 @@ export const Mobile: React.FC<IMobile> = ({temp, pm}): React.ReactElement => {
                             />
                         </WrapFanIcon>
                     </Box>
-                    <img src={oneOf ? MobileOn : MobileOff} style={{width: '100%', height: 'auto'}} />
+                    <img alt="mobile" src={oneOf ? MobileOn : MobileOff} style={{width: '100%', height: 'auto'}} />
                 </WrapMobileIcon>
             </div>
         </div>
