@@ -3,12 +3,13 @@ import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import {ContainerHeadParagraph, ContainerSubParagraph} from "./Home.styles";
 
-interface IParagraph { }
+interface IParagraph {
+    temp: boolean
+    pm: boolean
+}
 
-const Paragraph: React.FC<IParagraph> = (): React.ReactElement => {
-
-    const x = true
-    if (x) {
+const Paragraph: React.FC<IParagraph> = ({temp, pm}): React.ReactElement => {
+    if (pm) {
         return (
             <>
                 <ContainerHeadParagraph className="text1">
@@ -70,14 +71,14 @@ const Paragraph: React.FC<IParagraph> = (): React.ReactElement => {
 
     return (
         <>
-            <div className="text1" style={{marginTop: '3vh', marginLeft: '-2%', fontSize: '3vw'}}>
+            <ContainerHeadParagraph className="text1">
                 <span style={{color: '#ED2324'}}>
                     SCG{" "}
                 </span>
                 Active AIRflow
-            </div>
+            </ContainerHeadParagraph>
             <div>
-                <div style={{marginTop: '5vh', marginLeft: '3.75vw', flexWrap: 'wrap'}}>
+                <ContainerSubParagraph style={{marginTop: '5vh', marginLeft: '3.75vw', flexWrap: 'wrap'}}>
 
                     <div style={{width: '95%'}}>
                         <span className="text2">สถานการณ์จำลอง</span><br /><br />
@@ -87,7 +88,7 @@ const Paragraph: React.FC<IParagraph> = (): React.ReactElement => {
                         </span>
                     </div>
 
-                    <div style={{marginTop: '10%'}} />
+                    <div style={{marginTop: '7%'}} />
 
                     <div style={{width: '95%'}}>
                         <span className="text2">ระบบ SCG Active AIRflow คืออะไร ทำงานอย่างไร</span><br /><br />
@@ -98,7 +99,7 @@ const Paragraph: React.FC<IParagraph> = (): React.ReactElement => {
                         </span>
                     </div>
 
-                    <div style={{marginTop: '20%'}} />
+                    <div style={{marginTop: '7%'}} />
 
                     <div style={{width: '100%'}}>
                         <Box>
@@ -118,7 +119,7 @@ const Paragraph: React.FC<IParagraph> = (): React.ReactElement => {
                             </Grid>
                         </Box>
                     </div>
-                </div>
+                </ContainerSubParagraph>
             </div>
         </>
     )

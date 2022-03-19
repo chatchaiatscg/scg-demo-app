@@ -21,6 +21,9 @@ const Home: React.FC = (): React.ReactElement => {
     const [myHome, setMyHome] = useState<IModelHome[]>([])
     const [homeStatus, setHomeStatus] = useState<IModelHome[]>([])
 
+    const [temp, setTemp] = useState<boolean>(false)
+    const [pm, setPm] = useState<boolean>(false)
+
     const {service} = useAxios<IHomeService>((axiosInstance: AxiosInstance) => HomeService(axiosInstance))
 
     let interval: NodeJS.Timeout | null
@@ -32,7 +35,7 @@ const Home: React.FC = (): React.ReactElement => {
 
         try {
             const response = await service().getMyHome()
-            console.log('response', response)
+            // console.log('response', response)
             response.map((value) => {
                 if (value.device_type !== 'relay') {
                     return preMyHome.push(value)
@@ -70,21 +73,42 @@ const Home: React.FC = (): React.ReactElement => {
         return <></>
     }
 
+    const handlerControlTemp = () => {
+        const nextState = !temp
+        if (nextState) {
+            setPm(false)
+        }
+        setTemp(nextState)
+    }
+
+    const handlerControlPM = () => {
+        const nextState = !pm
+        if (nextState) {
+            setTemp(false)
+        }
+        setPm(nextState)
+    }
+
     return (
         <>
-            <span style={{position: 'absolute' , color: 'red' , fontSize: '32px'}}>
+            <span style={{position: 'absolute', color: 'red', fontSize: '32px'}}>
                 {window.screen.width}
             </span>
             <Grid container>
                 <Grid item xs={2.98} className="shadow">
-                    <ControllerButton />
+                    <ControllerButton
+                        temp={temp}
+                        pm={pm}
+                        handlerControlTemp={handlerControlTemp}
+                        handlerControlPM={handlerControlPM}
+                    />
                 </Grid>
 
                 <Grid item xs={2.99}>
-                    <Mobile />
+                    <Mobile temp={temp} pm={pm} />
                 </Grid>
                 <Grid item xs={6.03}>
-                    <Paragraph />
+                    <Paragraph temp={temp} pm={pm} />
                 </Grid>
             </Grid>
         </>
