@@ -2,7 +2,6 @@ import React, {useState, useEffect} from "react";
 import Grid from '@mui/material/Grid';
 import {AxiosInstance} from "axios";
 import useMediaQuery from "@mui/material/useMediaQuery";
-
 import useAxios from "hooks/useAxios";
 import {IModelHome} from "./model/my-home";
 import {HomeService, IHomeService} from "./service/my-home";
@@ -16,6 +15,7 @@ const aqiTemp = '128_1_0013A20041C7F63E'
 // const mockTemp = '128_1_0013A20041C9F2C6'
 
 const Home: React.FC = (): React.ReactElement => {
+    // start ipad only
     const matches = useMediaQuery('(min-width:1024px)');
 
     const [myHome, setMyHome] = useState<IModelHome[]>([])
@@ -71,24 +71,23 @@ const Home: React.FC = (): React.ReactElement => {
     }
 
     return (
-        <Grid container>
-            <Grid item
-                xs={3.5}
-                md={3.3}
-                sm={3.3}
-                className="shadow"
-            // style={{minHeight: '100vh'}}
-            >
-                <ControllerButton />
-            </Grid>
+        <>
+            <span style={{position: 'absolute' , color: 'red' , fontSize: '32px'}}>
+                {window.screen.width}
+            </span>
+            <Grid container>
+                <Grid item xs={2.98} className="shadow">
+                    <ControllerButton />
+                </Grid>
 
-            <Grid item xs={3} md={3.5} sm={3.5}>
-                <Mobile />
+                <Grid item xs={2.99}>
+                    <Mobile />
+                </Grid>
+                <Grid item xs={6.03}>
+                    <Paragraph />
+                </Grid>
             </Grid>
-            <Grid item xs={5.5} md={5.2} sm={5.2}>
-                <Paragraph />
-            </Grid>
-        </Grid>
+        </>
     )
 };
 

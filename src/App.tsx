@@ -4,30 +4,29 @@ import {createTheme, ThemeProvider} from '@mui/material/styles';
 
 import AppContainer from "./core/app/AppContainer";
 
-// declare module '@mui/material/styles' {
-//     interface BreakpointOverrides {
-//         xs: true;
-//         sm: true;
-//         md: true;
-//         lg: true;
-//         xl: true;
-//         mobile: false;
-//         tablet: true;
-//         laptop: true;
-//         desktop: true;
-//     }
-// }
+declare module '@mui/material/styles' {
+    interface BreakpointOverrides {
+        xs: true;
+        sm: true;
+        md: true;
+        lg: true;
+        xl: true;
+        tablet: true;
+        desktop: true;
+    }
+}
 
 const theme = createTheme({
     breakpoints: {
         values: {
             xs: 0,
-            sm: 900,
-            md: 1180,
+            sm: 600,
+            md: 900,
             // @ts-ignore
             tablet: 1024,
             lg: 1200,
             xl: 1536,
+            desktop: 1920,
         },
     },
 });

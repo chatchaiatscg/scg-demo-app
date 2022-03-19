@@ -1,6 +1,7 @@
 import React from "react";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
+import {ContainerHeadParagraph, ContainerSubParagraph} from "./Home.styles";
 
 interface IParagraph { }
 
@@ -10,15 +11,14 @@ const Paragraph: React.FC<IParagraph> = (): React.ReactElement => {
     if (x) {
         return (
             <>
-                <div className="text1" style={{marginTop: '3vh', marginLeft: '-2%', fontSize: '3vw'}}>
+                <ContainerHeadParagraph className="text1">
                     <span style={{color: '#ED2324'}}>
                         SCG{" "}
                     </span>
                     Active AIRquality
-                </div>
+                </ContainerHeadParagraph>
                 <div>
-                    <div style={{marginTop: '5vh', marginLeft: '3.75vw', flexWrap: 'wrap'}}>
-
+                    <ContainerSubParagraph>
                         <div style={{width: '95%'}}>
                             <span className="text2">สถานการณ์จำลอง</span><br /><br />
                             <span className="text3" style={{lineHeight: 2}}>
@@ -27,13 +27,13 @@ const Paragraph: React.FC<IParagraph> = (): React.ReactElement => {
                             </span>
                         </div>
 
-                        <div style={{marginTop: '10%'}} />
+                        <div style={{marginTop: '7%'}} />
 
                         <div style={{width: '95%'}}>
                             <span className="text2">ระบบ SCG Active AIRquality คืออะไร ทำงานอย่างไร</span><br /><br />
                             <span className="text3" style={{lineHeight: 2}}>
                                 เป็นระบบจัดการคุณภาพอากาศภายในบ้าน เพื่อสร้างอากาศคุณภาพดี สะอาด ปลอดภัย
-                                ด้วยการทำงานของอุปกรณ์ในระบบคือ 
+                                ด้วยการทำงานของอุปกรณ์ในระบบคือ
                                 <span className="text3-bold"> Supply Air Ventilator </span>
                                 ที่จะช่วยกรองอากาศดี
                                 เข้าบ้านตั้งแต่แรกโดยการสร้างให้อากาศเป็น Positive Pressure เพื่อให้อากาศเสีย
@@ -42,7 +42,7 @@ const Paragraph: React.FC<IParagraph> = (): React.ReactElement => {
                             </span>
                         </div>
 
-                        <div style={{marginTop: '15%'}} />
+                        <div style={{marginTop: '7%'}} />
 
                         <div style={{width: '100%'}}>
                             <Box>
@@ -62,7 +62,7 @@ const Paragraph: React.FC<IParagraph> = (): React.ReactElement => {
                                 </Grid>
                             </Box>
                         </div>
-                    </div>
+                    </ContainerSubParagraph>
                 </div>
             </>
         )
