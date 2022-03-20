@@ -7,6 +7,7 @@ import MobileOff from "assets/images/mobileOff.png";
 import FanActive from "assets/icon/fanActive.png";
 import FanInActive from "assets/icon/fanInactive.png";
 import {FanIcon, StatusBoard, StatusBoard2, WrapFanIcon, WrapMobileIcon} from "./Home.styles";
+import {COLORS} from "core/utils/constant";
 interface IMobile {
     temp: boolean
     pm: boolean
@@ -53,7 +54,7 @@ export const Mobile: React.FC<IMobile> = ({temp, pm}): React.ReactElement => {
                 </WrapMobileIcon>
             </div>
 
-            <StatusBoard style={{color: temp ? '#FE5E5A' : 'black'}}>
+            <StatusBoard style={{color: temp ? COLORS.red : COLORS.green}}>
                 <div style={{position: 'relative'}}>
                     <span>{tempulature}</span>
                     {/* <span className="subText">C</span> */}
@@ -64,7 +65,7 @@ export const Mobile: React.FC<IMobile> = ({temp, pm}): React.ReactElement => {
                 </div>
             </StatusBoard>
 
-            <StatusBoard2>
+            <StatusBoard2 style={{color: COLORS.green}}>
                 <div>
                     <span>50</span>
                 </div>
