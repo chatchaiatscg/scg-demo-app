@@ -5,6 +5,7 @@ import Box from "@mui/material/Box";
 
 import IconAAQ from "assets/icon/aaq.png";
 import {IconBackContainer, TempBtnContainer, TitleBackHome, WrapBtnContainer, WrapIcon} from "./Home.styles";
+import {Link} from "react-router-dom";
 
 interface IProps {
     active: boolean
@@ -79,14 +80,16 @@ const ControllerButton: React.FC<IControllerButton> = ({handlerControlTemp, hand
             </div>
 
             <div className="box1">
-                <div style={{bottom: 21, position: 'absolute', cursor: 'pointer'}}>
-                    <Stack direction="row" alignItems="center">
-                        <IconBackContainer />
-                        <TitleBackHome style={{marginLeft: '12px'}}>
-                            กลับหน้าแรก
-                        </TitleBackHome>
-                    </Stack>
-                </div>
+                <Link to="/start">
+                    <div style={{bottom: 21, position: 'absolute', cursor: 'pointer'}}>
+                        <Stack direction="row" alignItems="center">
+                            <IconBackContainer />
+                            <TitleBackHome style={{marginLeft: '12px'}}>
+                                กลับหน้าแรก
+                            </TitleBackHome>
+                        </Stack>
+                    </div>
+                </Link>
             </div>
         </>
     )
