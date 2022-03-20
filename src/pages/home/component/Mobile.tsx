@@ -14,7 +14,7 @@ interface IMobile {
 }
 
 export const Mobile: React.FC<IMobile> = ({temp, pm}): React.ReactElement => {
-    const tempulature = 34
+    const tempulature = 34.2
     const aqi = 60
 
     const handlerCalTemp = (x: number): boolean => {
@@ -52,25 +52,25 @@ export const Mobile: React.FC<IMobile> = ({temp, pm}): React.ReactElement => {
 
                     <img alt="mobile" src={temp ? MobileOff : MobileOn} style={{width: '100%', height: 'auto'}} />
                 </WrapMobileIcon>
+
+                <Box style={{position: 'relative'}}>
+                    <StatusBoard style={{color: temp ? COLORS.red : COLORS.green}}>
+                        <div style={{position: 'relative'}}>
+                            <span className="subText">{tempulature}</span>
+                        </div>
+                        <div style={{position: 'relative'}}>
+                            <span>{aqi}</span>
+                        </div>
+                    </StatusBoard>
+
+                    <StatusBoard2 style={{color: COLORS.green}}>
+                        <div>
+                            <span>51</span>
+                        </div>
+                        <div className="sub">41</div>
+                    </StatusBoard2>
+                </Box>
             </div>
-
-            <StatusBoard style={{color: temp ? COLORS.red : COLORS.green}}>
-                <div style={{position: 'relative'}}>
-                    <span>{tempulature}</span>
-                    {/* <span className="subText">C</span> */}
-                </div>
-                <div style={{position: 'relative'}}>
-                    <span>{aqi}</span>
-                    {/* <span className="subText">AQI</span> */}
-                </div>
-            </StatusBoard>
-
-            <StatusBoard2 style={{color: COLORS.green}}>
-                <div>
-                    <span>50</span>
-                </div>
-                <div className="sub">40</div>
-            </StatusBoard2>
         </div>
     )
 }

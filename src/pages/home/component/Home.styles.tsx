@@ -2,6 +2,27 @@ import {styled} from '@mui/material/styles';
 
 import {IconBack} from 'assets/icon/svg';
 
+export const SpaceTopMobile = styled('div')(({theme}) => `
+${theme.breakpoints.up('xl')}{
+    margin-top: 20%;
+};
+${theme.breakpoints.only('xl')}{
+    margin-top: 20%;
+};
+${theme.breakpoints.only('lg')}{
+    margin-top: 10%;
+};
+@media (width:1024px) {
+    margin-top: 0%;
+};
+${theme.breakpoints.only('tablet')}{
+
+};
+${theme.breakpoints.only('md')}{
+
+};`);
+
+
 // Mobile.tsx
 export const WrapMobileIcon = styled('div')(({theme}) => `
 position: relative;
@@ -104,15 +125,18 @@ ${theme.breakpoints.only('xl')}{
 };
 ${theme.breakpoints.only('lg')}{
     font-size: 2vw;
-    width: 34px;
-    left: 42.4%;
-    top: 41.5%;
+    margin-top: -29.8vw;
+    right: 4.9vw;
 };
 ${theme.breakpoints.only('tablet')}{
-    font-size: 2.5vh;
-    width: 25.5px;
-    left: 42.9%;
-    top: 44.7%;
+    font-size: 20px;
+    margin-top: -29.8vw;
+    right: 4.7vw;
+};
+@media (width:1024px) {
+    font-size: 20px;
+    margin-top: -30.1vw;
+    right: 4.4vw;
 };
 ${theme.breakpoints.only('md')}{
    
@@ -127,28 +151,45 @@ width: 31px;
 line-height: 1.75;
 
 ${theme.breakpoints.up('xl')}{
-
-};
-${theme.breakpoints.only('xl')}{
-    
-};
-${theme.breakpoints.only('lg')}{
     width: 34px;
     left: 44.5%;
-    top: 51.5%;
+    top: 31.5%;
     font-size: 1.4vw;
+};
+${theme.breakpoints.only('xl')}{
+    width: 34px;
+    left: 44.5%;
+    top: 31.5%;
+    font-size: 1.4vw;
+};
+${theme.breakpoints.only('lg')}{
+    line-height: 1.8;
+    font-size: 1.3vw;
+    margin-top: -24.1vw;
+    right: 3vw;
+    .sub {
+        margin-top: 0.01vw;
+    }
 };
 ${theme.breakpoints.only('tablet')}{
     line-height: 1.8;
     font-size: 1.3vw;
-    left: 44.8%;
-    top: 52.5%;
+    margin-top: -24.1vw;
+    right: 2.2vw;
+    .sub {
+        margin-top: 0.01vw;
+    }
+};
+@media (width:1024px) {
+    line-height: 1.8;
+    font-size: 1.3vw;
+    margin-top: -24.1vw;
+    right: 1.5vw;
     .sub {
         margin-top: 0.01vw;
     }
 };
 ${theme.breakpoints.only('md')}{
-   
 };`);
 
 // ControllerButton.tsx
@@ -251,29 +292,25 @@ export const TitleBackHome = styled('span')(({theme}) => ({
 }));
 
 // Paragraph.tsx
-export const ContainerHeadParagraph = styled('div')(({theme}) => ({
-    fontSize: '3vw',
-    [theme.breakpoints.up('xl')]: {
-        marginTop: '3vh',
-        marginLeft: '-2%',
-    },
-    [theme.breakpoints.only('xl')]: {
-        marginTop: '3vh',
-        marginLeft: '-2%',
-    },
-    [theme.breakpoints.only('lg')]: {
-        marginTop: '3vh',
-        marginLeft: '-2%',
-    },
-    [theme.breakpoints.only('tablet')]: {
-        marginTop: '7vh',
-        marginLeft: '-2%',
-    },
-    [theme.breakpoints.only('md')]: {
-        marginTop: '3vh',
-        marginLeft: '-2%',
-    },
-}));
+export const ContainerHeadParagraph = styled('div')(({theme}) => `
+font-size: 3vw;
+${theme.breakpoints.up('xl')}{
+    margin-top: 3%;
+};
+${theme.breakpoints.only('xl')}{
+    margin-top: 3%;
+};
+${theme.breakpoints.only('lg')}{
+    margin-top: 3%;
+};
+${theme.breakpoints.only('tablet')}{
+    margin-top: 10%;
+};
+@media (width:1024px) {
+    margin-top: 10%;
+};
+${theme.breakpoints.only('md')}{
+};`);
 
 export const ContainerSubParagraph = styled('div')(({theme}) => ({
     flexWrap: 'wrap',
