@@ -21,7 +21,7 @@ const Home: React.FC = (): React.ReactElement => {
     // const [myHome, setMyHome] = useState<IModelHome[]>([])
     // const [homeStatus, setHomeStatus] = useState<IModelHome[]>([])
 
-    const [temp, setTemp] = useState<boolean>(false)
+    const [temp, setTemp] = useState<boolean>(true)
     const [pm, setPm] = useState<boolean>(false)
 
     // const {service} = useAxios<IHomeService>((axiosInstance: AxiosInstance) => HomeService(axiosInstance))
@@ -74,6 +74,10 @@ const Home: React.FC = (): React.ReactElement => {
     }
 
     const handlerControlTemp = () => {
+        if (temp && !pm) {
+            return
+        }
+
         const nextState = !temp
         if (nextState) {
             setPm(false)
@@ -82,6 +86,10 @@ const Home: React.FC = (): React.ReactElement => {
     }
 
     const handlerControlPM = () => {
+        if (!temp && pm) {
+            return
+        }
+
         const nextState = !pm
         if (nextState) {
             setTemp(false)
