@@ -26,9 +26,9 @@ ${theme.breakpoints.only('md')}{
 // Mobile.tsx
 export const WrapMobileIcon = styled('div')(({theme}) => `
 position: relative;
-${theme.breakpoints.up('xl')}{
+${theme.breakpoints.only('monitor43')}{
     padding-left: 10%;
-    padding-top: 15%;
+    padding-top: 10%;
 };
 ${theme.breakpoints.only('xl')}{
     padding-left: 15%;
@@ -50,7 +50,16 @@ ${theme.breakpoints.only('md')}{
 export const WrapFanIcon = styled('div')(({theme}) => `
 position: absolute;
 
-${theme.breakpoints.up('xl')}{
+${theme.breakpoints.only('monitor43')}{
+    margin-top: 11.86vw;
+    margin-left: 8.45vw;
+    .fan2 {
+        margin-top: 9.47vw;
+        margin-left: 0.83vw;
+    }
+};
+
+${theme.breakpoints.only('xl')}{
     margin-top: 11.86vw;
     margin-left: 8.45vw;
     .fan2 {
@@ -88,7 +97,11 @@ ${theme.breakpoints.only('md')}{
 };`);
 
 export const FanIcon = styled('img')(({theme}) => `
-${theme.breakpoints.up('xl')}{
+${theme.breakpoints.only('monitor43')}{
+    width: 56px;
+    height: 56px;
+};
+${theme.breakpoints.only('xl')}{
     width: 29px;
     height: 29px;
 };
@@ -117,9 +130,15 @@ font-weight: 700;
     font-size: 1.5vw;
 }
 
-${theme.breakpoints.up('xl')}{
-
+${theme.breakpoints.only('monitor43')}{
+    font-size: 1.75vw;
+    margin-top: -26.8vw;
+    right: 5.7vw;
+    .subText {
+        font-size: 1.4vw;
+    }
 };
+
 ${theme.breakpoints.only('xl')}{
     
 };
@@ -150,7 +169,17 @@ font-weight: 400;
 width: 31px;
 line-height: 1.75;
 
-${theme.breakpoints.up('xl')}{
+${theme.breakpoints.only('monitor43')}{
+    width: 45px;
+    line-height: 1.5;
+    left: 19vw;
+    bottom: 0;
+    margin-bottom: 17.3vw;
+
+    font-size: 1.4vw;
+};
+
+${theme.breakpoints.only('xl')}{
     width: 34px;
     left: 44.5%;
     top: 31.5%;
@@ -194,6 +223,11 @@ ${theme.breakpoints.only('md')}{
 
 // ControllerButton.tsx
 export const IconBackContainer = styled(IconBack)(({theme}) => `
+${theme.breakpoints.up('monitor43')}{
+    width: 30px;
+    height: 30px;
+    margin-top: 12px;
+},
 ${theme.breakpoints.up('xl')}{
     width: 16px;
     height: 16px;
@@ -218,6 +252,10 @@ ${theme.breakpoints.only('md')}{
 );
 
 export const WrapIcon = styled('img')(({theme}) => `
+${theme.breakpoints.up('monitor43')}{
+    width: 90px;
+    height: 72px;
+};
 ${theme.breakpoints.only('xl')}{
    width: 45px;
    height: 38px;
@@ -245,14 +283,22 @@ font-weight: 700;
 padding: 13px;
 font-size: 1.6vw;
 
-max-height: 112px;
+${theme.breakpoints.up('monitor43')}{
+    font-size: 1.8vw;
+    padding: 20px;
+};
 ${theme.breakpoints.only('xl')}{
+    max-height: 112px;
     padding-left: 27px;
     padding-right: 8px;
 };
 ${theme.breakpoints.only('lg')}{
+max-height: 112px;
+
 };
 ${theme.breakpoints.only('md')}{
+max-height: 112px;
+
 };`);
 
 export const TempBtnContainer = styled('div')(({theme}) => `
@@ -262,6 +308,10 @@ display: flex;
     display: grid;
     place-items: center;
 }
+${theme.breakpoints.up('monitor43')}{
+
+};
+
 ${theme.breakpoints.only('xl')}{
 
 };
@@ -274,7 +324,10 @@ ${theme.breakpoints.only('md')}{
 
 export const TitleBackHome = styled('span')(({theme}) => ({
     fontWeight: 400,
-    [theme.breakpoints.up('xl')]: {
+    [theme.breakpoints.up('monitor43')]: {
+        fontSize: '2vw'
+    },
+    [theme.breakpoints.only('xl')]: {
         fontSize: '1.7vw'
     },
     [theme.breakpoints.only('xl')]: {

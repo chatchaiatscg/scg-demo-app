@@ -13,6 +13,7 @@ declare module '@mui/material/styles' {
         xl: true;
         tablet: true;
         desktop: true;
+        monitor43: true;
     }
 }
 
@@ -27,6 +28,7 @@ const theme = createTheme({
             lg: 1200,
             xl: 1536,
             desktop: 1920,
+            monitor43: 3840
         },
     },
 });

@@ -1,4 +1,3 @@
-import Start from "pages/start";
 import React from "react";
 import {Route} from "react-router-dom";
 
@@ -13,11 +12,6 @@ const HomeRoutes = (): React.ReactElement => {
             path: "/",
             Component: <Home />
         },
-        // {
-        //     label: "",
-        //     path: "/start",
-        //     Component: <Start />
-        // }
     ]
 
     return (

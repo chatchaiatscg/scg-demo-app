@@ -50,8 +50,8 @@ const Paragraph: React.FC<IParagraph> = ({temp, pm}): React.ReactElement => {
                                 <span className="text2">ประโยชน์ที่ได้รับหลังจากติดตั้งระบบ SCG Active AIRquality</span>
                                 <div style={{marginTop: '24px'}} />
 
-                                <Grid container direction="row">
-                                    <ul style={{padding: 0, marginLeft: '14px'}}>
+                                <Grid container direction="row" justifyContent="space-around">
+                                    <ul style={{padding: 0}}>
                                         <li className="text3">กรองฝุ่น PM2.5</li>
                                         <li className="text3">กรองเชื้อโรค ไวรัส แบคทีเรีย</li>
                                     </ul>
@@ -78,8 +78,7 @@ const Paragraph: React.FC<IParagraph> = ({temp, pm}): React.ReactElement => {
                 Active AIRflow
             </ContainerHeadParagraph>
             <div>
-                <ContainerSubParagraph style={{marginTop: '5vh', marginLeft: '3.75vw', flexWrap: 'wrap'}}>
-
+                <ContainerSubParagraph>
                     <div style={{width: '95%'}}>
                         <span className="text2">สถานการณ์จำลอง</span><br /><br />
                         <span className="text3" style={{lineHeight: 2}}>
@@ -106,8 +105,8 @@ const Paragraph: React.FC<IParagraph> = ({temp, pm}): React.ReactElement => {
                             <span className="text2">ประโยชน์ที่ได้รับหลังจากติดตั้งระบบ SCG Active AIRflow</span>
                             <div style={{marginTop: '24px'}} />
 
-                            <Grid container direction="row">
-                                <ul style={{padding: 0, marginLeft: '14px'}}>
+                            <Grid container direction="row" justifyContent="space-around">
+                                <ul style={{padding: 0}}>
                                     <li className="text3">ลดอุณหภูมิภายในไม่ร้อนอบอ้าว</li>
                                     <li className="text3">ระบายเเละถ่ายเทอากาศตลอดวัน</li>
                                 </ul>

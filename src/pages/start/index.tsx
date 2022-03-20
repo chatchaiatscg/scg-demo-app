@@ -11,7 +11,7 @@ const Start: React.FC = (): React.ReactElement => {
                 <img
                     alt="start"
                     src={start}
-                    style={{objectFit: 'contain', width: '100%', height: '100vh'}}
+                    style={{objectFit: 'fill', width: '100%', height: '100vh'}}
                 />
             </Link>
         </>

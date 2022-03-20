@@ -114,7 +114,6 @@ const Home: React.FC = (): React.ReactElement => {
                 </Grid>
 
                 <Grid item xs={2.99}>
-                    <SpaceTopMobile />
                     <Mobile temp={temp} pm={pm} />
                 </Grid>
                 <Grid item xs={6.03}>
