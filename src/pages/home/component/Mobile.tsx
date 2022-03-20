@@ -6,14 +6,23 @@ import MobileOn from "assets/images/mobileOn.png";
 import MobileOff from "assets/images/mobileOff.png";
 import FanActive from "assets/icon/fanActive.png";
 import FanInActive from "assets/icon/fanInactive.png";
-import {FanIcon, WrapFanIcon, WrapMobileIcon} from "./Home.styles";
+import {FanIcon, StatusBoard, StatusBoard2, WrapFanIcon, WrapMobileIcon} from "./Home.styles";
 interface IMobile {
     temp: boolean
     pm: boolean
 }
 
 export const Mobile: React.FC<IMobile> = ({temp, pm}): React.ReactElement => {
-    const oneOf = (temp || pm) || false
+    const tempulature = 34
+    const aqi = 60
+
+    const handlerCalTemp = (x: number): boolean => {
+        // over-flow
+        if (x >= 35 || pm) {
+            return true
+        }
+        return false
+    }
 
     return (
         <div className='outer-div'>
@@ -23,27 +32,44 @@ export const Mobile: React.FC<IMobile> = ({temp, pm}): React.ReactElement => {
                         <WrapFanIcon>
                             <FanIcon
                                 // @ts-ignore
-                                rotate={temp ? 1 : 0}
+                                rotate={handlerCalTemp(tempulature) ? 1 : 0}
                                 className="image"
                                 alt="fan-1"
-                                src={temp ? FanActive : FanInActive}
-                                active={temp}
+                                src={handlerCalTemp(tempulature) ? FanActive : FanInActive}
                             />
                         </WrapFanIcon>
                         <WrapFanIcon>
                             <FanIcon
                                 // @ts-ignore
-                                rotate={pm ? 1 : 0}
+                                rotate={handlerCalTemp(tempulature) ? 1 : 0}
                                 className="image fan2"
                                 alt="fan-2"
-                                src={pm ? FanActive : FanInActive}
-                                active={pm}
+                                src={handlerCalTemp(tempulature) ? FanActive : FanInActive}
                             />
                         </WrapFanIcon>
                     </Box>
-                    <img alt="mobile" src={oneOf ? MobileOn : MobileOff} style={{width: '100%', height: 'auto'}} />
+
+                    <img alt="mobile" src={temp ? MobileOff : MobileOn} style={{width: '100%', height: 'auto'}} />
                 </WrapMobileIcon>
             </div>
+
+            <StatusBoard style={{color: temp ? '#FE5E5A' : 'black'}}>
+                <div style={{position: 'relative'}}>
+                    <span>{tempulature}</span>
+                    {/* <span className="subText">C</span> */}
+                </div>
+                <div style={{position: 'relative'}}>
+                    <span>{aqi}</span>
+                    {/* <span className="subText">AQI</span> */}
+                </div>
+            </StatusBoard>
+
+            <StatusBoard2>
+                <div>
+                    <span>50</span>
+                </div>
+                <div className="sub">40</div>
+            </StatusBoard2>
         </div>
     )
 }

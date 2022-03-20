@@ -51,14 +51,14 @@ ${theme.breakpoints.only('lg')}{
     margin-left: 37.8%;
     .fan2 {
         margin-top: 10.55vw;
-        margin-left: 0.94vw;
+        margin-left: 0.9vw;
     }
 };
 ${theme.breakpoints.only('tablet')}{
-    margin-top: 13.15vw;
+    margin-top: 52.8%;
     margin-left: 37.8%;
     .fan2 {
-        margin-top: 10.6vw;
+        margin-top: 10.55vw;
         margin-left: 0.9vw;
     }
 };
@@ -76,16 +76,79 @@ ${theme.breakpoints.only('xl')}{
     height: 22px;
 };
 ${theme.breakpoints.only('lg')}{
-    width: 21px;
-    height: 21px;
+    width: 1.65vw;
+    height: 1.65vw;
 };
 ${theme.breakpoints.only('tablet')}{
-    width: 19px;
-    height: 19px;
+    width: 1.65vw;
+    height: 1.65vw;
 };
 ${theme.breakpoints.only('md')}{
     width: 12px;
     height: 12px;
+};`);
+
+export const StatusBoard = styled('div')(({theme}) => `
+position: absolute;
+background-color: white;
+font-weight: 700;
+.subText {
+    font-size: 1.5vw;
+}
+
+${theme.breakpoints.up('xl')}{
+
+};
+${theme.breakpoints.only('xl')}{
+    
+};
+${theme.breakpoints.only('lg')}{
+    font-size: 2vw;
+    width: 34px;
+    left: 42.4%;
+    top: 41.5%;
+};
+${theme.breakpoints.only('tablet')}{
+    font-size: 2.5vh;
+    width: 25.5px;
+    left: 42.9%;
+    top: 44.7%;
+};
+${theme.breakpoints.only('md')}{
+   
+};`);
+
+export const StatusBoard2 = styled('div')(({theme}) => `
+position: absolute;
+background-color: white;
+font-weight: 400;
+
+width: 31px;
+line-height: 1.75;
+
+${theme.breakpoints.up('xl')}{
+
+};
+${theme.breakpoints.only('xl')}{
+    
+};
+${theme.breakpoints.only('lg')}{
+    width: 34px;
+    left: 44.5%;
+    top: 51.5%;
+    font-size: 1.4vw;
+};
+${theme.breakpoints.only('tablet')}{
+    line-height: 1.8;
+    font-size: 1.3vw;
+    left: 44.8%;
+    top: 52.5%;
+    .sub {
+        margin-top: 0.01vw;
+    }
+};
+${theme.breakpoints.only('md')}{
+   
 };`);
 
 // ControllerButton.tsx
