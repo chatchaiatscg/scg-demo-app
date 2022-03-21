@@ -100,9 +100,9 @@ const Home: React.FC = (): React.ReactElement => {
 
     return (
         <>
-            <span style={{position: 'absolute', color: 'red', fontSize: '32px'}}>
+            {/* <span style={{position: 'absolute', color: 'red', fontSize: '32px'}}>
                 {window.screen.width}
-            </span>
+            </span> */}
             <Grid container>
                 <Grid item xs={2.98} className="shadow">
                     <ControllerButton

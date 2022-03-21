@@ -29,9 +29,9 @@ export const WrapMobileIcon = styled('div')(({theme}) => `
 position: relative;
 ${theme.breakpoints.only('monitor43')}{
     padding-left: 10%;
-    padding-top: 10%;
+    padding-top: 7%;
 };
-${theme.breakpoints.up('desktop')}{
+${theme.breakpoints.only('desktop')}{
     padding-left: 10%;
     padding-top: 5%;
 };
@@ -64,7 +64,7 @@ ${theme.breakpoints.only('monitor43')}{
     }
 };
 
-${theme.breakpoints.up('desktop')}{
+${theme.breakpoints.only('desktop')}{
     margin-top: 11.89vw;
     margin-left: 8.46vw;
     .fan2 {
@@ -115,7 +115,7 @@ ${theme.breakpoints.only('monitor43')}{
     width: 56px;
     height: 56px;
 };
-${theme.breakpoints.up('desktop')}{
+${theme.breakpoints.only('desktop')}{
     width: 29px;
     height: 29px;
 };
@@ -257,8 +257,9 @@ ${theme.breakpoints.up('monitor43')}{
     width: 30px;
     height: 30px;
     margin-top: 12px;
+    margin-right: 12px;
 };
-${theme.breakpoints.up('desktop')}{
+${theme.breakpoints.only('desktop')}{
     width: 20px;
     height: 20px;
     margin-top: 6px;
@@ -318,7 +319,7 @@ ${theme.breakpoints.up('monitor43')}{
     font-size: 1.8vw;
     padding: 20px;
 };
-${theme.breakpoints.up('desktop')}{
+${theme.breakpoints.only('desktop')}{
     font-size: 1.8vw;
     padding: 10px;
 };
@@ -363,7 +364,7 @@ export const TitleBackHome = styled('span')(({theme}) => ({
     [theme.breakpoints.up('monitor43')]: {
         fontSize: '2vw'
     },
-    [theme.breakpoints.up('desktop')]:{
+    [theme.breakpoints.only('desktop')]:{
         fontSize: '2vw'
     },
     [theme.breakpoints.only('xl')]: {
@@ -386,7 +387,10 @@ export const TitleBackHome = styled('span')(({theme}) => ({
 // Paragraph.tsx
 export const ContainerHeadParagraph = styled('div')(({theme}) => `
 font-size: 3vw;
-${theme.breakpoints.up('xl')}{
+${theme.breakpoints.up('monitor43')}{
+    margin-top: 4%;
+};
+${theme.breakpoints.only('desktop')}{
     margin-top: 3%;
 };
 ${theme.breakpoints.only('xl')}{
