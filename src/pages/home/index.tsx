@@ -26,11 +26,11 @@ const Home: React.FC = (): React.ReactElement => {
     let interval: any
 
     useEffect(() => {
-        if (isModeSim) {
-            interval = setTimeout(() => {
-                setIsModeSim(false)
-            }, TIME_OUT)
-        }
+        // if (isModeSim) {
+        //     interval = setTimeout(() => {
+        //         setIsModeSim(false)
+        //     }, TIME_OUT)
+        // }
     }, [isModeSim, revision])
 
     const handlerSimActive = () => {

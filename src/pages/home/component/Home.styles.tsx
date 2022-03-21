@@ -34,18 +34,19 @@ ${theme.breakpoints.only('monitor43')}{
 };
 ${theme.breakpoints.only('desktop')}{
     padding-left: 10%;
-    padding-top: 7%;
+    padding-top: 13%;
 };
 ${theme.breakpoints.only('xl')}{
     padding-left: 15%;
     padding-top: 16px;
 };
 ${theme.breakpoints.only('lg')}{
-    left: 20px;
-    padding-top: 15%;
+    padding-left: 42px;
+    padding-top: 78px;
 };
 ${theme.breakpoints.only('tablet')}{
-    left: 20px;
+    padding-left: 42px;
+    padding-top: 78px;
 };
 ${theme.breakpoints.only('md')}{
     padding-left: 12px;
@@ -91,11 +92,11 @@ ${theme.breakpoints.only('xl')}{
     }
 };
 ${theme.breakpoints.only('lg')}{
-    margin-top: 13.15vw;
-    margin-left: 37.8%;
+    margin-top: 11.63vw;
+    margin-left: 37.7%;
     .fan2 {
-        margin-top: 10.55vw;
-        margin-left: 0.9vw;
+        margin-top: 9.3vw;
+        margin-left: 0.8vw;
     }
 };
 ${theme.breakpoints.only('tablet')}{
@@ -124,8 +125,8 @@ ${theme.breakpoints.only('xl')}{
     height: 22px;
 };
 ${theme.breakpoints.only('lg')}{
-    width: 1.65vw;
-    height: 1.65vw;
+    width: 21px;
+    height: 21px;
 };
 ${theme.breakpoints.only('tablet')}{
     width: 1.65vw;
@@ -143,26 +144,34 @@ font-weight: 700;
 min-width: 2.1rem;
 text-align: center;
 
-.subText {
-    font-size: 1.4vw;
-}
-
 ${theme.breakpoints.only('monitor43')}{
+    font-size: 68px;
+    margin-top: -26.8vw;
+    right: 5.7vw;
+    .subText {
+        font-size: 44px;
+    }
+};
+${theme.breakpoints.only('desktop')}{
+    font-size: 32px;
+    margin-top: -26.8vw;
+    right: 5.7vw;
+    .subText {
+        font-size: 24px;
+    }
+};
+${theme.breakpoints.only('xl')}{
     font-size: 1.75vw;
     margin-top: -26.8vw;
     right: 5.7vw;
 };
-
-${theme.breakpoints.up('xl')}{
-    font-size: 1.75vw;
-    margin-top: -26.8vw;
-    right: 5.7vw;
-};
-
 ${theme.breakpoints.only('lg')}{
-    font-size: 2vw;
-    margin-top: -29.8vw;
-    right: 4.9vw;
+    font-size: 24px;
+    margin-top: -26.3vw;
+    right: 5.5vw;
+    .subText {
+        font-size: 18px;
+    }
 };
 ${theme.breakpoints.only('tablet')}{
     font-size: 20px;
@@ -188,30 +197,19 @@ line-height: 1.75;
 
 ${theme.breakpoints.only('monitor43')}{
     width: 45px;
-    line-height: 1.5;
+    line-height: 1.7;
     left: 19vw;
     bottom: 0;
     margin-bottom: 17.3vw;
-
-    font-size: 1.4vw;
+    font-size: 1.2vw;
 };
-
-${theme.breakpoints.up('xl')}{
-    width: 45px;
-    line-height: 1.5;
-    left: 19vw;
-    bottom: 0;
-    margin-bottom: 17.3vw;
-
-    font-size: 1.4vw;
-};
-
-${theme.breakpoints.only('xl')}{
+${theme.breakpoints.only('desktop')}{
     width: 34px;
-    left: 44.5%;
-    top: 31.5%;
-    font-size: 1.4vw;
+    left: 76%;
+    bottom: 17.3vw;
+    font-size: 24px;
 };
+
 ${theme.breakpoints.only('xl')}{
     width: 34px;
     left: 44.5%;
@@ -220,9 +218,9 @@ ${theme.breakpoints.only('xl')}{
 };
 ${theme.breakpoints.only('lg')}{
     line-height: 1.8;
-    font-size: 1.3vw;
-    margin-top: -24.1vw;
-    right: 3vw;
+    font-size: 16px;
+    margin-top: -21.1vw;
+    right: 3.65vw;
     .sub {
         margin-top: 0.01vw;
     }
@@ -333,12 +331,12 @@ padding: 13px;
 font-size: 1.6vw;
 
 ${theme.breakpoints.up('monitor43')}{
-    font-size: 1.8vw;
-    padding: 20px;
+    font-size: 68px;
+    padding: 28px;
 };
 ${theme.breakpoints.only('desktop')}{
-    font-size: 1.8vw;
-    padding: 10px;
+    font-size: 32px;
+    padding: 18px;
 };
 ${theme.breakpoints.only('xl')}{
     max-height: 112px;
@@ -386,7 +384,7 @@ export const TitleBackHome = styled('span')(({theme}) => ({
     [theme.breakpoints.up('monitor43')]: {
         fontSize: '2vw'
     },
-    [theme.breakpoints.only('desktop')]:{
+    [theme.breakpoints.only('desktop')]: {
         fontSize: '2vw'
     },
     [theme.breakpoints.only('xl')]: {
@@ -404,22 +402,64 @@ export const TitleBackHome = styled('span')(({theme}) => ({
 }));
 
 // Paragraph.tsx
-export const ContainerHeadParagraph = styled('div')(({theme}) => `
-font-size: 3vw;
+export const MarginSubParagraph = styled('div')(({theme}) => `
+margin-top: 8px;
 ${theme.breakpoints.up('monitor43')}{
-    margin-top: 4%;
+
 };
 ${theme.breakpoints.only('desktop')}{
-    margin-top: 5%;
+
 };
 ${theme.breakpoints.only('xl')}{
-    margin-top: 3%;
+
 };
 ${theme.breakpoints.only('lg')}{
-    margin-top: 1%;
+  
 };
 ${theme.breakpoints.only('tablet')}{
-    margin-top: 10%;
+
+};
+@media (width:1024px) {
+
+};
+${theme.breakpoints.only('md')}{
+};`);
+
+export const MarginParagraph1 = styled('div')(({theme}) => `
+margin-top: 48px;
+${theme.breakpoints.up('monitor43')}{
+margin-top: 86px;
+};
+${theme.breakpoints.only('desktop')}{
+};
+${theme.breakpoints.only('xl')}{
+};
+${theme.breakpoints.only('lg')}{
+};
+${theme.breakpoints.only('tablet')}{
+};
+@media (width:1024px) {
+};
+${theme.breakpoints.only('md')}{
+};`);
+
+export const ContainerHeadParagraph = styled('div')(({theme}) => `
+font-size: 3vw;
+margin-top: 40px;
+
+${theme.breakpoints.up('monitor43')}{
+margin-top: 52px;
+
+};
+${theme.breakpoints.only('desktop')}{
+};
+${theme.breakpoints.only('xl')}{
+};
+${theme.breakpoints.only('lg')}{
+    margin-top: 40px;
+};
+${theme.breakpoints.only('tablet')}{
+    margin-top: 40px;
 };
 @media (width:1024px) {
     margin-top: 10%;
@@ -438,15 +478,53 @@ export const ContainerSubParagraph = styled('div')(({theme}) => ({
         marginLeft: '3vw',
     },
     [theme.breakpoints.only('lg')]: {
-        marginTop: '5vh',
+        marginTop: '40px',
         marginLeft: '3.5vw',
     },
     [theme.breakpoints.only('tablet')]: {
-        marginTop: '5vh',
+        marginTop: '40px',
         marginLeft: '4.5vw',
     },
     [theme.breakpoints.only('md')]: {
         marginTop: '5vh',
         marginLeft: '3vw',
+    },
+}));
+
+export const MiddleParagraph = styled('div')(({theme}) => ({
+    minHeight: '270px',
+    width: '95%',
+    [theme.breakpoints.only('monitor43')]: {
+        minHeight: '760px',
+    },
+    [theme.breakpoints.only('desktop')]: {
+        minHeight: '360px',
+    },
+    [theme.breakpoints.only('xl')]: {
+    },
+    [theme.breakpoints.only('xl')]: {
+    },
+    [theme.breakpoints.only('lg')]: {
+    },
+    [theme.breakpoints.only('tablet')]: {
+    },
+    [theme.breakpoints.only('md')]: {
+    },
+}));
+
+export const ULParagraph = styled('div')(({theme}) => ({
+    marginLeft: '24px',
+    [theme.breakpoints.only('monitor43')]: {
+        marginLeft: '72px',
+    },
+    [theme.breakpoints.only('desktop')]: {
+    },
+    [theme.breakpoints.only('xl')]: {
+    },
+    [theme.breakpoints.only('lg')]: {
+    },
+    [theme.breakpoints.only('tablet')]: {
+    },
+    [theme.breakpoints.only('md')]: {
     },
 }));
