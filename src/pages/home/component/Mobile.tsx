@@ -23,7 +23,6 @@ export const Mobile: React.FC<IMobile> = ({temp, pm}): React.ReactElement => {
     let interval: NodeJS.Timeout | null
 
     const handlerCalTemp = (x: number): boolean => {
-        console.log('x', x)
         // over-flow
         if (x < initTemp || pm) {
             return true
