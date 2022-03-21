@@ -139,26 +139,23 @@ export const StatusBoard = styled('div')(({theme}) => `
 position: absolute;
 background-color: white;
 font-weight: 700;
+min-width: 2.1rem;
+text-align: center;
+
 .subText {
-    font-size: 1.5vw;
+    font-size: 1.4vw;
 }
 
 ${theme.breakpoints.only('monitor43')}{
     font-size: 1.75vw;
     margin-top: -26.8vw;
     right: 5.7vw;
-    .subText {
-        font-size: 1.4vw;
-    }
 };
 
 ${theme.breakpoints.up('xl')}{
     font-size: 1.75vw;
     margin-top: -26.8vw;
     right: 5.7vw;
-    .subText {
-        font-size: 1.4vw;
-    }
 };
 
 ${theme.breakpoints.only('lg')}{
@@ -169,7 +166,7 @@ ${theme.breakpoints.only('lg')}{
 ${theme.breakpoints.only('tablet')}{
     font-size: 20px;
     margin-top: -29.8vw;
-    right: 4.33vw;
+    right: 4.31vw;
 };
 @media (width:1024px) {
     font-size: 20px;
