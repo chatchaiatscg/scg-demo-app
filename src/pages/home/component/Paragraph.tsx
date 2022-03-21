@@ -1,7 +1,7 @@
 import React from "react";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
-import {ContainerHeadParagraph, ContainerSubParagraph, MarginParagraph1, MarginSubParagraph, MiddleParagraph, ULParagraph} from "./Home.styles";
+import {ContainerHeadParagraph, ContainerSubParagraph, MarginParagraph1, MarginSubParagraph, MiddleParagraph, ULParagraph, WidthULParagraph} from "./Home.styles";
 import {Title2, Title3} from "component/common/Font.styles";
 
 interface IParagraph {
@@ -53,10 +53,12 @@ const Paragraph: React.FC<IParagraph> = ({temp, pm}): React.ReactElement => {
                                 <Grid container direction="row">
                                     <MarginSubParagraph />
                                     <ULParagraph />
-                                    <ul style={{padding: 0}}>
-                                        <li className="text3">กรองฝุ่น PM2.5</li>
-                                        <li className="text3">กรองเชื้อโรค ไวรัส แบคทีเรีย</li>
-                                    </ul>
+                                    <WidthULParagraph>
+                                        <ul style={{padding: 0}}>
+                                            <li className="text3">กรองฝุ่น PM2.5</li>
+                                            <li className="text3">กรองเชื้อโรค ไวรัส แบคทีเรีย</li>
+                                        </ul>
+                                    </WidthULParagraph>
 
                                     <ul>
                                         <li className="text3">เพิ่มออกซิเจนในบ้าน เพิ่มคุณภาพในการนอน</li>
@@ -109,11 +111,13 @@ const Paragraph: React.FC<IParagraph> = ({temp, pm}): React.ReactElement => {
                             <Grid container direction="row">
                                 <MarginSubParagraph />
                                 <ULParagraph />
-                                <ul style={{padding: 0}}>
-                                    <li className="text3">ลดอุณหภูมิภายในไม่ร้อนอบอ้าว</li>
-                                    <li className="text3">ระบายเเละถ่ายเทอากาศตลอดวัน</li>
-                                </ul>
 
+                                <WidthULParagraph>
+                                    <ul style={{padding: 0}}>
+                                        <li className="text3">ลดอุณหภูมิภายในไม่ร้อนอบอ้าว</li>
+                                        <li className="text3">ระบายเเละถ่ายเทอากาศตลอดวัน</li>
+                                    </ul>
+                                </WidthULParagraph>
                                 <ul>
                                     <li className="text3">สร้างอากาศดีในบ้านป้องกันฝุ่นเเละเชื้อรา</li>
                                     <li className="text3">ระบายเเละถ่ายเทอากาศตลอดวัน</li>

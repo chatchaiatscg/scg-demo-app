@@ -284,6 +284,27 @@ ${theme.breakpoints.only('md')}{
 `,
 );
 
+export const RelativeButton = styled('div')(({theme}) => `
+height: 70%;
+${theme.breakpoints.up('monitor43')}{
+ 
+};
+${theme.breakpoints.only('desktop')}{
+    height: 67%;
+};
+${theme.breakpoints.only('xl')}{
+};
+${theme.breakpoints.only('lg')}{
+};
+${theme.breakpoints.only('tablet')}{
+    height: 63%;
+};
+@media (width:1024px) {
+    height: 65%;
+};
+`
+);
+
 export const WrapIcon = styled('img')(({theme}) => `
 ${theme.breakpoints.up('monitor43')}{
     width: 90px;
@@ -514,7 +535,7 @@ export const MiddleParagraph = styled('div')(({theme}) => ({
     [theme.breakpoints.only('lg')]: {
     },
     [theme.breakpoints.only('tablet')]: {
-        minHeight: '250px',
+        minHeight: '210px',
     },
     [theme.breakpoints.only('md')]: {
     },
@@ -532,6 +553,25 @@ export const ULParagraph = styled('div')(({theme}) => ({
     [theme.breakpoints.only('lg')]: {
     },
     [theme.breakpoints.only('tablet')]: {
+    },
+    [theme.breakpoints.only('md')]: {
+    },
+}));
+
+export const WidthULParagraph = styled('div')(({theme}) => ({
+    minWidth: '300px',
+    [theme.breakpoints.only('monitor43')]: {
+        minWidth: '830px',
+    },
+    [theme.breakpoints.only('desktop')]: {
+    },
+    [theme.breakpoints.only('xl')]: {
+    },
+    [theme.breakpoints.only('lg')]: {
+        minWidth: '230px',
+    },
+    [theme.breakpoints.only('tablet')]: {
+        minWidth: '155px',
     },
     [theme.breakpoints.only('md')]: {
     },
