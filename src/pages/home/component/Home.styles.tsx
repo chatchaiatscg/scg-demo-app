@@ -45,8 +45,7 @@ ${theme.breakpoints.only('lg')}{
     padding-top: 78px;
 };
 ${theme.breakpoints.only('tablet')}{
-    padding-left: 42px;
-    padding-top: 78px;
+    left: 32px;
 };
 ${theme.breakpoints.only('md')}{
     padding-left: 12px;
@@ -145,11 +144,12 @@ min-width: 2.1rem;
 text-align: center;
 
 ${theme.breakpoints.only('monitor43')}{
-    font-size: 68px;
+    font-size: 62px;
     margin-top: -26.8vw;
     right: 5.7vw;
     .subText {
-        font-size: 44px;
+        line-height: 2;
+        font-size: 52px;
     }
 };
 ${theme.breakpoints.only('desktop')}{
@@ -166,17 +166,21 @@ ${theme.breakpoints.only('xl')}{
     right: 5.7vw;
 };
 ${theme.breakpoints.only('lg')}{
-    font-size: 24px;
+    font-size: 22px;
     margin-top: -26.3vw;
     right: 5.5vw;
     .subText {
-        font-size: 18px;
+        line-height:1.8;
+        font-size: 20px;
     }
 };
 ${theme.breakpoints.only('tablet')}{
     font-size: 20px;
-    margin-top: -29.8vw;
-    right: 4.31vw;
+    margin-top: -29.6vw;
+    right: 3.5vw;
+    .subText {
+        font-size: 18px;
+    }
 };
 @media (width:1024px) {
     font-size: 20px;
@@ -228,8 +232,8 @@ ${theme.breakpoints.only('lg')}{
 ${theme.breakpoints.only('tablet')}{
     line-height: 1.8;
     font-size: 1.3vw;
-    margin-top: -24.3vw;
-    right: 1.8vw;
+    margin-top: -24.2vw;
+    right: 1.3vw;
     .sub {
         margin-top: 0.01vw;
     }
@@ -507,6 +511,7 @@ export const MiddleParagraph = styled('div')(({theme}) => ({
     [theme.breakpoints.only('lg')]: {
     },
     [theme.breakpoints.only('tablet')]: {
+        minHeight: '250px',
     },
     [theme.breakpoints.only('md')]: {
     },
