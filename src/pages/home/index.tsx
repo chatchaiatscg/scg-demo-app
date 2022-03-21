@@ -9,7 +9,7 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import ControllerButton from "./component/ControllerButton";
 import Mobile from "./component/Mobile";
 import Paragraph from "./component/Paragraph";
-import {SpaceTopMobile} from "./component/Home.styles";
+// import {SpaceTopMobile} from "./component/Home.styles";
 
 // const fanTemp = '128_1_0013A20041C7F595'
 // const aqiTemp = '128_1_0013A20041C7F63E'

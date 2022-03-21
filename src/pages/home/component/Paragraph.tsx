@@ -48,7 +48,6 @@ const Paragraph: React.FC<IParagraph> = ({temp, pm}): React.ReactElement => {
                         <div style={{width: '100%'}}>
                             <Box>
                                 <span className="text2">ประโยชน์ที่ได้รับหลังจากติดตั้งระบบ SCG Active AIRquality</span>
-                                <div style={{marginTop: '24px'}} />
 
                                 <Grid container direction="row" justifyContent="space-around">
                                     <ul style={{padding: 0}}>
@@ -103,7 +102,6 @@ const Paragraph: React.FC<IParagraph> = ({temp, pm}): React.ReactElement => {
                     <div style={{width: '100%'}}>
                         <Box>
                             <span className="text2">ประโยชน์ที่ได้รับหลังจากติดตั้งระบบ SCG Active AIRflow</span>
-                            <div style={{marginTop: '24px'}} />
 
                             <Grid container direction="row" justifyContent="space-around">
                                 <ul style={{padding: 0}}>

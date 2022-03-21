@@ -41,11 +41,10 @@ ${theme.breakpoints.only('xl')}{
 };
 ${theme.breakpoints.only('lg')}{
     left: 20px;
-    padding-top: 16px;
+    padding-top: 15%;
 };
 ${theme.breakpoints.only('tablet')}{
     left: 20px;
-    padding-top: 32px;
 };
 ${theme.breakpoints.only('md')}{
     padding-left: 12px;
@@ -170,7 +169,7 @@ ${theme.breakpoints.only('lg')}{
 ${theme.breakpoints.only('tablet')}{
     font-size: 20px;
     margin-top: -29.8vw;
-    right: 4.7vw;
+    right: 4.4vw;
 };
 @media (width:1024px) {
     font-size: 20px;
@@ -233,8 +232,8 @@ ${theme.breakpoints.only('lg')}{
 ${theme.breakpoints.only('tablet')}{
     line-height: 1.8;
     font-size: 1.3vw;
-    margin-top: -24.1vw;
-    right: 2.2vw;
+    margin-top: -24.3vw;
+    right: 1.8vw;
     .sub {
         margin-top: 0.01vw;
     }
@@ -253,6 +252,7 @@ ${theme.breakpoints.only('md')}{
 
 // ControllerButton.tsx
 export const IconBackContainer = styled(IconBack)(({theme}) => `
+margin-top: 2px;
 ${theme.breakpoints.up('monitor43')}{
     width: 30px;
     height: 30px;
@@ -269,12 +269,13 @@ ${theme.breakpoints.only('xl')}{
     height: 16px;
 };
 ${theme.breakpoints.only('lg')}{
-    width: 16px;
-    height: 16px;
-};
-${theme.breakpoints.only('tablet')}{
     width: 12px;
     height: 12px;
+};
+${theme.breakpoints.only('tablet')}{
+    width: 10px;
+    height: 10px;
+    margin-top: 4px;
 };
 ${theme.breakpoints.only('md')}{
     width: 12px;
@@ -329,8 +330,13 @@ ${theme.breakpoints.only('xl')}{
     padding-right: 8px;
 };
 ${theme.breakpoints.only('lg')}{
-max-height: 112px;
+font-size: 1.6vw;
 
+};
+${theme.breakpoints.only('tablet')}{
+    max-height: 112px;
+    padding-left: 10px;
+    padding-right: 6px;
 };
 ${theme.breakpoints.only('md')}{
 max-height: 112px;
@@ -368,13 +374,10 @@ export const TitleBackHome = styled('span')(({theme}) => ({
         fontSize: '2vw'
     },
     [theme.breakpoints.only('xl')]: {
-        fontSize: '1.7vw'
-    },
-    [theme.breakpoints.only('xl')]: {
         fontSize: '1.45vw'
     },
     [theme.breakpoints.only('lg')]: {
-        fontSize: '1.45vw'
+        fontSize: '1.6vw'
     },
     [theme.breakpoints.only('tablet')]: {
         fontSize: '22px'
