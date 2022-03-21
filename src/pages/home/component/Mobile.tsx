@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from "react";
 import Box from "@mui/material/Box";
+import {AxiosInstance} from "axios";
 
 // @ts-ignore
 import MobileOn from "assets/images/mobileOn.png";
@@ -8,6 +9,8 @@ import FanActive from "assets/icon/fanActive.png";
 import FanInActive from "assets/icon/fanInactive.png";
 import {FanIcon, StatusBoard, StatusBoard2, WrapFanIcon, WrapMobileIcon} from "./Home.styles";
 import {COLORS} from "core/utils/constant";
+import useAxios from "hooks/useAxios";
+import {HomeService, IHomeService} from "../service/my-home";
 interface IMobile {
     temp: boolean
     pm: boolean
@@ -16,9 +19,13 @@ interface IMobile {
 const initTemp = 36.21
 const initAqi = 60
 
+// const TIME_OUT = 1000
+
 export const Mobile: React.FC<IMobile> = ({temp, pm}): React.ReactElement => {
     const [tempulature, setTempulature] = useState(initTemp)
     const [aqi, setAqi] = useState(initAqi)
+
+    const {service} = useAxios<IHomeService>((axiosInstance: AxiosInstance) => HomeService(axiosInstance))
 
     let interval: NodeJS.Timeout | null
 
@@ -30,32 +37,52 @@ export const Mobile: React.FC<IMobile> = ({temp, pm}): React.ReactElement => {
         return false
     }
 
-    useEffect(() => {
-        // if (pm) {
-        //     interval = setInterval(() => {
-        //         const rand = Math.round(Math.random() * 10)
-        //         if (rand > 5) {
-        //             setTempulature(tempulature + rand)
-        //         } else {
-        //             setTempulature(tempulature - rand)
-        //         }
-        //         console.log('rand', rand)
-        //     }, 1000)
-        //     return
-        // }
+    const fetchTemp = async () => {
+        try {
+            const response = await service().getTemp()
+            console.log('fetchTemp', response)
+        } catch (e) {
+            console.log('e', e)
+        }
+    }
 
-        // interval && clearInterval(interval)
-        // return () => {
-        //     interval && clearInterval(interval)
-        // }
+    const fetchPm = async () => {
+        try {
+            const response = await service().getPm()
+            console.log('fetchPm', response)
+        } catch (e) {
+            console.log('e', e)
+        }
+    }
+
+    useEffect(() => {
+
+        // interval = setInterval(() => {
+        //     // fetch .. 
+        // }, TIME_OUT)
 
         if (pm) {
+            // mock
             setTempulature(34.6)
+            setAqi(initAqi)
+
+            fetchPm()
         } else {
             setTempulature(initTemp)
         }
 
-    }, [pm])
+        if (temp) {
+            fetchTemp()
+        } else {
+
+        }
+
+        return () => {
+            interval && clearInterval(interval)
+        }
+
+    // eslint-disable-next-line
+    }, [pm, temp])
 
     return (
         <div className='outer-div'>

@@ -416,7 +416,7 @@ ${theme.breakpoints.only('xl')}{
     margin-top: 3%;
 };
 ${theme.breakpoints.only('lg')}{
-    margin-top: 3%;
+    margin-top: 1%;
 };
 ${theme.breakpoints.only('tablet')}{
     margin-top: 10%;

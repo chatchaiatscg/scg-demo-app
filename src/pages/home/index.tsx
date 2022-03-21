@@ -1,77 +1,47 @@
-import React, {useState, useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import Grid from '@mui/material/Grid';
-// import {AxiosInstance} from "axios";
 import useMediaQuery from "@mui/material/useMediaQuery";
-// import useAxios from "hooks/useAxios";
-// import {IModelHome} from "./model/my-home";
-// import {HomeService, IHomeService} from "./service/my-home";
 
 import ControllerButton from "./component/ControllerButton";
 import Mobile from "./component/Mobile";
 import Paragraph from "./component/Paragraph";
-// import {SpaceTopMobile} from "./component/Home.styles";
+import Box from "@mui/material/Box";
+import Fade from "@mui/material/Fade";
 
 // const fanTemp = '128_1_0013A20041C7F595'
 // const aqiTemp = '128_1_0013A20041C7F63E'
 // const mockTemp = '128_1_0013A20041C9F2C6'
+import start from 'assets/images/start.png'
+
+const TIME_OUT = 10000
 
 const Home: React.FC = (): React.ReactElement => {
     // start ipad only
     const matches = useMediaQuery('(min-width:1024px)');
-
-    // const [myHome, setMyHome] = useState<IModelHome[]>([])
-    // const [homeStatus, setHomeStatus] = useState<IModelHome[]>([])
-
     const [temp, setTemp] = useState<boolean>(true)
     const [pm, setPm] = useState<boolean>(false)
+    const [revision, setRevision] = useState<number>(1)
 
-    // const {service} = useAxios<IHomeService>((axiosInstance: AxiosInstance) => HomeService(axiosInstance))
+    const [isModeSim, setIsModeSim] = useState<boolean>(true)
+    let interval: any
 
-    // let interval: NodeJS.Timeout | null
+    useEffect(() => {
+        if (isModeSim) {
+            interval = setTimeout(() => {
+                setIsModeSim(false)
+            }, TIME_OUT)
+        }
+    }, [isModeSim, revision])
 
-    const fetchMyHome = async () => {
-        // let preMyHome: IModelHome[] = []
-        // let statusTemp: IModelHome[] = []
-        // let status: IModelHome[] = []
-
-        // try {
-        //     const response = await service().getMyHome()
-        //     // console.log('response', response)
-        //     response.map((value) => {
-        //         if (value.device_type !== 'relay') {
-        //             return preMyHome.push(value)
-        //         }
-        //         return statusTemp.push(value)
-        //     })
-
-        //     statusTemp.forEach((value) => {
-        //         if (value.device_id === fanTemp) {
-        //             status[0] = value
-        //         } else if (value.device_id === aqiTemp) {
-        //             status[1] = value
-        //         }
-        //     })
-        //     setMyHome(preMyHome)
-        //     setHomeStatus(status)
-        // } catch (e) {
-        //     console.log('e', e)
-        //     // message.error('Something went wrong!')
-        // }
+    const handlerSimActive = () => {
+        setRevision(revision + 1)
+        setIsModeSim(true)
+        clearTimeout(interval)
     }
 
-    // @ts-ignore
-    useEffect(() => {
-        fetchMyHome()
-        // interval = setInterval(() => {
-        //     fetchMyHome()
-        // }, 1000)
-
-        // return () => interval && clearInterval(interval)
-        // @ts-ignore
-    }, [])
-
-    if (!matches) {
-        return <></>
+    const handlerVideoActive = () => {
+        console.log('switch to simulate')
+        setIsModeSim(true)
     }
 
     const handlerControlTemp = () => {
@@ -98,28 +68,42 @@ const Home: React.FC = (): React.ReactElement => {
         setPm(nextState)
     }
 
+    if (!matches) {
+        return <></>
+    }
+
     return (
         <>
-            {/* <span style={{position: 'absolute', color: 'red', fontSize: '32px'}}>
-                {window.screen.width}
-            </span> */}
-            <Grid container>
-                <Grid item xs={2.98} className="shadow">
-                    <ControllerButton
-                        temp={temp}
-                        pm={pm}
-                        handlerControlTemp={handlerControlTemp}
-                        handlerControlPM={handlerControlPM}
-                    />
-                </Grid>
+            {isModeSim ?
+                <Fade in={isModeSim}>
+                    <Grid container onClick={handlerSimActive}>
+                        <Grid item xs={2.98} className="shadow">
+                            <ControllerButton
+                                temp={temp}
+                                pm={pm}
+                                handlerControlTemp={handlerControlTemp}
+                                handlerControlPM={handlerControlPM}
+                            />
+                        </Grid>
 
-                <Grid item xs={2.99}>
-                    <Mobile temp={temp} pm={pm} />
-                </Grid>
-                <Grid item xs={6.03}>
-                    <Paragraph temp={temp} pm={pm} />
-                </Grid>
-            </Grid>
+                        <Grid item xs={2.99}>
+                            <Mobile temp={temp} pm={pm} />
+                        </Grid>
+                        <Grid item xs={6.03}>
+                            <Paragraph temp={temp} pm={pm} />
+                        </Grid>
+                    </Grid>
+                </Fade>
+                :
+                <Box onClick={handlerVideoActive}>
+                    {/* video */}
+                    <img
+                        alt="start"
+                        src={start}
+                        style={{objectFit: 'fill', width: '100%', height: '100vh'}}
+                    />
+                </Box>
+            }
         </>
     )
 };

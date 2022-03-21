@@ -1,11 +1,12 @@
 import React from "react";
-import Card from '@mui/material/Card';
-import Stack from "@mui/material/Stack";
+// import Stack from "@mui/material/Stack";
 import Box from "@mui/material/Box";
 
 import IconAAQ from "assets/icon/aaq.png";
-import {IconBackContainer, TempBtnContainer, TitleBackHome, WrapBtnContainer, WrapCardBtnContainer, WrapIcon} from "./Home.styles";
-import {Link} from "react-router-dom";
+import {
+    // IconBackContainer, TitleBackHome,
+    TempBtnContainer, WrapBtnContainer, WrapCardBtnContainer, WrapIcon} from "./Home.styles";
+// import {Link} from "react-router-dom";
 
 interface IProps {
     active: boolean
@@ -79,7 +80,7 @@ const ControllerButton: React.FC<IControllerButton> = ({handlerControlTemp, hand
                 </div>
             </div>
 
-            <div className="box1">
+            {/* <div className="box1">
                 <Link to="/start">
                     <div style={{bottom: 21, position: 'absolute', cursor: 'pointer'}}>
                         <Stack direction="row" alignItems="center">
@@ -90,7 +91,7 @@ const ControllerButton: React.FC<IControllerButton> = ({handlerControlTemp, hand
                         </Stack>
                     </div>
                 </Link>
-            </div>
+            </div> */}
         </>
     )
 }
