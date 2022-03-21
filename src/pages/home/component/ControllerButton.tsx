@@ -3,6 +3,7 @@ import React from "react";
 import Box from "@mui/material/Box";
 
 import IconAAQ from "assets/icon/aaq.png";
+import IconAAF from "assets/icon/aaf.png";
 import {
     // IconBackContainer, TitleBackHome,
     TempBtnContainer, WrapBtnContainer, WrapCardBtnContainer, WrapIcon} from "./Home.styles";
@@ -22,8 +23,8 @@ export const SimulateTemp: React.FC<IProps> = ({active}): React.ReactElement => 
             <WrapBtnContainer>
                 <TempBtnContainer>
                     <div className="icon">
-                        <span>AAF</span>
-                        <WrapIcon alt="temp" src={IconAAQ} />
+                        <span style={{textAlign: 'center'}}>AAF</span>
+                        <WrapIcon alt="temp" src={IconAAF} />
                     </div>
 
                     <div style={{marginLeft: '13.7%'}}>

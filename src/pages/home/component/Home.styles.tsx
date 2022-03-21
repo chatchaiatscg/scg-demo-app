@@ -335,8 +335,8 @@ padding: 13px;
 font-size: 1.6vw;
 
 ${theme.breakpoints.up('monitor43')}{
-    font-size: 68px;
-    padding: 28px;
+    font-size: 62px;
+    padding: 42px;
 };
 ${theme.breakpoints.only('desktop')}{
     font-size: 32px;
@@ -363,13 +363,16 @@ max-height: 112px;
 
 export const TempBtnContainer = styled('div')(({theme}) => `
 display: flex;
+line-height: 1.3;
 
  .icon {
     display: grid;
     place-items: center;
+    margin-left: 1%;
+    margin-right: 1%;
 }
-${theme.breakpoints.up('monitor43')}{
-
+${theme.breakpoints.only('monitor43')}{
+  
 };
 
 ${theme.breakpoints.only('xl')}{
