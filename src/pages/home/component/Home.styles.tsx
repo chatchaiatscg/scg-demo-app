@@ -169,7 +169,7 @@ ${theme.breakpoints.only('lg')}{
 ${theme.breakpoints.only('tablet')}{
     font-size: 20px;
     margin-top: -29.8vw;
-    right: 4.4vw;
+    right: 4.33vw;
 };
 @media (width:1024px) {
     font-size: 20px;

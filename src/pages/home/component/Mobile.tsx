@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import Box from "@mui/material/Box";
 
 // @ts-ignore
@@ -13,17 +13,50 @@ interface IMobile {
     pm: boolean
 }
 
+const initTemp = 36.21
+const initAqi = 60
+
 export const Mobile: React.FC<IMobile> = ({temp, pm}): React.ReactElement => {
-    const tempulature = 34.2
-    const aqi = 60
+    const [tempulature, setTempulature] = useState(initTemp)
+    const [aqi, setAqi] = useState(initAqi)
+
+    let interval: NodeJS.Timeout | null
 
     const handlerCalTemp = (x: number): boolean => {
+        console.log('x', x)
         // over-flow
-        if (x >= 35 || pm) {
+        if (x < initTemp || pm) {
             return true
         }
         return false
     }
+
+    useEffect(() => {
+        // if (pm) {
+        //     interval = setInterval(() => {
+        //         const rand = Math.round(Math.random() * 10)
+        //         if (rand > 5) {
+        //             setTempulature(tempulature + rand)
+        //         } else {
+        //             setTempulature(tempulature - rand)
+        //         }
+        //         console.log('rand', rand)
+        //     }, 1000)
+        //     return
+        // }
+
+        // interval && clearInterval(interval)
+        // return () => {
+        //     interval && clearInterval(interval)
+        // }
+
+        if (pm) {
+            setTempulature(34.6)
+        } else {
+            setTempulature(initTemp)
+        }
+
+    }, [pm])
 
     return (
         <div className='outer-div'>
@@ -56,7 +89,7 @@ export const Mobile: React.FC<IMobile> = ({temp, pm}): React.ReactElement => {
                 <Box style={{position: 'relative'}}>
                     <StatusBoard style={{color: temp ? COLORS.red : COLORS.green}}>
                         <div style={{position: 'relative'}}>
-                            <span className="subText">{tempulature}</span>
+                            <span className="subText">{tempulature.toFixed(1)}</span>
                         </div>
                         <div style={{position: 'relative'}}>
                             <span>{aqi}</span>
