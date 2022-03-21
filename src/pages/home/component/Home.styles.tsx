@@ -1,3 +1,4 @@
+import Card from '@mui/material/Card';
 import {styled} from '@mui/material/styles';
 
 import {IconBack} from 'assets/icon/svg';
@@ -33,7 +34,7 @@ ${theme.breakpoints.only('monitor43')}{
 };
 ${theme.breakpoints.only('desktop')}{
     padding-left: 10%;
-    padding-top: 5%;
+    padding-top: 7%;
 };
 ${theme.breakpoints.only('xl')}{
     padding-left: 15%;
@@ -257,8 +258,8 @@ ${theme.breakpoints.up('monitor43')}{
     margin-right: 12px;
 };
 ${theme.breakpoints.only('desktop')}{
-    width: 20px;
-    height: 20px;
+    width: 18px;
+    height: 18px;
     margin-top: 6px;
 };
 ${theme.breakpoints.only('xl')}{
@@ -307,6 +308,24 @@ ${theme.breakpoints.only('sm')}{
     height: auto;
 };
 `);
+
+export const WrapCardBtnContainer = styled(Card)(({theme}) => `
+border-radius: 20px;
+
+${theme.breakpoints.up('monitor43')}{
+    border-radius: 48px;
+};
+${theme.breakpoints.only('desktop')}{
+    border-radius: 28px;
+};
+${theme.breakpoints.only('xl')}{
+};
+${theme.breakpoints.only('lg')}{
+};
+${theme.breakpoints.only('tablet')}{
+};
+${theme.breakpoints.only('md')}{
+};`);
 
 export const WrapBtnContainer = styled('div')(({theme}) => `
 font-weight: 700;
@@ -391,7 +410,7 @@ ${theme.breakpoints.up('monitor43')}{
     margin-top: 4%;
 };
 ${theme.breakpoints.only('desktop')}{
-    margin-top: 3%;
+    margin-top: 5%;
 };
 ${theme.breakpoints.only('xl')}{
     margin-top: 3%;

@@ -4,7 +4,7 @@ import Stack from "@mui/material/Stack";
 import Box from "@mui/material/Box";
 
 import IconAAQ from "assets/icon/aaq.png";
-import {IconBackContainer, TempBtnContainer, TitleBackHome, WrapBtnContainer, WrapIcon} from "./Home.styles";
+import {IconBackContainer, TempBtnContainer, TitleBackHome, WrapBtnContainer, WrapCardBtnContainer, WrapIcon} from "./Home.styles";
 import {Link} from "react-router-dom";
 
 interface IProps {
@@ -13,8 +13,8 @@ interface IProps {
 
 export const SimulateTemp: React.FC<IProps> = ({active}): React.ReactElement => {
     return (
-        <Card className={active ? "shadow" : ""} style={{
-            cursor: 'pointer', borderRadius: 20,
+        <WrapCardBtnContainer className={active ? "shadow" : ""} style={{
+            cursor: 'pointer',
             backgroundColor: active ? '#8CADF6' : 'white',
             borderColor: active ? '' : '#4C89F4'
         }} variant="outlined">
@@ -30,14 +30,14 @@ export const SimulateTemp: React.FC<IProps> = ({active}): React.ReactElement => 
                     </div>
                 </TempBtnContainer>
             </WrapBtnContainer>
-        </Card>
+        </WrapCardBtnContainer>
     )
 }
 
 export const SimulatePM: React.FC<IProps> = ({active}): React.ReactElement => {
     return (
-        <Card style={{
-            cursor: 'pointer', borderRadius: 20,
+        <WrapCardBtnContainer style={{
+            cursor: 'pointer',
             backgroundColor: active ? '#8CADF6' : 'white',
             borderColor: active ? 'white' : '#4C89F4'
         }} variant="outlined">
@@ -53,7 +53,7 @@ export const SimulatePM: React.FC<IProps> = ({active}): React.ReactElement => {
                     </div>
                 </TempBtnContainer>
             </WrapBtnContainer>
-        </Card>
+        </WrapCardBtnContainer>
     )
 }
 
@@ -72,7 +72,7 @@ const ControllerButton: React.FC<IControllerButton> = ({handlerControlTemp, hand
                     <Box className="box1" onClick={handlerControlTemp}>
                         <SimulateTemp active={temp} />
                     </Box>
-                    <div style={{marginTop: '24px'}} />
+                    <div style={{marginTop: '3vh'}} />
                     <Box className="box1" onClick={handlerControlPM}>
                         <SimulatePM active={pm} />
                     </Box>
