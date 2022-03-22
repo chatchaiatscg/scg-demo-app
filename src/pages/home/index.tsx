@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import Grid from '@mui/material/Grid';
 import useMediaQuery from "@mui/material/useMediaQuery";
 
@@ -11,13 +11,17 @@ import Fade from "@mui/material/Fade";
 // const fanTemp = '128_1_0013A20041C7F595'
 // const aqiTemp = '128_1_0013A20041C7F63E'
 // const mockTemp = '128_1_0013A20041C9F2C6'
-import start from 'assets/images/start.png'
+// import start from 'assets/images/start.png'
+// import saver from 'assets/saver.mp4'
+// import x from '../../assets/saver.mp4'
 
 const TIME_OUT = 10000
 
 const Home: React.FC = (): React.ReactElement => {
     // start ipad only
     const matches = useMediaQuery('(min-width:1024px)');
+
+    const refVideo = useRef<any>(null)
     const [temp, setTemp] = useState<boolean>(true)
     const [pm, setPm] = useState<boolean>(false)
     const [revision, setRevision] = useState<number>(1)
@@ -26,11 +30,14 @@ const Home: React.FC = (): React.ReactElement => {
     let interval: any
 
     useEffect(() => {
-        // if (isModeSim) {
-        //     interval = setTimeout(() => {
-        //         setIsModeSim(false)
-        //     }, TIME_OUT)
-        // }
+        // console.log('refVideo', refVideo)
+        if (isModeSim) {
+            interval = setTimeout(() => {
+                setIsModeSim(false)
+                console.log('refVideo?.current?', refVideo?.current)
+                refVideo?.current?.play()
+            }, TIME_OUT)
+        }
     }, [isModeSim, revision])
 
     const handlerSimActive = () => {
@@ -41,6 +48,7 @@ const Home: React.FC = (): React.ReactElement => {
 
     const handlerVideoActive = () => {
         console.log('switch to simulate')
+        refVideo?.current?.pause()
         setIsModeSim(true)
     }
 
@@ -96,11 +104,12 @@ const Home: React.FC = (): React.ReactElement => {
                 </Fade>
                 :
                 <Box onClick={handlerVideoActive}>
-                    {/* video */}
-                    <img
-                        alt="start"
-                        src={start}
-                        style={{objectFit: 'fill', width: '100%', height: '100vh'}}
+                    <video
+                        ref={refVideo}
+                        muted
+                        style={{width: '100vw', objectFit: 'contain'}}
+                        src="https://media.w3.org/2010/05/sintel/trailer_hd.mp4"
+                        autoPlay={true}
                     />
                 </Box>
             }
