@@ -30,11 +30,9 @@ const Home: React.FC = (): React.ReactElement => {
     let interval: any
 
     useEffect(() => {
-        // console.log('refVideo', refVideo)
         if (isModeSim) {
             interval = setTimeout(() => {
                 setIsModeSim(false)
-                console.log('refVideo?.current?', refVideo?.current)
                 refVideo?.current?.play()
             }, TIME_OUT)
         }
@@ -47,7 +45,6 @@ const Home: React.FC = (): React.ReactElement => {
     }
 
     const handlerVideoActive = () => {
-        console.log('switch to simulate')
         refVideo?.current?.pause()
         setIsModeSim(true)
     }
@@ -107,6 +104,7 @@ const Home: React.FC = (): React.ReactElement => {
                     <video
                         ref={refVideo}
                         muted
+                        loop
                         style={{width: '100vw', objectFit: 'contain'}}
                         src="https://media.w3.org/2010/05/sintel/trailer_hd.mp4"
                         autoPlay={true}
