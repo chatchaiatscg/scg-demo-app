@@ -36,6 +36,7 @@ const Home: React.FC = (): React.ReactElement => {
                 refVideo?.current?.play()
             }, TIME_OUT)
         }
+        // eslint-disable-next-line
     }, [isModeSim, revision])
 
     const handlerSimActive = () => {
@@ -74,7 +75,7 @@ const Home: React.FC = (): React.ReactElement => {
     }
 
     if (!matches) {
-        return <></>
+        return <>Not Supported</>
     }
 
     return (
