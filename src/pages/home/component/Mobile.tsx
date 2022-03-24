@@ -6,7 +6,7 @@ import {AxiosInstance} from "axios";
 import MobileOn from "assets/images/mobileOn.png";
 import MobileOff from "assets/images/mobileOff.png";
 import FanActive from "assets/icon/fanActive.png";
-import FanInActive from "assets/icon/fanInactive.png";
+import FanInActive from "assets/icon/fanInActive.png";
 import {FanIcon, StatusBoard, StatusBoard2, WrapFanIcon, WrapMobileIcon} from "./Home.styles";
 import {COLORS} from "core/utils/constant";
 import useAxios from "hooks/useAxios";

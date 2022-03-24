@@ -8,13 +8,6 @@ import Paragraph from "./component/Paragraph";
 import Box from "@mui/material/Box";
 import Fade from "@mui/material/Fade";
 
-// const fanTemp = '128_1_0013A20041C7F595'
-// const aqiTemp = '128_1_0013A20041C7F63E'
-// const mockTemp = '128_1_0013A20041C9F2C6'
-// import start from 'assets/images/start.png'
-// import saver from 'assets/saver.mp4'
-// import x from '../../assets/saver.mp4'
-
 const TIME_OUT = 10000
 
 const Home: React.FC = (): React.ReactElement => {
