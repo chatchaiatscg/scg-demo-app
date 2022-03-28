@@ -25,7 +25,7 @@ const theme = createTheme({
             md: 900,
             // @ts-ignore
             tablet: 1024,
-            lg: 1200,
+            lg: 1536,
             xl: 1536,
             desktop: 1900,
             monitor43: 3840
