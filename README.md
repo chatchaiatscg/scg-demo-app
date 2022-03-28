@@ -1,6 +1,7 @@
-# Getting Started with Create React App
+# AAF/AAQ Simulator
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Requirements 
+- Local video must prepared (merged/combined if required) and named "AAF_AAQ_MERGED.mp4" and placed in public folder.
 
 ## Available Scripts
 
