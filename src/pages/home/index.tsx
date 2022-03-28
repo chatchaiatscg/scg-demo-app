@@ -2,11 +2,14 @@ import React, {useEffect, useRef, useState} from "react";
 import Grid from '@mui/material/Grid';
 import useMediaQuery from "@mui/material/useMediaQuery";
 
-import ControllerButton from "./component/ControllerButton";
+import {SimulateButton, ControllerButton} from "./component/ControllerButton";
 import Mobile from "./component/Mobile";
 import Paragraph from "./component/Paragraph";
+import { Container } from '@mui/material';
 import Box from "@mui/material/Box";
 import Fade from "@mui/material/Fade";
+
+import ReactPlayer from 'react-player'
 
 const TIME_OUT = 10000
 
@@ -94,19 +97,28 @@ const Home: React.FC = (): React.ReactElement => {
                     </Grid>
                 </Fade>
                 :
-                <Box onClick={handlerVideoActive}>
-                    <video
-                        ref={refVideo}
-                        muted
-                        loop
-                        style={{width: '100vw', objectFit: 'contain'}}
-                        src="https://media.w3.org/2010/05/sintel/trailer_hd.mp4"
-                        autoPlay={true}
-                    />
-                </Box>
+                <Container 
+                    onClick={handlerVideoActive} 
+                    style={{
+                        position: 'absolute', 
+                        left: '50%', 
+                        top: '50%',
+                        transform: 'translate(-50%, -50%)'
+                    }}>
+                        <ReactPlayer
+                                url='video/AAF_AAQ_MERGED.mp4'
+                                playing
+                                width='100%'
+                                height='100%'
+                                loop
+                            />
+                        <SimulateButton></SimulateButton>
+                </Container>
             }
         </>
     )
 };
 
 export default Home;
+
+

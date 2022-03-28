@@ -61,6 +61,22 @@ export const SimulatePM: React.FC<IProps> = ({active}): React.ReactElement => {
     )
 }
 
+export const SimulateBtn = ({}): React.ReactElement => {
+    return (
+        <WrapCardBtnContainer style={{
+            cursor: 'pointer',
+            backgroundColor: '#8CADF6',
+            borderColor: 'white'
+        }} variant="outlined">
+            <WrapBtnContainer>
+                <TempBtnContainer sx={{ justifyContent: 'center' }}>
+                <span>เเตะเพื่อเลือกดูการจำลองของอุปกรณ์</span>
+                </TempBtnContainer>
+            </WrapBtnContainer>
+        </WrapCardBtnContainer>
+    )
+}
+
 interface IControllerButton {
     handlerControlTemp: () => void
     handlerControlPM: () => void
@@ -107,4 +123,12 @@ const ControllerButton: React.FC<IControllerButton> = ({handlerControlTemp, hand
     )
 }
 
-export default ControllerButton
+const SimulateButton = (): React.ReactElement => {
+    return (
+        <Box className="box1" style={{ paddingTop: "1%"}}>
+            <SimulateBtn /> 
+        </Box>
+    )
+}
+
+export {ControllerButton, SimulateButton}
