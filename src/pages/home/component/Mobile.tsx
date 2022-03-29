@@ -10,79 +10,137 @@ import FanInActive from "assets/icon/fanInActive.png";
 import {FanIcon, StatusBoard, StatusBoard2, WrapFanIcon, WrapMobileIcon} from "./Home.styles";
 import {COLORS} from "core/utils/constant";
 import useAxios from "hooks/useAxios";
+import {IModelHome as IDeviceData, IHomeData} from "../model/my-home";
 import {HomeService, IHomeService} from "../service/my-home";
+import { stat } from "fs";
 interface IMobile {
     temp: boolean
     pm: boolean
+    controlType: string //air, pm25
 }
 
-const initTemp = 36.21
-const initAqi = 60
 
 // const TIME_OUT = 1000
+// lab
+const fanTempRelay = '130_1_0013A20041D5D18E'
+const aqiTempRelay = '130_1_0013A20041D5D3D0'
 
-export const Mobile: React.FC<IMobile> = ({temp, pm}): React.ReactElement => {
+// xp 
+// const fanTempRelay = '128_1_0013A20041C7F595'
+// const aqiTempRelay = '128_1_0013A20041C7F63E'
+
+const initTemp = 37.0
+const initAqi = 60.0
+
+export const Mobile: React.FC<IMobile> = ({temp, pm, controlType}): React.ReactElement => {
     const [tempulature, setTempulature] = useState(initTemp)
     const [aqi, setAqi] = useState(initAqi)
 
+//---
+    const [myHome, setMyHome] = useState<IDeviceData[]>([])
+    const [homeStatus, setHomeStatus] = useState<IDeviceData[]>([])
+    
+    const [homeData, setHomeData] = useState<IHomeData>()
+
+
     const {service} = useAxios<IHomeService>((axiosInstance: AxiosInstance) => HomeService(axiosInstance))
-
     let interval: NodeJS.Timeout | null
-
-    const handlerCalTemp = (x: number): boolean => {
-        // over-flow
-        if (x < initTemp || pm) {
-            return true
-        }
-        return false
-    }
-
-    const fetchTemp = async () => {
+    const fetchMyHome = async () => {
+        const homeData = {} as IHomeData;
         try {
-            const response = await service().getTemp()
-            console.log('fetchTemp', response)
+            const response = await service().getHomeData()
+            response.map((deviceData: IDeviceData) => {
+                if (deviceData.device_id === fanTempRelay) {
+                    homeData.tempRelay = deviceData.value === "1"
+                } else if (deviceData.device_id === aqiTempRelay){
+                    homeData.aqiRelay = deviceData.value === "1"
+                } else if (deviceData.device_type === 'temperature') {
+                    homeData.temperature = deviceData.value
+                } else if (deviceData.device_type === 'aqi') {
+                    homeData.aqi = deviceData.value
+                } else if (deviceData.device_type === 'pm') {
+                    homeData.pm25 = deviceData.value
+                } else if (deviceData.device_type === 'co2') {
+                    homeData.co2 = deviceData.value
+                }
+            })
+
+            setHomeData(homeData)
+            console.log('home data: ', homeData)
         } catch (e) {
-            console.log('e', e)
+            console.error('Something went wrong!')
         }
     }
 
-    const fetchPm = async () => {
-        try {
-            const response = await service().getPm()
-            console.log('fetchPm', response)
-        } catch (e) {
-            console.log('e', e)
-        }
-    }
-
+    // @ts-ignore
     useEffect(() => {
+        fetchMyHome().then()
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+        interval = setInterval(() => {
+            fetchMyHome().then()
+        }, 5000)
 
-        // interval = setInterval(() => {
-        //     // fetch .. 
-        // }, TIME_OUT)
+        return () => interval && clearInterval(interval)
 
-        if (pm) {
-            // mock
-            setTempulature(34.6)
-            setAqi(initAqi)
+        // fetchMyHome().then()
+        // eslint-disable-next-line
+    }, [])
+//---
 
-            fetchPm()
-        } else {
-            setTempulature(initTemp)
-        }
+    // const handlerCalTemp = (x: number): boolean => {
+    //     // over-flow
+    //     if (x < initTemp || pm) {
+    //         return true
+    //     }
+    //     return false
+    // }
 
-        if (temp) {
-            fetchTemp()
-        } else {
+    // const fetchTemp = async () => {
+    //     try {
+    //         const response = await service().getTemp()
+    //         console.log('fetchTemp', response)
+    //     } catch (e) {
+    //         console.log('e', e)
+    //     }
+    // }
 
-        }
+    // const fetchPm = async () => {
+    //     try {
+    //         const response = await service().getHomeData()
+    //         console.log('fetchPm', response)
+    //     } catch (e) {
+    //         console.log('e', e)
+    //     }
+    // }
 
-        return () => {
-            interval && clearInterval(interval)
-        }
+    // useEffect(() => {
 
-    // eslint-disable-next-line
-    }, [pm, temp])
+    //     // interval = setInterval(() => {
+    //     //     // fetch .. 
+    //     // }, TIME_OUT)
+
+    //     if (pm) {
+    //         // mock
+    //         setTempulature(34.6)
+    //         setAqi(initAqi)
+
+    //         fetchPm()
+    //     } else {
+    //         setTempulature(initTemp)
+    //     }
+
+    //     if (temp) {
+    //         fetchTemp()
+    //     } else {
+
+    //     }
+
+    //     return () => {
+    //         interval && clearInterval(interval)
+    //     }
+
+    // // eslint-disable-next-line
+    // }, [pm, temp, controlType])
 
     return (
         <div className='outer-div'>
@@ -92,19 +150,19 @@ export const Mobile: React.FC<IMobile> = ({temp, pm}): React.ReactElement => {
                         <WrapFanIcon>
                             <FanIcon
                                 // @ts-ignore
-                                rotate={handlerCalTemp(tempulature) ? 1 : 0}
+                                rotate={tempulature ? 1 : 0}
                                 className="image"
                                 alt="fan-1"
-                                src={handlerCalTemp(tempulature) ? FanActive : FanInActive}
+                                src={tempulature ? FanActive : FanInActive}
                             />
                         </WrapFanIcon>
                         <WrapFanIcon>
                             <FanIcon
                                 // @ts-ignore
-                                rotate={handlerCalTemp(tempulature) ? 1 : 0}
+                                rotate={tempulature ? 1 : 0}
                                 className="image fan2"
                                 alt="fan-2"
-                                src={handlerCalTemp(tempulature) ? FanActive : FanInActive}
+                                src={tempulature ? FanActive : FanInActive}
                             />
                         </WrapFanIcon>
                     </Box>
@@ -115,7 +173,9 @@ export const Mobile: React.FC<IMobile> = ({temp, pm}): React.ReactElement => {
                 <Box style={{position: 'relative'}}>
                     <StatusBoard style={{color: temp ? COLORS.red : COLORS.green}}>
                         <div style={{position: 'relative'}}>
-                            <span className="subText">{tempulature.toFixed(1)}</span>
+                            <span className="subText">
+                                {Number.parseFloat(homeData?.temperature ?? initTemp.toString()).toFixed(1)}
+                            </span>
                         </div>
                         <div style={{position: 'relative'}}>
                             <span>{aqi}</span>
@@ -124,9 +184,9 @@ export const Mobile: React.FC<IMobile> = ({temp, pm}): React.ReactElement => {
 
                     <StatusBoard2 style={{color: COLORS.green}}>
                         <div>
-                            <span>51</span>
+                            <span>{homeData?.pm25}</span>
                         </div>
-                        <div className="sub">41</div>
+                        <div className="sub">{homeData?.co2}</div>
                     </StatusBoard2>
                 </Box>
             </div>

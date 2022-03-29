@@ -80,6 +80,7 @@ export const SimulateBtn = ({}): React.ReactElement => {
 interface IControllerButton {
     handlerControlTemp: () => void
     handlerControlPM: () => void
+    controlType: string
     temp: boolean
     pm: boolean
 }

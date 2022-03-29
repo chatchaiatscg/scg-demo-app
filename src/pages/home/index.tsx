@@ -9,21 +9,30 @@ import { Container } from '@mui/material';
 import Box from "@mui/material/Box";
 import Fade from "@mui/material/Fade";
 
+import {AxiosInstance} from "axios";
+import useAxios from "hooks/useAxios";
+import {HomeService, IHomeService} from "./service/my-home";
+
 import ReactPlayer from 'react-player'
 
-const TIME_OUT = 10000
+const TIME_OUT = 15000
 
 const Home: React.FC = (): React.ReactElement => {
     // start ipad only
     const matches = useMediaQuery('(min-width:1024px)');
 
     const refVideo = useRef<any>(null)
-    const [temp, setTemp] = useState<boolean>(true)
+    const [temp, setTemp] = useState<boolean>(false)
     const [pm, setPm] = useState<boolean>(false)
+    const [controlType, setControlType] = useState<string>("air") //air, pm25
+    const [tempValue, setTempValue] = useState<boolean>(false)
+    const [pm25Value, setpm25Value] = useState<boolean>(false)
     const [revision, setRevision] = useState<number>(1)
 
     const [isModeSim, setIsModeSim] = useState<boolean>(true)
     let interval: any
+
+    const {service} = useAxios<IHomeService>((axiosInstance: AxiosInstance) => HomeService(axiosInstance))
 
     useEffect(() => {
         if (isModeSim) {
@@ -46,28 +55,41 @@ const Home: React.FC = (): React.ReactElement => {
         setIsModeSim(true)
     }
 
-    const handlerControlTemp = () => {
-        if (temp && !pm) {
-            return
-        }
+    const handlerControlTemp = () => {  
+        // if (temp && !pm) {
+        //     return
+        // }
 
-        const nextState = !temp
-        if (nextState) {
-            setPm(false)
-        }
-        setTemp(nextState)
+        // const nextState = !temp
+        // if (nextState) {
+        //     setPm(false)
+        // }
+        // setTemp(nextState)
+        const nextState = !tempValue
+        setTempValue(nextState)
+        setControlType('air')
+        console.log('control: ', controlType, ', value: ', tempValue)
+        service().control(controlType, tempValue)
+
     }
 
     const handlerControlPM = () => {
-        if (!temp && pm) {
-            return
-        }
+        // if (!temp && pm) {
+        //     return
+        // }
 
-        const nextState = !pm
-        if (nextState) {
-            setTemp(false)
-        }
-        setPm(nextState)
+        // const nextState = !pm
+        // if (nextState) {
+        //     setTemp(false)
+        // }
+        // setPm(nextState)
+
+        const nextState = !pm25Value
+        setTempValue(nextState)
+        setpm25Value(nextState)
+        setControlType('pm25')
+        console.log('control: ', controlType, ', value: ', pm25Value)
+        service().control(controlType, pm25Value)
     }
 
     if (!matches) {
@@ -81,15 +103,20 @@ const Home: React.FC = (): React.ReactElement => {
                     <Grid container onClick={handlerSimActive}>
                         <Grid item xs={2.98} className="shadow">
                             <ControllerButton
-                                temp={temp}
-                                pm={pm}
+                                temp={tempValue}
+                                pm={pm25Value}
+                                controlType={controlType}
                                 handlerControlTemp={handlerControlTemp}
                                 handlerControlPM={handlerControlPM}
                             />
                         </Grid>
 
                         <Grid item xs={2.99}>
-                            <Mobile temp={temp} pm={pm} />
+                            <Mobile 
+                                temp={tempValue}
+                                pm={pm25Value}
+                                controlType={controlType}
+                             />
                         </Grid>
                         <Grid item xs={6.03}>
                             <Paragraph temp={temp} pm={pm} />

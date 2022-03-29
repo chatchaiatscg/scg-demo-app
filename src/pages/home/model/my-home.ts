@@ -11,3 +11,12 @@ export interface IActiveState {
     tempActive: boolean
     pmActive: boolean
 }
+
+export interface IHomeData {
+    temperature: string
+    aqi: string
+    pm25: string
+    co2: string
+    tempRelay: boolean
+    aqiRelay: boolean
+}
