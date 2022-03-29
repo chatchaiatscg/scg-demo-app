@@ -55,7 +55,7 @@ const Home: React.FC = (): React.ReactElement => {
         setIsModeSim(true)
     }
 
-    const handlerControlTemp = () => {  
+    const handlerControlTemp = () => {
         // if (temp && !pm) {
         //     return
         // }
@@ -67,6 +67,9 @@ const Home: React.FC = (): React.ReactElement => {
         // setTemp(nextState)
         const nextState = !tempValue
         setTempValue(nextState)
+        if(nextState && pm25Value) {
+            setpm25Value(false)
+        }
         setControlType('air')
         console.log('control: ', controlType, ', value: ', tempValue)
         service().control(controlType, tempValue)
@@ -85,8 +88,10 @@ const Home: React.FC = (): React.ReactElement => {
         // setPm(nextState)
 
         const nextState = !pm25Value
-        setTempValue(nextState)
         setpm25Value(nextState)
+        if(nextState && tempValue) {
+            setTempValue(false)
+        }
         setControlType('pm25')
         console.log('control: ', controlType, ', value: ', pm25Value)
         service().control(controlType, pm25Value)
@@ -112,7 +117,7 @@ const Home: React.FC = (): React.ReactElement => {
                         </Grid>
 
                         <Grid item xs={2.99}>
-                            <Mobile 
+                            <Mobile
                                 temp={tempValue}
                                 pm={pm25Value}
                                 controlType={controlType}
@@ -124,11 +129,11 @@ const Home: React.FC = (): React.ReactElement => {
                     </Grid>
                 </Fade>
                 :
-                <Container 
-                    onClick={handlerVideoActive} 
+                <Container
+                    onClick={handlerVideoActive}
                     style={{
-                        position: 'absolute', 
-                        left: '50%', 
+                        position: 'absolute',
+                        left: '50%',
                         top: '50%',
                         transform: 'translate(-50%, -50%)'
                     }}>
