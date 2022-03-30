@@ -17,7 +17,7 @@ export const HomeService = (axiosInstance: AxiosInstance): IHomeService => {
                 type: type,
                 value: value
             }
-            const api_endpoint = process.env.API_ENDPOINT || ''
+            const api_endpoint = process.env.API_ENDPOINT ?? ''
             console.log('url: ', api_endpoint, ' json: ', payload)
             const {
                 data,
