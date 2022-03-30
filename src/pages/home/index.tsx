@@ -35,8 +35,13 @@ const Home: React.FC = (): React.ReactElement => {
     const {service} = useAxios<IHomeService>((axiosInstance: AxiosInstance) => HomeService(axiosInstance))
 
     //state set only effect here, function handlers don't seem to change state
-    service().control('air', tempValue)
-    service().control('pm25', pm25Value)
+
+    
+    useEffect(() => {
+        service().control('air', tempValue)
+        service().control('pm25', pm25Value)
+        // eslint-disable-next-line
+    }, [tempValue, pm25Value])
 
     useEffect(() => {
         if (isModeSim) {
