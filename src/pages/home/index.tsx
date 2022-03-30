@@ -6,7 +6,6 @@ import {SimulateButton, ControllerButton} from "./component/ControllerButton";
 import Mobile from "./component/Mobile";
 import Paragraph from "./component/Paragraph";
 import { Container } from '@mui/material';
-import Box from "@mui/material/Box";
 import Fade from "@mui/material/Fade";
 
 import {AxiosInstance} from "axios";
@@ -15,7 +14,7 @@ import {HomeService, IHomeService} from "./service/my-home";
 
 import ReactPlayer from 'react-player'
 
-const TIME_OUT = 15000
+const TIME_OUT = 30000
 
 const Home: React.FC = (): React.ReactElement => {
     // start ipad only
@@ -33,6 +32,13 @@ const Home: React.FC = (): React.ReactElement => {
     let interval: any
 
     const {service} = useAxios<IHomeService>((axiosInstance: AxiosInstance) => HomeService(axiosInstance))
+
+
+    useEffect(() => {
+        service().control('air', tempValue)
+        service().control('pm25', pm25Value)
+        // eslint-disable-next-line
+    }, [tempValue, pm25Value])
 
     useEffect(() => {
         if (isModeSim) {
@@ -56,36 +62,16 @@ const Home: React.FC = (): React.ReactElement => {
     }
 
     const handlerControlTemp = () => {
-        // if (temp && !pm) {
-        //     return
-        // }
-
-        // const nextState = !temp
-        // if (nextState) {
-        //     setPm(false)
-        // }
-        // setTemp(nextState)
         const nextState = !tempValue
         setTempValue(nextState)
         if(nextState && pm25Value) {
             setpm25Value(false)
         }
         setControlType('air')
-        console.log('control: ', controlType, ', value: ', tempValue)
-        service().control(controlType, nextState)
         clearTimeout(interval)
     }
 
     const handlerControlPM = () => {
-        // if (!temp && pm) {
-        //     return
-        // }
-
-        // const nextState = !pm
-        // if (nextState) {
-        //     setTemp(false)
-        // }
-        // setPm(nextState)
 
         const nextState = !pm25Value
         setpm25Value(nextState)
@@ -93,8 +79,6 @@ const Home: React.FC = (): React.ReactElement => {
             setTempValue(false)
         }
         setControlType('pm25')
-        console.log('control: ', controlType, ', value: ', pm25Value)
-        service().control(controlType, nextState)
         clearTimeout(interval)
     }
 
