@@ -25,7 +25,7 @@ interface IMobile {
 const fanTempRelay = '130_1_0013A20041D5D18E'
 const aqiTempRelay = '130_1_0013A20041D5D3D0'
 
-// xp 
+// xp
 // const fanTempRelay = '128_1_0013A20041C7F595'
 // const aqiTempRelay = '128_1_0013A20041C7F63E'
 
@@ -33,13 +33,13 @@ const initTemp = 37.0
 const initAqi = 60.0
 
 export const Mobile: React.FC<IMobile> = ({temp, pm, controlType}): React.ReactElement => {
-    const [tempulature, setTempulature] = useState(initTemp)
+    // const [tempulature, setTempulature] = useState(initTemp)
     const [aqi, setAqi] = useState(initAqi)
 
 //---
     const [myHome, setMyHome] = useState<IDeviceData[]>([])
     const [homeStatus, setHomeStatus] = useState<IDeviceData[]>([])
-    
+
     const [homeData, setHomeData] = useState<IHomeData>()
 
 
@@ -116,7 +116,7 @@ export const Mobile: React.FC<IMobile> = ({temp, pm, controlType}): React.ReactE
     // useEffect(() => {
 
     //     // interval = setInterval(() => {
-    //     //     // fetch .. 
+    //     //     // fetch ..
     //     // }, TIME_OUT)
 
     //     if (pm) {
@@ -150,24 +150,24 @@ export const Mobile: React.FC<IMobile> = ({temp, pm, controlType}): React.ReactE
                         <WrapFanIcon>
                             <FanIcon
                                 // @ts-ignore
-                                rotate={tempulature ? 1 : 0}
+                                rotate={temp ? 1 : 0}
                                 className="image"
-                                alt="fan-1"
-                                src={tempulature ? FanActive : FanInActive}
+                                alt="fan-1" //Fan at ceiling
+                                src={temp ? FanActive : FanInActive}
                             />
                         </WrapFanIcon>
                         <WrapFanIcon>
                             <FanIcon
                                 // @ts-ignore
-                                rotate={tempulature ? 1 : 0}
+                                rotate={pm ? 1 : 0}
                                 className="image fan2"
-                                alt="fan-2"
-                                src={tempulature ? FanActive : FanInActive}
+                                alt="fan-2" //Fan at floor
+                                src={pm ? FanActive : FanInActive}
                             />
                         </WrapFanIcon>
                     </Box>
 
-                    <img alt="mobile" src={temp ? MobileOff : MobileOn} style={{width: '100%', height: 'auto'}} />
+                    <img alt="mobile" src={(temp || pm) ? MobileOn : MobileOff} style={{width: '100%', height: 'auto'}} />
                 </WrapMobileIcon>
 
                 <Box style={{position: 'relative'}}>
