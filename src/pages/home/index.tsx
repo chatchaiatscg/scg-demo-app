@@ -73,7 +73,7 @@ const Home: React.FC = (): React.ReactElement => {
         setControlType('air')
         console.log('control: ', controlType, ', value: ', tempValue)
         service().control(controlType, tempValue)
-
+        clearTimeout(interval)
     }
 
     const handlerControlPM = () => {
@@ -95,6 +95,7 @@ const Home: React.FC = (): React.ReactElement => {
         setControlType('pm25')
         console.log('control: ', controlType, ', value: ', pm25Value)
         service().control(controlType, pm25Value)
+        clearTimeout(interval)
     }
 
     if (!matches) {
