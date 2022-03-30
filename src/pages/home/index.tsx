@@ -33,7 +33,6 @@ const Home: React.FC = (): React.ReactElement => {
 
     const {service} = useAxios<IHomeService>((axiosInstance: AxiosInstance) => HomeService(axiosInstance))
 
-
     useEffect(() => {
         service().control('air', tempValue)
         service().control('pm25', pm25Value)

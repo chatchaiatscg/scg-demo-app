@@ -17,11 +17,12 @@ export const HomeService = (axiosInstance: AxiosInstance): IHomeService => {
                 type: type,
                 value: value
             }
-            console.log('posting: ', payload)
+            const api_endpoint = process.env.API_ENDPOINT ?? ''
+            console.log('url: ', api_endpoint, ' json: ', payload)
             const {
                 data,
                 status
-            }  = await axiosInstance.post('http://192.168.1.115:881/control', payload)
+            }  = await axiosInstance.post(api_endpoint, payload)
 
             console.log('response', data)
             if (status !== 200) {
