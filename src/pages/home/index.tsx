@@ -72,7 +72,7 @@ const Home: React.FC = (): React.ReactElement => {
         }
         setControlType('air')
         console.log('control: ', controlType, ', value: ', tempValue)
-        service().control(controlType, tempValue)
+        service().control(controlType, nextState)
         clearTimeout(interval)
     }
 
@@ -94,7 +94,7 @@ const Home: React.FC = (): React.ReactElement => {
         }
         setControlType('pm25')
         console.log('control: ', controlType, ', value: ', pm25Value)
-        service().control(controlType, pm25Value)
+        service().control(controlType, nextState)
         clearTimeout(interval)
     }
 
