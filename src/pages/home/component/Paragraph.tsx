@@ -5,17 +5,16 @@ import {ContainerHeadParagraph, ContainerSubParagraph, MarginParagraph1, MarginS
 import {Title2, Title3} from "component/common/Font.styles";
 
 interface IParagraph {
-    temp: boolean
-    pm: boolean
+    pm25: boolean
 }
 
-const Paragraph: React.FC<IParagraph> = ({temp, pm}): React.ReactElement => {
-    if (pm) {
+const Paragraph: React.FC<IParagraph> = ({pm25}): React.ReactElement => {
+    if (pm25) {
         return (
             <>
-                <ContainerHeadParagraph className="text1">
-                    <span style={{color: '#ED2324', paddingTop: 0}}>
-                        SCG{" "}
+                <ContainerHeadParagraph className="text1" sx={{lineHeight: 1}}>
+                    <span style={{color: '#ED2324'}} className="sub-title">
+                        SCG <br />
                     </span>
                     Active AIRquality
                 </ContainerHeadParagraph>
@@ -75,9 +74,9 @@ const Paragraph: React.FC<IParagraph> = ({temp, pm}): React.ReactElement => {
 
     return (
         <>
-            <ContainerHeadParagraph className="text1">
-                <span style={{color: '#ED2324'}}>
-                    SCG{" "}
+            <ContainerHeadParagraph className="text1" sx={{lineHeight: 1}}>
+                <span style={{color: '#ED2324'}} className="sub-title">
+                    SCG <br />
                 </span>
                 Active AIRflow
             </ContainerHeadParagraph>

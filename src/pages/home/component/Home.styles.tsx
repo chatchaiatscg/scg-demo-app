@@ -413,13 +413,13 @@ export const TitleBackHome = styled('span')(({theme}) => ({
         fontSize: '2vw'
     },
     [theme.breakpoints.only('desktop')]: {
-        fontSize: '2vw'
+        fontSize: '1.5vw'
     },
     [theme.breakpoints.only('xl')]: {
-        fontSize: '1.45vw'
+        fontSize: '1.2vw'
     },
     [theme.breakpoints.only('lg')]: {
-        fontSize: '1.6vw'
+        fontSize: '1.2vw'
     },
     [theme.breakpoints.only('tablet')]: {
         fontSize: '22px'
@@ -474,6 +474,10 @@ ${theme.breakpoints.only('md')}{
 export const ContainerHeadParagraph = styled('div')(({theme}) => `
 font-size: 3vw;
 margin-top: 40px;
+
+.sub-title {
+    font-size: 2.5vw;
+}
 
 ${theme.breakpoints.up('monitor43')}{
 margin-top: 52px;
