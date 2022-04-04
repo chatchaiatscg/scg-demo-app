@@ -1,11 +1,11 @@
 import {useCallback} from "react";
 import axios, {AxiosError, AxiosInstance} from "axios";
 
-import {BASE_URL_REST} from "../core/utils/env";
+import {BASE_URL_CONTROL_REST} from "../core/utils/env";
 
 export default function useAxios<S>(serviceFn: (axiosInstance: AxiosInstance) => S) {
     const axiosInstance = axios.create({
-        baseURL: BASE_URL_REST,
+        baseURL: BASE_URL_CONTROL_REST,
         headers: {
             // Authorization: `Bearer ${token}`
         }

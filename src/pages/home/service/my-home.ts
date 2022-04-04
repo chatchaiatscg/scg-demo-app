@@ -3,6 +3,10 @@ import {AxiosInstance} from "axios";
 import {IModelHome} from "../model/my-home";
 import {myHomeData} from "../mock/my-home";
 import internal from "stream";
+import {
+    BASE_URL_CONTROL_REST, 
+    BASE_URL_DATA_REST
+} from "core/utils/env";
 
 export interface IHomeService {
     control: (type: string, value: boolean) => Promise<Boolean>
@@ -17,8 +21,8 @@ export const HomeService = (axiosInstance: AxiosInstance): IHomeService => {
                 type: type,
                 value: value
             }
-            const api_endpoint = process.env.API_ENDPOINT ?? ''
-            console.log('url: ', api_endpoint, ' json: ', payload)
+            const api_endpoint = `${BASE_URL_CONTROL_REST}`;
+            console.log('API CONTROL: ', api_endpoint, ' json: ', payload)
             const {
                 data,
                 status
@@ -32,10 +36,13 @@ export const HomeService = (axiosInstance: AxiosInstance): IHomeService => {
         },
 
         getHomeData: async (): Promise<IModelHome[]> => {
+            const api_endpoint = `${BASE_URL_DATA_REST}`;
+            console.log('API DATA: ', api_endpoint)
+
             const {
                 data,
                 status
-            } = await axiosInstance.get('https://ah3gx2g2pf.execute-api.ap-southeast-1.amazonaws.com/prod?edge_id=demo')
+            } = await axiosInstance.get(api_endpoint)
             if (status !== 200) {
                 return []
             }
