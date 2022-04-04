@@ -33,15 +33,7 @@ const initTemp = 37.0
 const initAqi = 60.0
 
 export const Mobile: React.FC<IMobile> = ({temp, pm, controlType}): React.ReactElement => {
-    // const [tempulature, setTempulature] = useState(initTemp)
-    const [aqi, setAqi] = useState(initAqi)
-
-//---
-    const [myHome, setMyHome] = useState<IDeviceData[]>([])
-    const [homeStatus, setHomeStatus] = useState<IDeviceData[]>([])
-
     const [homeData, setHomeData] = useState<IHomeData>()
-
 
     const {service} = useAxios<IHomeService>((axiosInstance: AxiosInstance) => HomeService(axiosInstance))
     let interval: NodeJS.Timeout | null
@@ -81,66 +73,37 @@ export const Mobile: React.FC<IMobile> = ({temp, pm, controlType}): React.ReactE
         }, 5000)
 
         return () => interval && clearInterval(interval)
-
-        // fetchMyHome().then()
-        // eslint-disable-next-line
     }, [])
-//---
 
-    // const handlerCalTemp = (x: number): boolean => {
-    //     // over-flow
-    //     if (x < initTemp || pm) {
-    //         return true
-    //     }
-    //     return false
-    // }
+    const getTemperatureColor = (temp: string|undefined) => {
+        const tempNum = temp ? parseFloat(temp) : 0
+        if (tempNum >= 37)
+            return COLORS.red
+        else if (tempNum >= 34 && tempNum < 37)
+            return COLORS.orange
+        else
+            return COLORS.green
+    }
 
-    // const fetchTemp = async () => {
-    //     try {
-    //         const response = await service().getTemp()
-    //         console.log('fetchTemp', response)
-    //     } catch (e) {
-    //         console.log('e', e)
-    //     }
-    // }
+    const getAQIColor = (aqi: string|undefined) => {
+        const tempAQI = aqi ? parseFloat(aqi) : 0
+        if (tempAQI >= 0 && tempAQI < 51)
+            return COLORS.green
+        else if (tempAQI >= 51 && tempAQI <= 150)
+            return COLORS.orange
+        else
+            return COLORS.red
+    }
 
-    // const fetchPm = async () => {
-    //     try {
-    //         const response = await service().getHomeData()
-    //         console.log('fetchPm', response)
-    //     } catch (e) {
-    //         console.log('e', e)
-    //     }
-    // }
-
-    // useEffect(() => {
-
-    //     // interval = setInterval(() => {
-    //     //     // fetch ..
-    //     // }, TIME_OUT)
-
-    //     if (pm) {
-    //         // mock
-    //         setTempulature(34.6)
-    //         setAqi(initAqi)
-
-    //         fetchPm()
-    //     } else {
-    //         setTempulature(initTemp)
-    //     }
-
-    //     if (temp) {
-    //         fetchTemp()
-    //     } else {
-
-    //     }
-
-    //     return () => {
-    //         interval && clearInterval(interval)
-    //     }
-
-    // // eslint-disable-next-line
-    // }, [pm, temp, controlType])
+    const getPM25Color = (pm25: string|undefined) => {
+        const tempPM25 = pm25 ? parseFloat(pm25) : 0
+        if (tempPM25 >= 0 && tempPM25 < 16)
+            return COLORS.green
+        else if (tempPM25 >= 16 && tempPM25 <= 65)
+            return COLORS.orange
+        else
+            return COLORS.red
+    }
 
     return (
         <div className='outer-div'>
@@ -171,22 +134,22 @@ export const Mobile: React.FC<IMobile> = ({temp, pm, controlType}): React.ReactE
                 </WrapMobileIcon>
 
                 <Box style={{position: 'relative'}}>
-                    <StatusBoard style={{color: temp ? COLORS.red : COLORS.green}}>
+                    <StatusBoard>
                         <div style={{position: 'relative'}}>
-                            <span className="subText">
+                            <span className="subText" style={{color: getTemperatureColor(homeData?.temperature)}}>
                                 {Number.parseFloat(homeData?.temperature ?? initTemp.toString()).toFixed(1)}
                             </span>
                         </div>
                         <div style={{position: 'relative'}}>
-                            <span>{aqi}</span>
+                            <span style={{color: getAQIColor(homeData?.aqi)}}>{homeData?.aqi}</span>
                         </div>
                     </StatusBoard>
 
-                    <StatusBoard2 style={{color: COLORS.green}}>
+                    <StatusBoard2>
                         <div>
-                            <span>{homeData?.pm25}</span>
+                            <span style={{color: getPM25Color(homeData?.pm25)}}>{homeData?.pm25}</span>
                         </div>
-                        <div className="sub">{homeData?.co2}</div>
+                        <div className="sub" style={{color: COLORS.green}}>{homeData?.co2}</div>
                     </StatusBoard2>
                 </Box>
             </div>
