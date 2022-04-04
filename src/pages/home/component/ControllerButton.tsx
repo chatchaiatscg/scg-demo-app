@@ -5,10 +5,13 @@ import Box from "@mui/material/Box";
 import IconAAQ from "assets/icon/aaq.png";
 import IconAAF from "assets/icon/aaf.png";
 import {
+    IconBackContainer,
     RelativeButton,
     // IconBackContainer, TitleBackHome,
-    TempBtnContainer, WrapBtnContainer, WrapCardBtnContainer, WrapIcon
+    TempBtnContainer, TitleBackHome, WrapBtnContainer, WrapCardBtnContainer, WrapIcon
 } from "./Home.styles";
+import Stack from "@mui/material/Stack";
+import {Link} from "react-router-dom";
 // import {Link} from "react-router-dom";
 
 interface IProps {
@@ -108,7 +111,7 @@ const ControllerButton: React.FC<IControllerButton> = ({handlerControlTemp, hand
             <Box className="box1" onClick={handlerControlPM}>
                 <SimulatePM active={pm} />
             </Box>
-            {/* <div className="box1">
+            <div className="box1">
                 <Link to="/start">
                     <div style={{bottom: 21, position: 'absolute', cursor: 'pointer'}}>
                         <Stack direction="row" alignItems="center">
@@ -119,7 +122,7 @@ const ControllerButton: React.FC<IControllerButton> = ({handlerControlTemp, hand
                         </Stack>
                     </div>
                 </Link>
-            </div> */}
+            </div>
         </>
     )
 }

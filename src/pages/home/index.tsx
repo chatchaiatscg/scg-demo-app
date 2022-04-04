@@ -5,12 +5,12 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import {SimulateButton, ControllerButton} from "./component/ControllerButton";
 import Mobile from "./component/Mobile";
 import Paragraph from "./component/Paragraph";
-import { Container } from '@mui/material';
-import Fade from "@mui/material/Fade";
-
+import {Box, Container} from '@mui/material';
 import {AxiosInstance} from "axios";
 import useAxios from "hooks/useAxios";
 import {HomeService, IHomeService} from "./service/my-home";
+import BackgroundAAF from 'assets/images/background-aaf.png'
+import BackgroundAAQ from 'assets/images/background-aaq.png'
 
 import ReactPlayer from 'react-player'
 
@@ -63,7 +63,7 @@ const Home: React.FC = (): React.ReactElement => {
     const handlerControlTemp = () => {
         const nextState = !tempValue
         setTempValue(nextState)
-        if(nextState && pm25Value) {
+        if (nextState && pm25Value) {
             setpm25Value(false)
         }
         setControlType('air')
@@ -74,7 +74,7 @@ const Home: React.FC = (): React.ReactElement => {
 
         const nextState = !pm25Value
         setpm25Value(nextState)
-        if(nextState && tempValue) {
+        if (nextState && tempValue) {
             setTempValue(false)
         }
         setControlType('pm25')
@@ -88,9 +88,23 @@ const Home: React.FC = (): React.ReactElement => {
     return (
         <>
             {isModeSim ?
-                <Fade in={isModeSim}>
+                <>
+                    <Box
+                        sx={{
+                            backgroundImage: `url(${controlType === 'air' ? BackgroundAAF : BackgroundAAQ})`,
+                            backgroundRepeat: 'no-repeat',
+                            backgroundSize: 'contain',
+                            position: 'absolute',
+                            width: '100%',
+                            height: '100%'
+                        }}
+                    />
                     <Grid container onClick={handlerSimActive}>
-                        <Grid item xs={2.98} className="shadow">
+                        <Grid item xs={2.98} className="shadow"
+                            sx={{
+                                position: 'relative'
+                            }}
+                        >
                             <ControllerButton
                                 temp={tempValue}
                                 pm={pm25Value}
@@ -100,18 +114,26 @@ const Home: React.FC = (): React.ReactElement => {
                             />
                         </Grid>
 
-                        <Grid item xs={2.99}>
+                        <Grid item xs={2.99}
+                            sx={{
+                                background: 'linear-gradient(180deg, #F2F6FF 22.92%, #FCFDFF 77.6%, #FFFFFF 99.99%, #EBF1FF 100%)',
+                            }}
+                        >
                             <Mobile
                                 temp={tempValue}
                                 pm={pm25Value}
                                 controlType={controlType}
-                             />
+                            />
                         </Grid>
-                        <Grid item xs={6.03}>
-                            <Paragraph temp={temp} pm={pm} />
+                        <Grid item xs={6.03}
+                            sx={{
+                                background: 'linear-gradient(180deg, #F2F6FF 22.92%, #FCFDFF 77.6%, #FFFFFF 99.99%, #EBF1FF 100%)',
+                            }}
+                        >
+                            <Paragraph pm25={controlType === 'pm25'} />
                         </Grid>
                     </Grid>
-                </Fade>
+                </>
                 :
                 <Container
                     onClick={handlerVideoActive}
@@ -121,14 +143,14 @@ const Home: React.FC = (): React.ReactElement => {
                         top: '50%',
                         transform: 'translate(-50%, -50%)'
                     }}>
-                        <ReactPlayer
-                                url='video/AAF_AAQ_MERGED.mp4'
-                                playing
-                                width='100%'
-                                height='100%'
-                                loop
-                            />
-                        <SimulateButton></SimulateButton>
+                    <ReactPlayer
+                        url='video/AAF_AAQ_MERGED.mp4'
+                        playing
+                        width='100%'
+                        height='100%'
+                        loop
+                    />
+                    <SimulateButton></SimulateButton>
                 </Container>
             }
         </>
