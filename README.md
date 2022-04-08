@@ -2,6 +2,8 @@
 
 ## Requirements 
 - Local video must prepared (merged/combined if required) and named "AAF_AAQ_MERGED.mp4" and placed in public folder.
+- Edit device id (actuator) in `src/pages/home/component/Mobile.tsx`
+- Edit flask ip address in `src/pages/home/service/my-home.ts`
 
 ## Available Scripts
 
