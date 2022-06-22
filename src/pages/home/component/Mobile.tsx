@@ -22,12 +22,12 @@ interface IMobile {
 
 // const TIME_OUT = 1000
 // lab
-const fanTempRelay = '130_1_0013A20041D5D18E'
-const aqiTempRelay = '130_1_0013A20041D5D3D0'
+// const fanTempRelay = '130_1_0013A20041D5D18E'
+// const aqiTempRelay = '130_1_0013A20041D5D3D0'
 
 // xp
-// const fanTempRelay = '128_1_0013A20041C7F595'
-// const aqiTempRelay = '128_1_0013A20041C7F63E'
+const fanTempRelay = '130_1_0013A20041C7F595'
+const aqiTempRelay = '130_1_0013A20041C7F63E'
 
 const initTemp = 37.0
 const initAqi = 60.0

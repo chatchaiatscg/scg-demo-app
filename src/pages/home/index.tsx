@@ -14,7 +14,7 @@ import BackgroundAAQ from 'assets/images/background-aaq.png'
 
 import ReactPlayer from 'react-player'
 
-const TIME_OUT = 30000
+const TIME_OUT = 300000
 
 const Home: React.FC = (): React.ReactElement => {
     // start ipad only

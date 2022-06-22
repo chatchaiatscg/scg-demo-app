@@ -19,6 +19,27 @@ interface IProps {
 }
 
 export const SimulateTemp: React.FC<IProps> = ({active}): React.ReactElement => {
+    if (active) {
+        return (
+            <WrapCardBtnContainer className={active ? "shadow" : ""} style={{
+                cursor: 'pointer',
+                backgroundColor: active ? '#8CADF6' : 'white',
+                borderColor: active ? '' : '#4C89F4'
+            }} variant="outlined">
+                <WrapBtnContainer>
+                    <TempBtnContainer>
+                        <div className="icon">
+                            <span style={{textAlign: 'center'}}>AAF</span>
+                            <WrapIcon alt="temp" src={IconAAF} />
+                        </div>
+                        <div style={{marginLeft: '4.4%'}}>
+                                <span>ปิดจำลองอุณหภูมิสูงในบ้าน</span>
+                        </div>
+                    </TempBtnContainer>
+                </WrapBtnContainer>
+            </WrapCardBtnContainer>
+        )
+    }
     return (
         <WrapCardBtnContainer className={active ? "shadow" : ""} style={{
             cursor: 'pointer',
@@ -32,8 +53,8 @@ export const SimulateTemp: React.FC<IProps> = ({active}): React.ReactElement => 
                         <WrapIcon alt="temp" src={IconAAF} />
                     </div>
 
-                    <div style={{marginLeft: '13.7%'}}>
-                        <span>จำลองอุณหภูมิสูงในบ้าน</span>
+                    <div style={{marginLeft: '4.4%'}}>
+                        <span>เปิดจำลองอุณหภูมิสูงในบ้าน</span>
                     </div>
                 </TempBtnContainer>
             </WrapBtnContainer>
@@ -42,6 +63,28 @@ export const SimulateTemp: React.FC<IProps> = ({active}): React.ReactElement => 
 }
 
 export const SimulatePM: React.FC<IProps> = ({active}): React.ReactElement => {
+    if (active) {
+        return (
+            <WrapCardBtnContainer style={{
+                cursor: 'pointer',
+                backgroundColor: active ? '#8CADF6' : 'white',
+                borderColor: active ? 'white' : '#4C89F4'
+            }} variant="outlined">
+                <WrapBtnContainer>
+                    <TempBtnContainer>
+                        <div className="icon">
+                            <span>AAQ</span>
+                            <WrapIcon alt="temp" src={IconAAQ} />
+                        </div>
+
+                        <div style={{marginLeft: '4.4%'}}>
+                            <span>ปิดจำลอง PM2.5 สูงในบ้าน</span>
+                        </div>
+                    </TempBtnContainer>
+                </WrapBtnContainer>
+            </WrapCardBtnContainer>
+        )
+    }
     return (
         <WrapCardBtnContainer style={{
             cursor: 'pointer',
@@ -55,8 +98,8 @@ export const SimulatePM: React.FC<IProps> = ({active}): React.ReactElement => {
                         <WrapIcon alt="temp" src={IconAAQ} />
                     </div>
 
-                    <div style={{marginLeft: '13.7%'}}>
-                        <span>จำลอง PM2.5 สูงในบ้าน</span>
+                    <div style={{marginLeft: '4.4%'}}>
+                        <span>เปิดจำลอง PM2.5 สูงในบ้าน</span>
                     </div>
                 </TempBtnContainer>
             </WrapBtnContainer>
@@ -73,7 +116,7 @@ export const SimulateBtn = ({}): React.ReactElement => {
         }} variant="outlined">
             <WrapBtnContainer>
                 <TempBtnContainer sx={{ justifyContent: 'center' }}>
-                <span>เเตะเพื่อเลือกดูการจำลองของอุปกรณ์</span>
+                <span>เเตะ เพื่อดูการจำลองการทำงานของอุปกรณ์</span>
                 </TempBtnContainer>
             </WrapBtnContainer>
         </WrapCardBtnContainer>

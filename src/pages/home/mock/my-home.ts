@@ -33,14 +33,14 @@ export const myHomeData: IModelHome[] = [
         "device_type": "relay",
         "value_type": "boolean",
         "unit": "null",
-        "device_id": "128_1_0013A20041C7F595",
+        "device_id": "130_1_0013A20041C7F595",
         "value": "0"
     },
     {
         "device_type": "relay",
         "value_type": "boolean",
         "unit": "null",
-        "device_id": "128_1_0013A20041C7F63E",
+        "device_id": "130_1_0013A20041C7F63E",
         "value": "0"
     }
 ]

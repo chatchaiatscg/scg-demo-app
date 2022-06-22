@@ -290,7 +290,7 @@ ${theme.breakpoints.up('monitor43')}{
  
 };
 ${theme.breakpoints.only('desktop')}{
-    height: 67%;
+    height: 58%;
 };
 ${theme.breakpoints.only('xl')}{
 };
