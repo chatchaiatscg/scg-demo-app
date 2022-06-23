@@ -107,12 +107,12 @@ export const Mobile: React.FC<IMobile> = ({temp, pm, controlType}): React.ReactE
 
     const getCO2Color = (co2: string|undefined) => {
         const tempCO2 = co2 ? parseFloat(co2) : 0
-        if (tempCO2 >= 1000)
+        if (tempCO2 >= 2000)
             return COLORS.red
-        else if (tempCO2 >= 500 && tempCO2 < 1000)
+        else if (tempCO2 >= 1000 && tempCO2 < 2000)
             return COLORS.orange
         else
-            return COLORS.red
+            return COLORS.green
     }
 
     return (
@@ -159,7 +159,6 @@ export const Mobile: React.FC<IMobile> = ({temp, pm, controlType}): React.ReactE
                         <div>
                             <span style={{color: getPM25Color(homeData?.pm25)}}>{homeData?.pm25}</span>
                         </div>
-                        {/* <div className="sub" style={{color: COLORS.green}}>{homeData?.co2}</div> */}
                         <div className="sub" style={{color: getCO2Color(homeData?.co2)}}>{homeData?.co2}</div>
                     </StatusBoard2>
                 </Box>
